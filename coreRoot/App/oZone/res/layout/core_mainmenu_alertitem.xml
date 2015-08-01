@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content" 
+    android:background="#B0BDBDBD">
+
+    <ImageView
+        android:id="@+id/imageView1"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:src="@drawable/shoot" />
+
+    <TextView
+        android:id="@+id/textMision"
+        android:layout_width="188dp"
+        android:layout_height="50dp"
+        android:gravity="center_horizontal"
+        android:text="Mision de recolecta"
+        android:textColor="#FE2E2E"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        android:visibility="visible" />
+
+</LinearLayout>

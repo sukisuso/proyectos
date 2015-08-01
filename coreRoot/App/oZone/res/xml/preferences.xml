@@ -1,0 +1,22 @@
+<PreferenceScreen
+    xmlns:android="http://schemas.android.com/apk/res/android">
+    <PreferenceCategory android:title="@string/Seting_main_dataUser">
+        
+        <EditTextPreference
+            android:key="userName"
+            android:title="@string/Seting_main_dataUser_name"
+            android:summary="Nombre del usuario"
+            android:dialogTitle="Introduce tu nick" />
+        
+       <EditTextPreference 
+            android:title="@string/Seting_main_dataUser_pass"
+            android:key="password" 
+            android:password="true"  
+            android:summary="Contraseña del usuario"
+            android:dialogTitle="Introduce tu password"/>
+         
+    </PreferenceCategory>
+    <PreferenceCategory android:title="">
+        
+    </PreferenceCategory>
+</PreferenceScreen>

@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">oZone</string>
+    <string name="empty"></string>
+    <string name="app_version">v_0.1.0</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="action_settings_log">Logout</string>
+    <string name="action_settings">Settings</string>
+
+    <!-- - Textos Settings -->
+    <string name="Seting_main_dataUser">Datos del usuario</string>
+    <string name="Seting_main_dataUser_name">Nick</string>
+    <string name="Seting_main_dataUser_pass">Password</string>
+    <string name="title_activity_viewo_zone">ViewoZone</string>
+
+    <!-- - Textos Elementos -->
+    <string name="Element_Metal">Metal</string>
+    <string name="Element_Cristal">Cristal</string>
+    <string name="Element_Ozone">Ozone</string>
+
+    <!-- - Textos Recursos -->
+    <string name="recursosOptions_mRecursos">Mis Recursos</string>
+    <string name="recursosOptions_recolectar">Recolectar</string>
+    <string name="title_activity_planets__listiview">Planetas del universo</string>
+    <string name="title_activity_planets__Descripcion">Seleccione un planeta al que ir a recolectar</string>
+
+    <!-- - Textos Mision -->
+    <string name="title_activity_mision_">Misión</string>
+    <string name="mision_type">Tipo de misión:</string>
+    <string name="mision_target">Target:</string>
+    <string name="mision_timmer">Timmer</string>
+    <string name="mision_cancel">Cancelar misión</string>
+    <string name="mision_endMision">Finalizar misión</string>
+    <string name="title_activity_almacenes_">Almacenes_Activity</string>
+    
+    <!-- Textos de Almacenes -->
+    <string name="almacenes_nivel">Nivel</string>
+    <string name="almacenes_plus">+</string>
+	<string name="almacenes_metal">Almacen de Metal</string>
+	<string name="almacenes_cristal">Almacen de Cristal</string>
+	<string name="almacenes_ozone">Almacen de Ozone</string>
+	
+</resources>

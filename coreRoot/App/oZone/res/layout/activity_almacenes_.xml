@@ -1,0 +1,284 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    tools:context="ss.game.ozone.core.Almacenes_Activity" 
+    android:background="@drawable/background2" >
+    
+    <!-- Almacen de Metal -->
+    <LinearLayout
+        android:id="@+id/linearLayoutMetal"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true" >
+
+        <ImageView
+            android:id="@+id/imageView1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/almmetal" />
+
+        <TextView
+            android:id="@+id/textView1"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:text="@string/almacenes_metal"
+            android:gravity="center"
+            android:textSize="20sp"
+            android:textColor="#FFFFFF" />
+    
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/linearLayout4"
+        android:layout_below="@+id/linearLayoutMetal"
+        android:orientation="horizontal" android:id="@+id/linearLayout2">
+
+        <TextView
+            android:id="@+id/AMcoste_Metal"
+            android:layout_width="90dp"
+            android:layout_height="wrap_content"
+            android:text="@string/empty"
+            android:textColor="#FE9A2E" />
+       
+        <TextView
+            android:id="@+id/AMcoste_Cristal"
+            android:layout_width="93dp"
+            android:layout_height="wrap_content"
+            android:text="@string/empty"
+            android:textColor="#0000FF" />
+
+        <TextView
+            android:id="@+id/AMcoste_Ozone"
+            android:layout_width="66dp"
+            android:layout_height="wrap_content"
+            android:text="@string/empty"
+            android:textColor="#F7FE2E" />
+
+        <Button
+            android:id="@+id/subir_Metal"
+            android:layout_width="38dp"
+            android:layout_height="wrap_content"
+            android:text="@string/almacenes_plus" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_alignTop="@+id/linearLayoutMetal"
+        android:orientation="vertical"
+        android:paddingLeft="60dp" >
+
+        <TextView
+            android:id="@+id/textView2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/almacenes_nivel"
+            android:textColor="#FFFFFF" />
+
+        <TextView
+            android:id="@+id/nivelMetal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/empty"
+            android:textColor="#2EFE2E"
+            android:gravity="center"
+            android:textSize="22sp" />
+    </LinearLayout>
+    
+    
+    
+    
+    
+        <!-- Almacen de Cristal -->
+    <LinearLayout
+        android:id="@+id/linearLayoutCristal"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingTop="130dp"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true" >
+
+        <ImageView
+            android:id="@+id/imageViewc"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/almcristal" />
+
+        <TextView
+            android:id="@+id/textViewc"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:text="@string/almacenes_cristal"
+            android:gravity="center"
+            android:textSize="20sp"
+            android:textColor="#FFFFFF" />
+    
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/linearLayout4"
+        android:paddingTop="130dp"
+        android:layout_below="@+id/linearLayoutMetal"
+        android:orientation="horizontal" android:id="@+id/linearLayoutc2">
+
+        <TextView
+            android:id="@+id/ACcoste_Metal"
+            android:layout_width="90dp"
+            android:layout_height="wrap_content"
+            android:text="@string/empty"
+            android:textColor="#FE9A2E" />
+       
+        <TextView
+            android:id="@+id/ACcoste_Cristal"
+            android:layout_width="93dp"
+            android:layout_height="wrap_content"
+            android:text="@string/empty"
+            android:textColor="#0000FF" />
+
+        <TextView
+            android:id="@+id/ACcoste_Ozone"
+            android:layout_width="66dp"
+            android:layout_height="wrap_content"
+            android:text="@string/empty"
+            android:textColor="#F7FE2E" />
+
+        <Button
+            android:id="@+id/subir_Cristal"
+            android:layout_width="38dp"
+            android:layout_height="wrap_content"
+            android:text="@string/almacenes_plus" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:paddingTop="130dp"
+        android:layout_alignTop="@+id/linearLayoutMetal"
+        android:orientation="vertical"
+        android:paddingLeft="60dp" >
+
+        <TextView
+            android:id="@+id/textViewc2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/almacenes_nivel"
+            android:textColor="#FFFFFF" />
+
+        <TextView
+            android:id="@+id/nivelCristal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/empty"
+            android:textColor="#2EFE2E"
+            android:gravity="center"
+            android:textSize="22sp" />
+    </LinearLayout>
+    
+    
+    
+    
+    
+        <!-- Almacen de Metal -->
+    <LinearLayout
+        android:id="@+id/linearLayoutOzone"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingTop="260dp"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true" >
+
+        <ImageView
+            android:id="@+id/imageViewo1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/almozone" />
+
+        <TextView
+            android:id="@+id/textViewo1"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:text="@string/almacenes_ozone"
+            android:gravity="center"
+            android:textSize="20sp"
+            android:textColor="#FFFFFF" />
+    
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingTop="260dp"
+        android:layout_alignLeft="@+id/linearLayout4"
+        android:layout_below="@+id/linearLayoutMetal"
+        android:orientation="horizontal" android:id="@+id/linearLayouto2">
+
+        <TextView
+            android:id="@+id/AOcoste_Metal"
+            android:layout_width="90dp"
+            android:layout_height="wrap_content"
+            android:text="@string/empty"
+            android:textColor="#FE9A2E" />
+       
+        <TextView
+            android:id="@+id/AOcoste_Cristal"
+            android:layout_width="93dp"
+            android:layout_height="wrap_content"
+            android:text="@string/empty"
+            android:textColor="#0000FF" />
+
+        <TextView
+            android:id="@+id/AOcoste_Ozone"
+            android:layout_width="66dp"
+            android:layout_height="wrap_content"
+            android:text="@string/empty"
+            android:textColor="#F7FE2E" />
+
+        <Button
+            android:id="@+id/subir_Ozone"
+            android:layout_width="38dp"
+            android:layout_height="wrap_content"
+            android:text="@string/almacenes_plus" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:paddingTop="260dp"
+        android:layout_alignTop="@+id/linearLayoutMetal"
+        android:orientation="vertical"
+        android:paddingLeft="60dp" >
+
+        <TextView
+            android:id="@+id/textViewo2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/almacenes_nivel"
+            android:textColor="#FFFFFF" />
+
+        <TextView
+            android:id="@+id/nivelOzone"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/empty"
+            android:textColor="#2EFE2E"
+            android:gravity="center"
+            android:textSize="22sp" />
+    </LinearLayout>
+
+</RelativeLayout>
