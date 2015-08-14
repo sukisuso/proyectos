@@ -6,34 +6,27 @@ import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
-import java.text.DateFormat;
-import java.util.ArrayList;
-import java.util.concurrent.Executors;
+import java.util.Date;
 
 import ss.game.model.Action;
 import ss.game.model.DataUser;
+import ss.game.model.Update;
 import ss.game.ozone.core.ViewoZone;
-
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
-import com.google.gson.JsonDeserializationContext;
-import com.google.gson.JsonDeserializer;
-import com.google.gson.JsonElement;
-import com.google.gson.JsonParseException;
-
-import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.Application;
 import android.os.AsyncTask;
-import android.renderscript.Type;
 import android.util.Log;
+
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 
 public class NameSpace extends Application {
 
     private Integer userId;
     public BussinesOperation bo = new BussinesOperation();
     public DataUser data = new DataUser();
-    public String urlServer = "http://192.168.1.36:8080";
+    public String urlServer = "http://192.168.1.38:8080";
+    public SimpleReport datareport[];
     
     public Integer getUserId() {
         return userId;
@@ -58,6 +51,8 @@ public class NameSpace extends Application {
     	    protected Boolean doInBackground(Void... params) {
 	    	    	String response = "";
 	    	    	String responseAction = "";
+	    	    	String responseUpdate = "";
+	    	    	String responseReport = "";
 	    	    	try {
 	    				URL url = new URL(urlServer + parametro);
 	    				HttpURLConnection  con = (HttpURLConnection) url.openConnection();
@@ -78,8 +73,28 @@ public class NameSpace extends Application {
 	    					responseAction +=linea;
 	    				}
 	    				
+	    				url = new URL(urlServer + "/bo/mainData/getUpdate.php?userId="+UserId);
+	    				con = (HttpURLConnection) url.openConnection();
+	    				con.setDoInput(true);
+	    	            con.setDoOutput(true);
+	    				in = new BufferedReader(new InputStreamReader(con.getInputStream()));
+	    				while ((linea = in.readLine()) != null) {
+	    					responseUpdate +=linea;
+	    				}
+	    				
+	    				url = new URL(urlServer + "/bo/mainData/getMyReports.php?userId="+UserId);
+	    				con = (HttpURLConnection) url.openConnection();
+	    				con.setDoInput(true);
+	    	            con.setDoOutput(true);
+	    				in = new BufferedReader(new InputStreamReader(con.getInputStream()));
+	    				while ((linea = in.readLine()) != null) {
+	    					responseReport +=linea;
+	    				}
+	    				
 	    				Log.e("load",response);
 	    				Log.e("loadAction",responseAction);
+	    				Log.e("loadUpdate",responseUpdate);
+	    				Log.d("loadReport",responseReport);
 	    			} catch (MalformedURLException e) {
 	    				e.printStackTrace();
 	    			} catch (IOException e) {
@@ -89,6 +104,8 @@ public class NameSpace extends Application {
 					DataUser usuario = gson.fromJson(response, DataUser.class);
 					gson = new GsonBuilder().setDateFormat("yyyy-MM-dd HH:mm:ss").create();
 					Action action = gson.fromJson(responseAction, Action.class);
+					Update upp = gson.fromJson(responseUpdate, Update.class);
+					SimpleReport[] rep = gson.fromJson(responseReport, SimpleReport[].class);
 					
 					data.tr_u_metal = usuario.tr_u_metal;
 					data.tr_u_cristal = usuario.tr_u_cristal;
@@ -96,12 +113,23 @@ public class NameSpace extends Application {
 					data.tr_na_metal = usuario.tr_na_metal;
 					data.tr_na_cristal = usuario.tr_na_cristal;
 					data.tr_na_ozone = usuario.tr_na_ozone;
+					data.tr_n_s_parallax = usuario.tr_n_s_parallax;
+					data.tr_n_a_cannonlaser = usuario.tr_n_a_cannonlaser;
+					data.tr_damage = usuario.tr_damage;
+					data.tr_puntos = usuario.tr_puntos;
 					data.action = action;
+					data.update = upp;
+					datareport = rep;
 				
 					((ViewoZone)main).unlock();
        	    	return true;
     	    }
 			
     	}
+    }
+    
+    public class SimpleReport{
+    	public int trep_id;
+    	public Date trep_fecha;
     }
 }

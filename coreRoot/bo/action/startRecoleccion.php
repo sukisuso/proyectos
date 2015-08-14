@@ -51,6 +51,14 @@ else{
     $sql = 'UPDATE t_recursos SET tr_u_ozone = tr_u_ozone-'. $_GET["timeSec"] . 
                                 ' where tu_id = ' . $_GET["userId"] ;
     $re = mysql_query($sql, $enlace);
+
+    $value = 0;
+    $value += $_GET["timeSec"] /10;
+    var_dump($value);
+    $sql = 'UPDATE t_recursos SET tr_puntos = tr_puntos+'. $value . ' where tu_id = ' . $_GET["userId"] ;
+    var_dump($sql);
+    $re = mysql_query($sql, $enlace);
+
 } 
 
 mysql_free_result($resultado);

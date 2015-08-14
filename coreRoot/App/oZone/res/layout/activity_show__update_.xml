@@ -1,0 +1,163 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    tools:context="ss.game.ozone.core.Show_Update_Activity"
+    android:background="@drawable/background2" >
+
+    <TextView
+        android:id="@+id/showUpdate_nombre"
+        android:layout_width="match_parent"
+        android:layout_height="30dp"
+        android:background="#AABDBDBD"
+        android:gravity="center"
+        android:textColor="#FFFFFF"
+        android:text="@string/empty" 
+       />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal" 
+         android:paddingTop="10dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.10"
+            android:textColor="#FFFFFF"
+            android:text="@string/nivel" />
+
+        <TextView
+            android:id="@+id/showUpdate_nivel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.38"
+            android:textColor="#FFFFFF"
+            android:text="@string/empty" />
+		
+         <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.10"
+            android:textColor="#FFFFFF"
+            android:text="@string/pot" />
+
+        <TextView
+            android:id="@+id/showUpdate_potencial"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.90"
+            android:textColor="#FFFFFF"
+            android:text="@string/empty" />
+    </LinearLayout>
+    
+    <View android:id="@+id/firstDivider" 
+              android:layout_height="2dp" 
+              android:paddingTop="25dp"
+              android:paddingBottom="5dp"
+              android:layout_width="fill_parent" 
+              android:background="#ffffff" />
+
+    <TextView
+        android:layout_width="fill_parent"
+        android:layout_height="30dp"
+        android:gravity="center"
+         android:textColor="#FFFFFF"
+        android:text="@string/siguiente_nivel" />
+    
+    <LinearLayout android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal" 
+         android:paddingTop="10dp" >
+        
+        <LinearLayout 
+        android:layout_height="wrap_content"
+        android:orientation="vertical" 
+        android:layout_width="0dp"
+	    android:layout_weight=".33">
+            <ImageView
+            	android:id="@+id/imageView1"
+            	android:layout_width="50dp"
+            	android:layout_height="50dp"
+            	android:src="@drawable/metal" />
+            
+            <TextView
+	   			android:id="@+id/showUpdate_costeMetal"
+	    		android:layout_height="15dp"
+	    		android:layout_width="50dp"
+	    		android:gravity="center"
+	    		android:text="@string/empty"
+	    		android:textColor="#2EFE2E"
+	    		android:textSize="13sp"
+	    		android:textStyle="bold"
+	    		android:visibility="visible" />
+        </LinearLayout>
+        
+    
+    <LinearLayout 
+        android:layout_height="wrap_content"
+        android:orientation="vertical" 
+        android:layout_width="0dp"
+	    android:layout_weight=".33">
+            <ImageView
+            	android:id="@+id/imageView2"
+            	android:layout_width="50dp"
+            	android:layout_height="50dp"
+            	android:src="@drawable/kristal" />
+            
+            <TextView
+	   			android:id="@+id/shpwUpdate_costecristal"
+	    		android:layout_height="15dp"
+	    		android:layout_width="50dp"
+	    		android:gravity="center"
+	    		android:text="@string/empty"
+	    		android:textColor="#FE9A2E"
+	    		android:textSize="13sp"
+	    		android:textStyle="bold"
+	    		android:visibility="visible" />
+    </LinearLayout>
+    
+	<LinearLayout 
+	    android:layout_height="wrap_content"
+        android:orientation="vertical" 
+        android:layout_width="0dp"
+	    android:layout_weight=".33">
+            <ImageView
+            	android:id="@+id/imageView3"
+            	android:layout_width="50dp"
+            	android:layout_height="50dp"
+            	android:src="@drawable/ozone" />
+            
+            <TextView
+	   			android:id="@+id/showUpdate_costeOzone"
+	    		android:layout_height="15dp"
+	    		android:layout_width="50dp"
+	    		android:gravity="center"
+	    		android:text="@string/empty"
+	    		android:textColor="#0000FF"
+	    		android:textSize="13sp"
+	    		android:textStyle="bold"
+	    		android:visibility="visible" />
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <LinearLayout 
+	    android:layout_height="wrap_content"
+	    android:paddingTop="50dp"
+	    android:layout_gravity="center"
+        android:layout_width="wrap_content">
+    <Button
+        android:id="@+id/showUpdate_button"
+        android:layout_width="95dp"
+        android:layout_height="40dp"
+        android:gravity="center"
+        android:text="go" />
+    </LinearLayout>
+</LinearLayout>

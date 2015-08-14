@@ -10,6 +10,8 @@
 
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.GET_ACCOUNTS" />
+    <uses-permission android:name="android.permission.READ_PHONE_STATE"/> 
 
     <application
         android:name=".NameSpace"
@@ -29,7 +31,8 @@
         </activity>
         <activity
             android:name=".core.ViewoZone"
-            android:label="@string/title_activity_viewo_zone" >
+            android:label="@string/title_activity_viewo_zone"
+            android:screenOrientation="portrait" >
         </activity>
         <activity
             android:name=".core.Recursos_Options"
@@ -38,15 +41,63 @@
         </activity>
         <activity
             android:name=".core.Planets_Listiview"
-            android:label="@string/title_activity_planets__listiview" >
+            android:label="@string/title_activity_planets__listiview"
+            android:noHistory="true" >
         </activity>
         <activity
             android:name=".core.Mision_Activity"
-            android:label="@string/title_activity_mision_" >
+            android:label="@string/title_activity_mision_"
+            android:noHistory="true" >
         </activity>
         <activity
-            android:name="ss.game.ozone.core.Almacenes_Activity"
-            android:label="@string/title_activity_almacenes_" >
+            android:name=".core.Almacenes_Activity"
+            android:label="@string/title_activity_almacenes_"
+            android:noHistory="true" >
+        </activity>
+        <activity
+            android:name=".core.Almacenes_Costes_ListView"
+            android:label="@string/title_activity_almacenes__costes__list_view"
+            android:noHistory="true" >
+        </activity>
+        <activity
+            android:name=".core.Update_Activity"
+            android:label="@string/title_activity_update_"
+            android:noHistory="true" >
+        </activity>
+        <activity
+            android:name=".core.Shields_Activity"
+            android:label="@string/title_activity_shields_"
+            android:noHistory="true" >
+        </activity>
+        <activity
+            android:name=".core.Show_Update_Activity"
+            android:label="@string/title_activity_show__update_"
+            android:noHistory="true" >
+        </activity>
+        <activity
+            android:name=".core.Army_Activity"
+            android:label="@string/title_activity_army_"
+            android:noHistory="true" >
+        </activity>
+        <activity
+            android:name=".core.Reparar_activity"
+            android:label="@string/title_activity_reparar_activity" >
+        </activity>
+        <activity
+            android:name=".core.Computo_Gloval_Activity"
+            android:label="@string/title_activity_computo__gloval_" >
+        </activity>
+        <activity
+            android:name=".core.Clasificacion_Activity"
+            android:label="@string/title_activity_clasificacion_" >
+        </activity>
+        <activity
+            android:name=".core.Report_Activity"
+            android:label="@string/title_activity_report_" >
+        </activity>
+        <activity
+            android:name=".Registro_Activity"
+            android:label="@string/title_activity_registro_" >
         </activity>
     </application>
 

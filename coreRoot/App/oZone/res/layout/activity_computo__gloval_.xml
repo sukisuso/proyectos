@@ -1,0 +1,225 @@
+<LinearLayout
+ xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    tools:context="ss.game.ozone.core.Computo_Gloval_Activity"
+    android:orientation="vertical" 
+    android:background="@drawable/background2">
+
+     <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal" >
+     <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight=".33"
+            android:orientation="vertical" >
+
+            <ImageView
+                android:id="@+id/imageView1"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:src="@drawable/metal" />
+
+            <TextView
+                android:id="@+id/showComputo_costeMetal"
+                android:layout_width="50dp"
+                android:layout_height="15dp"
+                android:gravity="center"
+                android:text="@string/reparar_cien"
+                android:textColor="#2EFE2E"
+                android:textSize="13sp"
+                android:textStyle="bold"
+                android:visibility="visible" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight=".33"
+            android:orientation="vertical" >
+
+            <ImageView
+                android:id="@+id/imageView2"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:src="@drawable/kristal" />
+
+            <TextView
+                android:id="@+id/shpwComputo_costecristal"
+                android:layout_width="50dp"
+                android:layout_height="15dp"
+                android:gravity="center"
+                android:text="@string/reparar_cien"
+                android:textColor="#FE9A2E"
+                android:textSize="13sp"
+                android:textStyle="bold"
+                android:visibility="visible" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight=".33"
+            android:orientation="vertical" >
+
+            <ImageView
+                android:id="@+id/imageView3"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:src="@drawable/ozone" />
+
+            <TextView
+                android:id="@+id/showComputo_costeOzone"
+                android:layout_width="50dp"
+                android:layout_height="15dp"
+                android:gravity="center"
+                android:text="@string/reparar_cien"
+                android:textColor="#0000FF"
+                android:textSize="13sp"
+                android:textStyle="bold"
+                android:visibility="visible" />
+        </LinearLayout>
+    </LinearLayout>
+
+     <View
+        android:id="@+id/secondDivider"
+        android:layout_width="fill_parent"
+        android:layout_height="2dp"
+        android:background="#ffffff"
+        android:paddingBottom="5dp"
+        android:paddingTop="25dp" />
+     
+     <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal" 
+        android:paddingTop="10dp">
+        
+         <TextView
+	        android:layout_width="fill_parent"
+	        android:layout_weight="0.5"
+    	    android:layout_height="50dp"
+    	    android:gravity="center"
+       		android:textColor="#ffffff"
+       		android:text="@string/computoGloval_Estruct"
+        	/>
+         <TextView
+            android:id="@+id/estadoEstruct"
+        	android:layout_width="fill_parent"
+        	android:layout_height="40dp"
+        	android:layout_weight="0.5"
+        	android:gravity="center"
+        	android:text="@string/empty"
+        	android:textColor="#FFFF00"
+        	 />
+	</LinearLayout>
+     
+     <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal" 
+        android:paddingTop="10dp">
+        
+         <TextView
+	        android:layout_width="fill_parent"
+	        android:layout_weight="0.5"
+    	    android:layout_height="40dp"
+    	    android:gravity="center"
+       		android:textColor="#ffffff"
+       		android:text="@string/computoGloval_TotalDef"
+        	/>
+         <TextView
+            android:id="@+id/fuerzaDefensiva"
+        	android:layout_width="fill_parent"
+        	android:layout_height="40dp"
+        	android:layout_weight="0.5"
+        	android:gravity="center"
+        	android:text="@string/empty"
+        	android:textColor="#FFFF00"
+        	 />
+	</LinearLayout>
+	
+     <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal" 
+        android:paddingTop="10dp">
+        
+         <TextView
+	        android:layout_width="fill_parent"
+	        android:layout_weight="0.5"
+    	    android:layout_height="40dp"
+    	    android:gravity="center"
+       		android:textColor="#ffffff"
+       		android:text="@string/computoGloval_TotalOf"
+        	/>
+         <TextView
+            android:id="@+id/fuerzaOfensiva"
+        	android:layout_width="fill_parent"
+        	android:layout_height="40dp"
+        	android:layout_weight="0.5"
+        	android:gravity="center"
+        	android:text="@string/empty"
+        	android:textColor="#FFFF00"
+        	 />
+	</LinearLayout>
+	     
+      <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal" 
+        android:paddingTop="10dp">
+        
+         <TextView
+	        android:layout_width="fill_parent"
+	        android:layout_weight="0.5"
+    	    android:layout_height="40dp"
+    	    android:gravity="center"
+       		android:textColor="#ffffff"
+       		android:text="@string/computoGloval_TotalMot"
+        	/>
+         <TextView
+            android:id="@+id/fuerzaMotora"
+        	android:layout_width="fill_parent"
+        	android:layout_height="40dp"
+        	android:layout_weight="0.5"
+        	android:gravity="center"
+        	android:text="@string/empty"
+        	android:textColor="#FFFF00"
+        	 />
+	</LinearLayout>
+	     
+      
+       <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal" 
+        android:paddingTop="10dp">
+        
+         <TextView
+	        android:layout_width="fill_parent"
+	        android:layout_weight="0.5"
+    	    android:layout_height="40dp"
+    	    android:gravity="center"
+       		android:textColor="#ffffff"
+       		android:text="@string/computoGloval_PuntosRank"
+        	/>
+         <TextView
+            android:id="@+id/puntosRank"
+        	android:layout_width="fill_parent"
+        	android:layout_height="40dp"
+        	android:layout_weight="0.5"
+        	android:gravity="center"
+        	android:text="@string/empty"
+        	android:textColor="#FFFF00"
+        	 />
+	</LinearLayout>
+	     
+</LinearLayout>

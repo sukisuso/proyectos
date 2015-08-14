@@ -8,33 +8,24 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.Date;
 
-import com.google.gson.Gson;
-
 import ss.game.model.Action;
 import ss.game.model.Planet;
 import ss.game.ozone.NameSpace;
 import ss.game.ozone.R;
-import ss.game.ozone.R.id;
-import ss.game.ozone.R.layout;
-import ss.game.ozone.R.menu;
-import ss.game.ozone.core.adapter.PlanetsAdapter;
-import android.support.v7.app.ActionBarActivity;
-import android.support.v7.app.AlertDialog;
 import android.content.DialogInterface;
-import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.os.SystemClock;
-import android.util.Log;
-import android.view.Menu;
-import android.view.MenuItem;
+import android.support.v7.app.ActionBarActivity;
+import android.support.v7.app.AlertDialog;
 import android.view.View;
 import android.view.View.OnClickListener;
-import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.SeekBar;
 import android.widget.TextView;
+
+import com.google.gson.Gson;
 
 public class Mision_Activity extends ActionBarActivity {
 
@@ -62,6 +53,11 @@ public class Mision_Activity extends ActionBarActivity {
 		
 		if(mision.ta_tipo == 1){
 			Get peticion = new Get("/bo/mainData/getPlanetaById.php?planetaId="+mision.ta_target,
+					((NameSpace) this.getApplication()).urlServer );
+			peticion.execute();
+		}else if(mision.ta_tipo == 2){
+//			getNickById.php
+			Get peticion = new Get("/bo/mainData/getNickById.php?userId="+mision.ta_target,
 					((NameSpace) this.getApplication()).urlServer );
 			peticion.execute();
 		}
@@ -104,11 +100,21 @@ public class Mision_Activity extends ActionBarActivity {
 	protected void finalizarMision() {
 		// TODO Auto-generated method stub
 		setContentView(R.layout.mask);
-		int uId = ((NameSpace) Mision_Activity.this.getApplication()).getUserId();
-		senPetMision peticion = new senPetMision("/bo/action/finalizarMision.php?userId="+uId
-				+"&&targetId="+mision.ta_target+"&&tipoMision="+mision.ta_tipo,
-    			((NameSpace) Mision_Activity.this.getApplication()).urlServer );
-    	peticion.execute();
+
+		if(mision.ta_tipo == 1){
+			int uId = ((NameSpace) Mision_Activity.this.getApplication()).getUserId();
+			senPetMision peticion = new senPetMision("/bo/action/finalizarMision.php?userId="+uId
+					+"&&targetId="+mision.ta_target+"&&tipoMision="+mision.ta_tipo,
+	    			((NameSpace) Mision_Activity.this.getApplication()).urlServer );
+	    	peticion.execute();
+		}else if(mision.ta_tipo == 2){
+			int uId = ((NameSpace) Mision_Activity.this.getApplication()).getUserId();
+			senPetMision peticion = new senPetMision("/bo/action/SimulatorOfBatles.php?atacanteId="+uId
+					+"&&defensorId="+mision.ta_target,
+	    			((NameSpace) Mision_Activity.this.getApplication()).urlServer );
+	    	peticion.execute();
+			
+		}
     	terminarActivity();
 	}
 
@@ -142,7 +148,7 @@ public class Mision_Activity extends ActionBarActivity {
 	protected void onResume() {
 		super.onResume();
 		while(!lock){
-			SystemClock.sleep(100);
+			SystemClock.sleep(50);
 		}
 		targetMision.setText(NombrePlaneta);
 	};
@@ -210,6 +216,4 @@ public class Mision_Activity extends ActionBarActivity {
 	    }
 	}
 
-
-	
 }

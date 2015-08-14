@@ -1,0 +1,12 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context="ss.game.ozone.Show_Update_Activity" >
+
+    <item
+        android:id="@+id/action_verCostesShw_update"
+        android:orderInCategory="100"
+        android:title="@string/settings_costes_almacenes"
+        app:showAsAction="never"/>
+
+</menu>

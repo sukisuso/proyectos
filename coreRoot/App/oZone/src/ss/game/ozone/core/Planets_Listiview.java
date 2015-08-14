@@ -7,33 +7,23 @@ import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
 
-import com.google.gson.Gson;
-
-import ss.game.model.DataUser;
 import ss.game.model.Planet;
 import ss.game.ozone.NameSpace;
 import ss.game.ozone.R;
-import ss.game.ozone.R.id;
-import ss.game.ozone.R.layout;
-import ss.game.ozone.R.menu;
 import ss.game.ozone.core.adapter.PlanetsAdapter;
-import android.support.v7.app.ActionBarActivity;
-import android.support.v7.app.AlertDialog;
-import android.app.Activity;
-import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.content.DialogInterface.OnClickListener;
-import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.SystemClock;
+import android.support.v7.app.ActionBarActivity;
+import android.support.v7.app.AlertDialog;
 import android.util.Log;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.ListView;
+
+import com.google.gson.Gson;
 
 public class Planets_Listiview extends ActionBarActivity {
 	boolean lock = false;
@@ -55,7 +45,7 @@ public class Planets_Listiview extends ActionBarActivity {
 	protected void onResume() {
 		super.onResume();
 		while(!lock){
-			SystemClock.sleep(100);
+			SystemClock.sleep(50);
 		}
 		listaPlanetas.setAdapter(adapter);
 		listaPlanetas.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -64,8 +54,9 @@ public class Planets_Listiview extends ActionBarActivity {
 				   Planet x = (Planet)  parent.getItemAtPosition(position);
 				   
 				   if(x.tp_distancia > ((NameSpace) Planets_Listiview.this.getApplication()).data.tr_u_ozone){
+					   String cantt = getResources().getString(R.string.cantidad_ozone);
 					   new AlertDialog.Builder(Planets_Listiview.this)
-				          .setMessage("No dispones de suficiente ozone para este viaje.")
+				          .setMessage(cantt)
 				          .setCancelable(false)
 				          .setPositiveButton("Ok", new OnClickListener() {
 				              @Override
@@ -76,7 +67,7 @@ public class Planets_Listiview extends ActionBarActivity {
 				   }
 			   } 
 			});
-	};
+	}
 	
 	protected void confirmarRecolecta(Planet x) {
 		plt = x;

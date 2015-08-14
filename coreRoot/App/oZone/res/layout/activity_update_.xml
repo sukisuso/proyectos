@@ -1,0 +1,115 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    tools:context="ss.game.ozone.core.Mision_Activity"
+    android:background="@drawable/background2" 
+   >
+
+    <LinearLayout
+        android:id="@+id/firstL"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" >
+
+        <TextView
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        android:textColor="#FFFFFF"
+        android:text="@string/update_inves" />
+
+        <TextView
+            android:layout_width="186dp"
+            android:id="@+id/descripcionUpdate"
+            android:paddingLeft="10dp"
+            android:textColor="#2EFE2E"
+            android:layout_height="wrap_content"
+            android:text="@string/empty" />
+
+    </LinearLayout>
+    
+    <LinearLayout
+        android:id="@+id/secondL"
+        android:layout_width="wrap_content"
+        android:layout_below="@id/firstL"
+        android:layout_height="wrap_content" >
+
+        <TextView
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:textColor="#FFFFFF"
+            android:text="@string/update_target" />
+
+        <TextView
+            android:layout_width="70dp"
+            android:layout_height="wrap_content"
+            android:id="@+id/targetActual"
+            android:textColor="#2EFE2E"
+            android:paddingLeft="10dp"
+            android:text="@string/empty" />
+        
+	        <ImageView
+	            android:id="@+id/imageView1"
+	            android:layout_width="16dp"
+	            android:layout_height="20dp"
+	            android:src="@drawable/arrow" />
+        
+        <TextView
+            android:layout_width="70dp"
+            android:layout_height="wrap_content"
+            android:id="@+id/targetNuevo"
+            android:textColor="#2EFE2E"
+            android:gravity="center"
+            android:paddingLeft="10dp"
+            android:text="@string/empty" />
+
+    </LinearLayout>
+    
+    <LinearLayout
+        android:id="@+id/thirdt"
+        android:layout_width="wrap_content"
+        android:layout_below="@id/secondL"
+        android:layout_height="wrap_content"
+        android:paddingTop="20dp">
+
+        <TextView
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:textSize="20sp"
+             android:textStyle="bold"
+             android:textColor="#FFFFFF"
+            android:text="@string/mision_timmer" />
+
+        <TextView
+            android:layout_width="187dp"
+            android:layout_height="wrap_content"
+            android:id="@+id/timmerMisionText"
+            android:paddingLeft="10dp"
+            android:textColor="#FE2E2E"
+            android:text="@string/empty" />
+
+    </LinearLayout>
+    
+    
+    
+    <Button
+        android:layout_width="wrap_content"
+        android:id="@+id/buttonCancelUpdate"
+        android:layout_height="wrap_content" 
+        android:layout_alignParentBottom="true"
+        android:text="@string/update_cancelar"/>
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/buttonFinUpdate" 
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        android:text="@string/update_finevo"
+        android:visibility="invisible"
+        />
+
+</RelativeLayout>

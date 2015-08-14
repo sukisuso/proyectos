@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content" 
+    android:background="#B0CEF6CE">
+
+    <ImageView
+        android:id="@+id/imageView1"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:src="@drawable/updating" />
+
+    <TextView
+        android:id="@+id/textUpdate"
+        android:layout_width="188dp"
+        android:layout_height="50dp"
+        android:gravity="center_horizontal"
+        android:text="Evolucion en curso"
+        android:textColor="#04B431"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        android:visibility="visible" />
+
+</LinearLayout>

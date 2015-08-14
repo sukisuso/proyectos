@@ -3,10 +3,18 @@
 
     <string name="app_name">oZone</string>
     <string name="empty"></string>
-    <string name="app_version">v_0.1.0</string>
+    <string name="app_version">v_0.3.0</string>
     <string name="hello_world">Hello world!</string>
     <string name="action_settings_log">Logout</string>
     <string name="action_settings">Settings</string>
+    <string name="cantidad_ozone">No dispones de suficiente ozone para este viaje.</string>
+    <string name="nave_danyada">La nave esta demasiado dañana como para realizar un ataque</string>
+    <string name="mision_activa">Ya tienes una mision activa.</string>
+    <string name="mismo_id">No te puedes atacar a ti mismo.</string>
+    <string name="error_login">Error en el usuario o la contraseña</string>
+    <string name="registro">Registrate</string>
+    <string name="exit">¿Desea salir del juego?</string>
+    <string name="new_user">Nuevo usuario.</string>
 
     <!-- - Textos Settings -->
     <string name="Seting_main_dataUser">Datos del usuario</string>
@@ -32,13 +40,80 @@
     <string name="mision_timmer">Timmer</string>
     <string name="mision_cancel">Cancelar misión</string>
     <string name="mision_endMision">Finalizar misión</string>
-    <string name="title_activity_almacenes_">Almacenes_Activity</string>
-    
+    <string name="title_activity_almacenes_">Almacenes de la Nave</string>
+
     <!-- Textos de Almacenes -->
     <string name="almacenes_nivel">Nivel</string>
-    <string name="almacenes_plus">+</string>
-	<string name="almacenes_metal">Almacen de Metal</string>
-	<string name="almacenes_cristal">Almacen de Cristal</string>
-	<string name="almacenes_ozone">Almacen de Ozone</string>
-	
+    <string name="almacenes_plus">Up</string>
+    <string name="almacenes_metal">Almacen de Metal</string>
+    <string name="almacenes_cristal">Almacen de Cristal</string>
+    <string name="almacenes_ozone">Almacen de Ozone</string>
+    <string name="settings_costes_almacenes">Ver costes</string>
+    <string name="title_activity_almacenes__costes__list_view">Costes de los almacenes</string>
+    <string name="capacidad">Capacidad</string>
+    <string name="nivel">Nivel</string>
+    <string name="cap">Cap.</string>
+    <string name="title_activity_update_">Update</string>
+
+    <!-- Textos Update -->
+    <string name="update_inves">Actualización</string>
+    <string name="update_target">Evolución</string>
+    <string name="update_cancelar">Cancelar</string>
+    <string name="pot">Pot.</string>
+    <string name="update_finevo">Finalizar Evolución</string>
+    <string name="version_">"Version: "</string>
+    <string name="title_activity_shields_">Escudos</string>
+    <string name="title_activity_show__update_">Show_Update_Activity</string>
+    <string name="siguiente_nivel">Siguiente Nivel</string>
+
+    <!-- Textos Reparacion -->
+    <string name="title_activity_reparar_activity">Reparar daños</string>
+    <string name="reparar_title">Estado estructural de la nave</string>
+    <string name="reparar_estado">Estado</string>
+    <string name="reparar_coste">Coste reparación daños:</string>
+    <string name="reparar_cien">100</string>
+    <string name="reparar_att">Atención! No podras atacar a otras naves si el estado estructural de la nave es inferior al 75%!</string>
+
+    <!-- Textos Computo Gloval -->
+    <string name="title_activity_computo__gloval_">Computo Gloval</string>
+    <string name="computoGloval_Estruct">Estado Estructural de la Nave</string>
+    <string name="computoGloval_TotalDef">Fuerza Defensiva</string>
+    <string name="computoGloval_TotalOf">Fuerza Ofensiva</string>
+    <string name="computoGloval_TotalMot">Fuerza Motora</string>
+    <string name="computoGloval_PuntosRank">Puntos Ranking</string>
+
+    <!-- Textos Ataque -->
+    <string name="desea_AT_1">¿Desea atacar a </string>
+    <string name="msg_d_2"> Tardará </string>
+    <string name="desea_AT_3"> segudos.</string>
+    
+    <!-- Textos Reportes -->
+    <string name="report_fecha">Fecha</string>
+    <string name="report_atacante">Atacante</string>
+    <string name="report_defensor">Defensor</string>
+    <string name="report_title">Reporte de la batalla</string>
+    <string name="report_1">1</string>
+    <string name="report_2">2</string>
+    <string name="report_3">3</string>
+    <string name="report_ronda">Ronda</string>
+    
+    <!-- Textos Register -->
+    <string name="regist_user">Nombre de usuario</string>
+    <string name="regist_pass">Contraseña</string>
+    <string name="regist_pass2">Repita la contraseña</string>
+    <string name="regist_button">Registrar</string>
+    <string name="regist_message">Te has dejado algun campo vacio</string>
+    <string name="regist_message2">Tu nick debe ser mas largo</string>
+    <string name="regist_message3">Las contraseñas no coinciden</string>
+    <string name="regist_message4">Tu contraseña debe ser mas larga</string>
+    <string name="regist_message5">Error, nombre de usuario ocupado</string>
+    <string name="regist_message6">Registro, correcto</string>
+
+    <!-- Textos Widget -->
+    <string name="tvWidget">Widget Ozone!</string>
+    <string name="title_activity_army_">Armamento</string>
+    <string name="title_activity_clasificacion_">Clasificación</string>
+    <string name="title_activity_report_">Reporte de Batalla</string>
+    <string name="title_activity_registro_">Registro</string>
+
 </resources>

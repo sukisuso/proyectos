@@ -1,12 +1,5 @@
 package ss.game.ozone.core.adapter;
 
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
-import java.net.HttpURLConnection;
-import java.net.MalformedURLException;
-import java.net.URL;
-import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -14,12 +7,11 @@ import ss.game.ozone.NameSpace;
 import ss.game.ozone.R;
 import android.app.Activity;
 import android.content.Context;
-import android.os.AsyncTask;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 public class MainMenuAdapter extends BaseAdapter {
@@ -30,7 +22,6 @@ public class MainMenuAdapter extends BaseAdapter {
     private LayoutInflater mInflater;
     private Map<String, Integer> menuItems; 
     private Map<Integer, String> menuItemsId;
-    private Date finalAct;
     
     public MainMenuAdapter(Context context, Activity act) {
     	this.context = context;
@@ -40,10 +31,9 @@ public class MainMenuAdapter extends BaseAdapter {
     	mInflater = (LayoutInflater)context.getSystemService(this.context.LAYOUT_INFLATER_SERVICE);
     }
  
-    public void addItemAlert(final String item, final int valueLayout, Date finallap) {
+    public void addItemAlert(final String item, final int valueLayout) {
         menuItems.put(item, valueLayout);
         menuItemsId.put(menuItems.size()-1, item);
-        finalAct = finallap;
         notifyDataSetChanged();
     }
     
@@ -91,6 +81,22 @@ public class MainMenuAdapter extends BaseAdapter {
 		        	   convertView = mInflater.inflate(R.layout.core_mainmenu_simpleitem, null);
 		        	   holder.textView = (TextView)convertView.findViewById(R.id.text);
 		        	   holder.textView.setText(getItem(position));
+		        	   if(getItem(position).equals("Escudos")){
+		        		   holder.img = (ImageView)convertView.findViewById(R.id.imageView1);
+		        		   holder.img.setImageResource(R.drawable.shield);
+		        	   }else if(getItem(position).equals("Computo")){
+		        		   holder.img = (ImageView)convertView.findViewById(R.id.imageView1);
+		        		   holder.img.setImageResource(R.drawable.sumary);
+		        	   }else if(getItem(position).equals("Estadisticas")){
+		        		   holder.img = (ImageView)convertView.findViewById(R.id.imageView1);
+		        		   holder.img.setImageResource(R.drawable.stats);
+		        	   }else if(getItem(position).equals("Armamento")){
+		        		   holder.img = (ImageView)convertView.findViewById(R.id.imageView1);
+		        		   holder.img.setImageResource(R.drawable.sun);
+		        	   }else if(getItem(position).equals("Reparar")){
+		        		   holder.img = (ImageView)convertView.findViewById(R.id.imageView1);
+		        		   holder.img.setImageResource(R.drawable.reparar);
+		        	   }
 		               break;
 		           case R.layout.core_mainmenu_recursos:
 		        	   convertView = mInflater.inflate(R.layout.core_mainmenu_recursos, null);
@@ -101,7 +107,17 @@ public class MainMenuAdapter extends BaseAdapter {
 		        	   holder.textView = (TextView)convertView.findViewById(R.id.textMision);
 		        	   holder.textView.setText(getItem(position));
 		        	   break;
-		      }
+		           case R.layout.core_mainmenu_updat:
+		        	   convertView = mInflater.inflate(R.layout.core_mainmenu_updat, null);
+		        	   holder.textView = (TextView)convertView.findViewById(R.id.textUpdate);
+		        	   holder.textView.setText(getItem(position));
+		        	   break;
+		           case R.layout.core_mainmenu_reportitem:
+		        	   convertView = mInflater.inflate(R.layout.core_mainmenu_reportitem, null);
+		        	   holder.textView = (TextView)convertView.findViewById(R.id.textReport);
+		        	   holder.textView.setText(getItem(position));
+		        	   break;
+		      } 
     		 convertView.setTag(holder);
     	 } else {
            holder = (ViewHolder)convertView.getTag();
@@ -123,6 +139,7 @@ public class MainMenuAdapter extends BaseAdapter {
     
 	public static class ViewHolder {
         public TextView textView;
+        public ImageView img;
     }
 	
 	

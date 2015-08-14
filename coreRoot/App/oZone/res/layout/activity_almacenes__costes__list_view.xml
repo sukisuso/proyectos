@@ -1,0 +1,62 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    tools:context="ss.game.ozone.core.Almacenes_Costes_ListView"
+    android:background="@drawable/background2" >
+
+    
+    <LinearLayout android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/texto_desc" >
+        
+        <TextView
+	    android:id="@+id/nivel"
+	    android:layout_height="50dp"
+	    android:layout_width="0dp"
+	    android:layout_weight=".25"
+	    android:gravity="center"
+	    android:text="@string/nivel"
+	    android:textColor="#2EFE2E"
+	    android:textSize="13sp"
+	    android:textStyle="bold"
+	    android:visibility="visible" />
+
+        <ImageView
+            android:id="@+id/imageView1"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="0.25"
+            android:src="@drawable/metal" />
+
+        <ImageView
+            android:id="@+id/imageView2"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="0.25"
+            android:src="@drawable/kristal" />
+
+        <ImageView
+            android:id="@+id/imageView3"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="0.25"
+            android:src="@drawable/ozone" />
+        
+        
+    </LinearLayout>
+    
+     <ListView
+         android:layout_below="@id/texto_desc"
+         android:paddingTop="10dp"
+         android:id="@+id/listViewCostes"
+         android:layout_width="match_parent"
+         android:layout_height="wrap_content"
+         android:dividerHeight="20dp"
+    />
+
+</RelativeLayout>
