@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>oZone The Game</title>
+		<!-- CSS Code -->
+		<link rel="stylesheet" href="style.css">
+		<!-- JS Code -->
+		<script src="http://ajax.googleapis.com/ajax/libs/jquery/2.1.0/jquery.min.js"></script>
+		<script>
+			$(document).ready(function(){
+			    $('section[data-type="parallax_section"]').each(function(){
+			        var $bgobj = $(this); // Variable para asignacion de objeto
+			        $(window).scroll(function() {
+			        	$window = $(window);
+			            var yPos = -($window.scrollTop() / $bgobj.data('speed'));
+			            // cordinadas del background
+			            var coords = '50% '+ yPos + 'px';
+			            // moviendo el background
+			            $bgobj.css({ backgroundPosition: coords });
+			        });
+			    });
+			});
+
+		</script>
+	</head>
+	<body>
+		<section id="home" data-type="parallax_section" data-speed="10">
+			<article>
+				<center>
+					<img src="images/titulo.png">
+					<div style="padding-top: 2cm;">
+						<img style="float:left;" src="images/coet.png">
+						<img style="float:left; padding-left: 1cm;" src="images/texto.png">
+						<img style="float:left; padding-left: 1.5cm;" src="images/Skin.png" width="160">
+					</div>
+					<img src="images/download.png">
+				</center>
+			</article>
+		</section>
+		<section id="seccion2" data-type="parallax_section" data-speed="10">
+			<article>
+				<center>
+					<img src="images/titulo2.png">
+					<div >
+					<table style="float:left; padding-left: 3cm;" >
+						<tr>
+							<td><img src="images/twitter.png" width="90"></td>
+							<td><img src="images/follow.png"></td>
+						</tr>
+							<tr><td><a href="https://github.com/sukisuso/proyectos/tree/master/coreRoot"><img src="images/github.png" width="90"></a></td>
+								<td><img src="images/code.png"></td>
+						</tr>
+						<tr><td><img src="images/developer.png" width="90"></a></td>
+							<td><img src="images/develope.png"></td></tr>
+					</table>
+					<img src="images/tvShow.png" style="float:rigth;">
+					</div>
+				</center>
+			</article>
+		</section>
+		<section id="section3" data-type="parallax_section" data-speed="10">
+			<article>
+				<img style="float:left;" src="images/geek.png" width="90">
+			</article>
+		</section>
+			<section id="section4" data-type="parallax_section" data-speed="10">
+			<article>
+				<center>
+				<img src="images/who.png">
+					<div style="padding-top:1cm;">
+						<img style="float:left;" src="images/yo.png"  width="360">
+					</div>
+				</center>
+			</article>
+		</section>
+	</body>
+</html>
