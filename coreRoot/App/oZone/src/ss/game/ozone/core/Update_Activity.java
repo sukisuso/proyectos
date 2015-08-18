@@ -14,7 +14,6 @@ import android.content.DialogInterface;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.CountDownTimer;
-import android.os.SystemClock;
 import android.support.v7.app.ActionBarActivity;
 import android.support.v7.app.AlertDialog;
 import android.view.View;
@@ -23,7 +22,6 @@ import android.widget.Button;
 import android.widget.TextView;
 
 public class Update_Activity extends ActionBarActivity {
-	boolean lock = false;
 	public String valueUpdate = "";
 	TextView timmer;
 	Button butonCancel;
@@ -146,15 +144,8 @@ public class Update_Activity extends ActionBarActivity {
 	@Override
 	protected void onResume() {
 		super.onResume();
-		while(!lock){
-			SystemClock.sleep(50);
-		}
-		((TextView)findViewById(R.id.descripcionUpdate)).setText(valueUpdate);
 	};
 	
-	public void unlock(){
-		lock = true;
-	}
 	
 	@Override
 	public void onBackPressed() {
@@ -188,9 +179,15 @@ public class Update_Activity extends ActionBarActivity {
     			}
     	    	
     	    	valueUpdate = response;
-    	    	unlock();
    	    	return true;
 	    }
+		
+		@Override
+		protected void onPostExecute(Boolean result) {
+			// TODO Auto-generated method stub
+			super.onPostExecute(result);
+			((TextView)findViewById(R.id.descripcionUpdate)).setText(valueUpdate);
+		}
 	}
 	
 	private class senPetMision extends AsyncTask<Void, Integer, Boolean> {

@@ -25,7 +25,7 @@ public class NameSpace extends Application {
     private Integer userId;
     public BussinesOperation bo = new BussinesOperation();
     public DataUser data = new DataUser();
-    public String urlServer = "http://192.168.1.38:8080";
+    public String urlServer = "http://52.26.59.182:80";
     public SimpleReport datareport[];
     
     public Integer getUserId() {
@@ -45,7 +45,7 @@ public class NameSpace extends Application {
         	jSonRep.execute();
     	}
     	private class Get extends AsyncTask<Void, Integer, Boolean> {
-    		String parametro = "";Activity main = null; int UserId; 
+    		String parametro = ""; Activity main = null; int UserId; 
     		public Get(String p, Activity mn, int uid){parametro = p; main = mn; UserId = uid;}
 			@Override
     	    protected Boolean doInBackground(Void... params) {
@@ -120,10 +120,15 @@ public class NameSpace extends Application {
 					data.action = action;
 					data.update = upp;
 					datareport = rep;
-				
-					((ViewoZone)main).unlock();
        	    	return true;
     	    }
+			
+			@Override
+			protected void onPostExecute(Boolean result) {
+				// TODO Auto-generated method stub
+				super.onPostExecute(result);
+				((ViewoZone)main).loadMainMenu();
+			}
 			
     	}
     }

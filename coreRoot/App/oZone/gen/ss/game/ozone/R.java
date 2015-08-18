@@ -2281,16 +2281,16 @@ containing a value of this type.
         public static final int viewo_zone=0x7f0d0008;
     }
     public static final class string {
-        public static final int Element_Cristal=0x7f0b0025;
+        public static final int Element_Cristal=0x7f0b0026;
         /**  - Textos Elementos 
          */
-        public static final int Element_Metal=0x7f0b0024;
-        public static final int Element_Ozone=0x7f0b0026;
+        public static final int Element_Metal=0x7f0b0025;
+        public static final int Element_Ozone=0x7f0b0027;
         /**  - Textos Settings 
          */
-        public static final int Seting_main_dataUser=0x7f0b0020;
-        public static final int Seting_main_dataUser_name=0x7f0b0021;
-        public static final int Seting_main_dataUser_pass=0x7f0b0022;
+        public static final int Seting_main_dataUser=0x7f0b0021;
+        public static final int Seting_main_dataUser_name=0x7f0b0022;
+        public static final int Seting_main_dataUser_pass=0x7f0b0023;
         /**  Content description for the action bar "home" affordance. [CHAR LIMIT=NONE] 
          */
         public static final int abc_action_bar_home_description=0x7f0b0001;
@@ -2350,79 +2350,80 @@ containing a value of this type.
         /**  Content description for the Toolbar icon used to collapse an expanded action mode. [CHAR LIMIT=NONE] 
          */
         public static final int abc_toolbar_collapse_description=0x7f0b0004;
-        public static final int action_settings=0x7f0b0017;
-        public static final int action_settings_log=0x7f0b0016;
-        public static final int almacenes_cristal=0x7f0b0035;
-        public static final int almacenes_metal=0x7f0b0034;
+        public static final int action_settings=0x7f0b0018;
+        public static final int action_settings_log=0x7f0b0017;
+        public static final int almacenes_cristal=0x7f0b0036;
+        public static final int almacenes_metal=0x7f0b0035;
         /**  Textos de Almacenes 
          */
-        public static final int almacenes_nivel=0x7f0b0032;
-        public static final int almacenes_ozone=0x7f0b0036;
-        public static final int almacenes_plus=0x7f0b0033;
+        public static final int almacenes_nivel=0x7f0b0033;
+        public static final int almacenes_ozone=0x7f0b0037;
+        public static final int almacenes_plus=0x7f0b0034;
         public static final int app_name=0x7f0b0012;
-        public static final int app_version=0x7f0b0014;
-        public static final int cantidad_ozone=0x7f0b0018;
-        public static final int cap=0x7f0b003b;
-        public static final int capacidad=0x7f0b0039;
-        public static final int computoGloval_Estruct=0x7f0b004d;
-        public static final int computoGloval_PuntosRank=0x7f0b0051;
-        public static final int computoGloval_TotalDef=0x7f0b004e;
-        public static final int computoGloval_TotalMot=0x7f0b0050;
-        public static final int computoGloval_TotalOf=0x7f0b004f;
+        public static final int app_version=0x7f0b0015;
+        public static final int app_version_name=0x7f0b0014;
+        public static final int cantidad_ozone=0x7f0b0019;
+        public static final int cap=0x7f0b003c;
+        public static final int capacidad=0x7f0b003a;
+        public static final int computoGloval_Estruct=0x7f0b004e;
+        public static final int computoGloval_PuntosRank=0x7f0b0052;
+        public static final int computoGloval_TotalDef=0x7f0b004f;
+        public static final int computoGloval_TotalMot=0x7f0b0051;
+        public static final int computoGloval_TotalOf=0x7f0b0050;
         /**  Textos Ataque 
          */
-        public static final int desea_AT_1=0x7f0b0052;
-        public static final int desea_AT_3=0x7f0b0054;
+        public static final int desea_AT_1=0x7f0b0053;
+        public static final int desea_AT_3=0x7f0b0055;
         public static final int empty=0x7f0b0013;
-        public static final int error_login=0x7f0b001c;
-        public static final int exit=0x7f0b001e;
-        public static final int hello_world=0x7f0b0015;
-        public static final int mision_activa=0x7f0b001a;
-        public static final int mision_cancel=0x7f0b002f;
-        public static final int mision_endMision=0x7f0b0030;
-        public static final int mision_target=0x7f0b002d;
-        public static final int mision_timmer=0x7f0b002e;
-        public static final int mision_type=0x7f0b002c;
-        public static final int mismo_id=0x7f0b001b;
-        public static final int msg_d_2=0x7f0b0053;
-        public static final int nave_danyada=0x7f0b0019;
-        public static final int new_user=0x7f0b001f;
-        public static final int nivel=0x7f0b003a;
-        public static final int pot=0x7f0b0040;
+        public static final int error_login=0x7f0b001d;
+        public static final int exit=0x7f0b001f;
+        public static final int hello_world=0x7f0b0016;
+        public static final int mision_activa=0x7f0b001b;
+        public static final int mision_cancel=0x7f0b0030;
+        public static final int mision_endMision=0x7f0b0031;
+        public static final int mision_target=0x7f0b002e;
+        public static final int mision_timmer=0x7f0b002f;
+        public static final int mision_type=0x7f0b002d;
+        public static final int mismo_id=0x7f0b001c;
+        public static final int msg_d_2=0x7f0b0054;
+        public static final int nave_danyada=0x7f0b001a;
+        public static final int new_user=0x7f0b0020;
+        public static final int nivel=0x7f0b003b;
+        public static final int pot=0x7f0b0041;
         /**  - Textos Recursos 
          */
-        public static final int recursosOptions_mRecursos=0x7f0b0027;
-        public static final int recursosOptions_recolectar=0x7f0b0028;
-        public static final int regist_button=0x7f0b0060;
-        public static final int regist_message=0x7f0b0061;
-        public static final int regist_message2=0x7f0b0062;
-        public static final int regist_message3=0x7f0b0063;
-        public static final int regist_message4=0x7f0b0064;
-        public static final int regist_message5=0x7f0b0065;
-        public static final int regist_message6=0x7f0b0066;
-        public static final int regist_pass=0x7f0b005e;
-        public static final int regist_pass2=0x7f0b005f;
+        public static final int recursosOptions_mRecursos=0x7f0b0028;
+        public static final int recursosOptions_recolectar=0x7f0b0029;
+        public static final int regist_button=0x7f0b0061;
+        public static final int regist_message=0x7f0b0062;
+        public static final int regist_message2=0x7f0b0063;
+        public static final int regist_message3=0x7f0b0064;
+        public static final int regist_message4=0x7f0b0065;
+        public static final int regist_message5=0x7f0b0066;
+        public static final int regist_message6=0x7f0b0067;
+        public static final int regist_pass=0x7f0b005f;
+        public static final int regist_pass2=0x7f0b0060;
         /**  Textos Register 
          */
-        public static final int regist_user=0x7f0b005d;
-        public static final int registro=0x7f0b001d;
-        public static final int reparar_att=0x7f0b004b;
-        public static final int reparar_cien=0x7f0b004a;
-        public static final int reparar_coste=0x7f0b0049;
-        public static final int reparar_estado=0x7f0b0048;
-        public static final int reparar_title=0x7f0b0047;
-        public static final int report_1=0x7f0b0059;
-        public static final int report_2=0x7f0b005a;
-        public static final int report_3=0x7f0b005b;
-        public static final int report_atacante=0x7f0b0056;
-        public static final int report_defensor=0x7f0b0057;
+        public static final int regist_user=0x7f0b005e;
+        public static final int registro=0x7f0b001e;
+        public static final int reparar_att=0x7f0b004c;
+        public static final int reparar_cien=0x7f0b004b;
+        public static final int reparar_coste=0x7f0b004a;
+        public static final int reparar_estado=0x7f0b0049;
+        public static final int reparar_title=0x7f0b0048;
+        public static final int report_1=0x7f0b005a;
+        public static final int report_2=0x7f0b005b;
+        public static final int report_3=0x7f0b005c;
+        public static final int report_atacante=0x7f0b0057;
+        public static final int report_defensor=0x7f0b0058;
         /**  Textos Reportes 
          */
-        public static final int report_fecha=0x7f0b0055;
-        public static final int report_ronda=0x7f0b005c;
-        public static final int report_title=0x7f0b0058;
-        public static final int settings_costes_almacenes=0x7f0b0037;
-        public static final int siguiente_nivel=0x7f0b0045;
+        public static final int report_fecha=0x7f0b0056;
+        public static final int report_ronda=0x7f0b005d;
+        public static final int report_title=0x7f0b0059;
+        public static final int settings_costes_almacenes=0x7f0b0038;
+        public static final int siguiente_nivel=0x7f0b0046;
         /**  Text to use when the number in a notification info is too large
          (greater than status_bar_notification_info_maxnum, defined in
          values/config.xml) and must be truncated. May need to be localized
@@ -2430,37 +2431,37 @@ containing a value of this type.
          [CHAR LIMIT=4] 
          */
         public static final int status_bar_notification_info_overflow=0x7f0b0011;
-        public static final int title_activity_almacenes_=0x7f0b0031;
-        public static final int title_activity_almacenes__costes__list_view=0x7f0b0038;
-        public static final int title_activity_army_=0x7f0b0068;
-        public static final int title_activity_clasificacion_=0x7f0b0069;
+        public static final int title_activity_almacenes_=0x7f0b0032;
+        public static final int title_activity_almacenes__costes__list_view=0x7f0b0039;
+        public static final int title_activity_army_=0x7f0b0069;
+        public static final int title_activity_clasificacion_=0x7f0b006a;
         /**  Textos Computo Gloval 
          */
-        public static final int title_activity_computo__gloval_=0x7f0b004c;
+        public static final int title_activity_computo__gloval_=0x7f0b004d;
         /**  - Textos Mision 
          */
-        public static final int title_activity_mision_=0x7f0b002b;
-        public static final int title_activity_planets__Descripcion=0x7f0b002a;
-        public static final int title_activity_planets__listiview=0x7f0b0029;
-        public static final int title_activity_registro_=0x7f0b006b;
+        public static final int title_activity_mision_=0x7f0b002c;
+        public static final int title_activity_planets__Descripcion=0x7f0b002b;
+        public static final int title_activity_planets__listiview=0x7f0b002a;
+        public static final int title_activity_registro_=0x7f0b006c;
         /**  Textos Reparacion 
          */
-        public static final int title_activity_reparar_activity=0x7f0b0046;
-        public static final int title_activity_report_=0x7f0b006a;
-        public static final int title_activity_shields_=0x7f0b0043;
-        public static final int title_activity_show__update_=0x7f0b0044;
-        public static final int title_activity_update_=0x7f0b003c;
-        public static final int title_activity_viewo_zone=0x7f0b0023;
+        public static final int title_activity_reparar_activity=0x7f0b0047;
+        public static final int title_activity_report_=0x7f0b006b;
+        public static final int title_activity_shields_=0x7f0b0044;
+        public static final int title_activity_show__update_=0x7f0b0045;
+        public static final int title_activity_update_=0x7f0b003d;
+        public static final int title_activity_viewo_zone=0x7f0b0024;
         /**  Textos Widget 
          */
-        public static final int tvWidget=0x7f0b0067;
-        public static final int update_cancelar=0x7f0b003f;
-        public static final int update_finevo=0x7f0b0041;
+        public static final int tvWidget=0x7f0b0068;
+        public static final int update_cancelar=0x7f0b0040;
+        public static final int update_finevo=0x7f0b0042;
         /**  Textos Update 
          */
-        public static final int update_inves=0x7f0b003d;
-        public static final int update_target=0x7f0b003e;
-        public static final int version_=0x7f0b0042;
+        public static final int update_inves=0x7f0b003e;
+        public static final int update_target=0x7f0b003f;
+        public static final int version_=0x7f0b0043;
     }
     public static final class style {
         public static final int AlertDialog_AppCompat=0x7f0c0040;

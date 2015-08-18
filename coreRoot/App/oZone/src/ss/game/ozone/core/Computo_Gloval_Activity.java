@@ -11,7 +11,6 @@ import ss.game.ozone.NameSpace;
 import ss.game.ozone.R;
 import android.os.AsyncTask;
 import android.os.Bundle;
-import android.os.SystemClock;
 import android.support.v7.app.ActionBarActivity;
 import android.util.Log;
 import android.widget.TextView;
@@ -21,7 +20,6 @@ import com.google.gson.Gson;
 public class Computo_Gloval_Activity extends ActionBarActivity {
 
 	public Holder holding;
-	public boolean lock = false;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -45,18 +43,9 @@ public class Computo_Gloval_Activity extends ActionBarActivity {
 		int potencia;
 	}
 	
-	public void unlock(){
-		lock = true;
-	}
-	
 	@Override
 	protected void onResume() {
 		super.onResume();
-		while(!lock){
-			SystemClock.sleep(50);
-		}
-		((TextView) findViewById(R.id.fuerzaOfensiva)).setText(""+holding.potencia);
-		((TextView) findViewById(R.id.fuerzaDefensiva)).setText(""+holding.escudos);
 	}
 	
 	private class Get extends AsyncTask<Void, Integer, Boolean> {
@@ -88,9 +77,16 @@ public class Computo_Gloval_Activity extends ActionBarActivity {
     	    	Gson gson = new Gson();
 				Holder hold = gson.fromJson(response, Holder.class);
 				holding = hold;
-				unlock();
    	    	return true;
 	    }
+		
+		@Override
+		protected void onPostExecute(Boolean result) {
+			// TODO Auto-generated method stub
+			super.onPostExecute(result);
+			((TextView) findViewById(R.id.fuerzaOfensiva)).setText(""+holding.potencia);
+			((TextView) findViewById(R.id.fuerzaDefensiva)).setText(""+holding.escudos);
+		}
 	}
 	
 	@Override

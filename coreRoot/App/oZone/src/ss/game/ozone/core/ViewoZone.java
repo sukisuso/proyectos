@@ -10,7 +10,6 @@ import ss.game.ozone.core.adapter.MainMenuAdapter;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.os.SystemClock;
 import android.preference.PreferenceManager;
 import android.support.v7.app.ActionBarActivity;
 import android.util.Log;
@@ -21,8 +20,9 @@ import android.widget.AdapterView;
 import android.widget.ListView;
 
 public class ViewoZone extends ActionBarActivity {
-	boolean lock = false;
+
 	private MainMenuAdapter adapter;
+	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -53,10 +53,6 @@ public class ViewoZone extends ActionBarActivity {
 	@Override
 	protected void onResume() {
 		super.onResume();
-		while(!lock){
-			SystemClock.sleep(50);
-		}
-		loadMainMenu();
 	};
 
 	@Override
@@ -158,20 +154,19 @@ public class ViewoZone extends ActionBarActivity {
 			   } 
 			});
 	}
-	public void unlock(){
-		lock = true;
-	}
 	
 	@Override
 	protected void onRestart() {
 		// TODO Auto-generated method stub
 		super.onRestart();
-		lock = false;
 		((NameSpace) this.getApplication()).bo.getRecursosFromUser(this);
 	}
 	
 	@Override
 	public void onBackPressed() {
-        	finish();
+        finish();
 	}
+	
+	
+	
 }

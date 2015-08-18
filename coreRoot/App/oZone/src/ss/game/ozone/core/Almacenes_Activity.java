@@ -13,7 +13,6 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
-import android.os.SystemClock;
 import android.support.v7.app.ActionBarActivity;
 import android.support.v7.app.AlertDialog;
 import android.util.Log;
@@ -26,7 +25,6 @@ import android.widget.TextView;
 import com.google.gson.Gson;
 
 public class Almacenes_Activity extends ActionBarActivity {
-	boolean lock = false;
 	public Costes costes;
 	
 	@Override
@@ -165,48 +163,6 @@ public class Almacenes_Activity extends ActionBarActivity {
 	@Override
 	protected void onResume() {
 		super.onResume();
-		while(!lock){
-			SystemClock.sleep(50);
-		}
-		((TextView)findViewById(R.id.AMcoste_Metal)).setText(costes.costeMetal.tal_coste_metal+"");
-		((TextView)findViewById(R.id.AMcoste_Cristal)).setText(costes.costeMetal.tal_coste_cristal+"");
-		((TextView)findViewById(R.id.AMcoste_Ozone)).setText(costes.costeMetal.tal_coste_ozone+"");
-		
-		((TextView)findViewById(R.id.ACcoste_Metal)).setText(costes.costeCristal.tal_coste_metal+"");
-		((TextView)findViewById(R.id.ACcoste_Cristal)).setText(costes.costeCristal.tal_coste_cristal+"");
-		((TextView)findViewById(R.id.ACcoste_Ozone)).setText(costes.costeCristal.tal_coste_ozone+"");
-		
-		((TextView)findViewById(R.id.AOcoste_Metal)).setText(costes.costeOzone.tal_coste_metal+"");
-		((TextView)findViewById(R.id.AOcoste_Cristal)).setText(costes.costeOzone.tal_coste_cristal+"");
-		((TextView)findViewById(R.id.AOcoste_Ozone)).setText(costes.costeOzone.tal_coste_ozone+"");
-		
-		if(((NameSpace) Almacenes_Activity.this.getApplication()).data.action.ta_activo
-				|| ((NameSpace) Almacenes_Activity.this.getApplication()).data.update.tup_activo){//COMPROBAR UPDATE ACTIVO
-			((Button)findViewById(R.id.subir_Metal)).setVisibility(View.INVISIBLE);
-			((Button)findViewById(R.id.subir_Cristal)).setVisibility(View.INVISIBLE);
-			((Button)findViewById(R.id.subir_Ozone)).setVisibility(View.INVISIBLE);
-		}
-		
-		if(costes.costeMetal.tal_coste_metal> ((NameSpace) Almacenes_Activity.this.getApplication()).data.tr_u_metal
-	   			  || costes.costeMetal.tal_coste_cristal > ((NameSpace) Almacenes_Activity.this.getApplication()).data.tr_u_cristal
-	   			  || costes.costeMetal.tal_coste_ozone > ((NameSpace) Almacenes_Activity.this.getApplication()).data.tr_u_ozone){
-			((Button)findViewById(R.id.subir_Metal)).setVisibility(View.INVISIBLE);
-		}
-		if(costes.costeCristal.tal_coste_metal> ((NameSpace) Almacenes_Activity.this.getApplication()).data.tr_u_metal
-	   			  || costes.costeCristal.tal_coste_cristal > ((NameSpace) Almacenes_Activity.this.getApplication()).data.tr_u_cristal
-	   			  || costes.costeCristal.tal_coste_ozone > ((NameSpace) Almacenes_Activity.this.getApplication()).data.tr_u_ozone){
-			((Button)findViewById(R.id.subir_Cristal)).setVisibility(View.INVISIBLE);
-		}
-		
-		if(costes.costeOzone.tal_coste_metal> ((NameSpace) Almacenes_Activity.this.getApplication()).data.tr_u_metal
-	   			  || costes.costeOzone.tal_coste_cristal > ((NameSpace) Almacenes_Activity.this.getApplication()).data.tr_u_cristal
-	   			  || costes.costeOzone.tal_coste_ozone > ((NameSpace) Almacenes_Activity.this.getApplication()).data.tr_u_ozone){
-			((Button)findViewById(R.id.subir_Ozone)).setVisibility(View.INVISIBLE);
-		}
-	}
-	
-	public void unLock(){
-		lock = true;
 	}
 	
 	private class GetValues extends AsyncTask<Void, Integer, Boolean> {
@@ -238,9 +194,50 @@ public class Almacenes_Activity extends ActionBarActivity {
     	    	Gson gson = new Gson();
     	    	Costes cos = gson.fromJson(response, Costes.class);
     	    	costes = cos;
-    	    	unLock();
    	    	return true;
 	    }
+
+		@Override
+		protected void onPostExecute(Boolean result) {
+			// TODO Auto-generated method stub
+			super.onPostExecute(result);
+			
+			((TextView)findViewById(R.id.AMcoste_Metal)).setText(costes.costeMetal.tal_coste_metal+"");
+			((TextView)findViewById(R.id.AMcoste_Cristal)).setText(costes.costeMetal.tal_coste_cristal+"");
+			((TextView)findViewById(R.id.AMcoste_Ozone)).setText(costes.costeMetal.tal_coste_ozone+"");
+			
+			((TextView)findViewById(R.id.ACcoste_Metal)).setText(costes.costeCristal.tal_coste_metal+"");
+			((TextView)findViewById(R.id.ACcoste_Cristal)).setText(costes.costeCristal.tal_coste_cristal+"");
+			((TextView)findViewById(R.id.ACcoste_Ozone)).setText(costes.costeCristal.tal_coste_ozone+"");
+			
+			((TextView)findViewById(R.id.AOcoste_Metal)).setText(costes.costeOzone.tal_coste_metal+"");
+			((TextView)findViewById(R.id.AOcoste_Cristal)).setText(costes.costeOzone.tal_coste_cristal+"");
+			((TextView)findViewById(R.id.AOcoste_Ozone)).setText(costes.costeOzone.tal_coste_ozone+"");
+			
+			if(((NameSpace) Almacenes_Activity.this.getApplication()).data.action.ta_activo
+					|| ((NameSpace) Almacenes_Activity.this.getApplication()).data.update.tup_activo){//COMPROBAR UPDATE ACTIVO
+				((Button)findViewById(R.id.subir_Metal)).setVisibility(View.INVISIBLE);
+				((Button)findViewById(R.id.subir_Cristal)).setVisibility(View.INVISIBLE);
+				((Button)findViewById(R.id.subir_Ozone)).setVisibility(View.INVISIBLE);
+			}
+			
+			if(costes.costeMetal.tal_coste_metal> ((NameSpace) Almacenes_Activity.this.getApplication()).data.tr_u_metal
+		   			  || costes.costeMetal.tal_coste_cristal > ((NameSpace) Almacenes_Activity.this.getApplication()).data.tr_u_cristal
+		   			  || costes.costeMetal.tal_coste_ozone > ((NameSpace) Almacenes_Activity.this.getApplication()).data.tr_u_ozone){
+				((Button)findViewById(R.id.subir_Metal)).setVisibility(View.INVISIBLE);
+			}
+			if(costes.costeCristal.tal_coste_metal> ((NameSpace) Almacenes_Activity.this.getApplication()).data.tr_u_metal
+		   			  || costes.costeCristal.tal_coste_cristal > ((NameSpace) Almacenes_Activity.this.getApplication()).data.tr_u_cristal
+		   			  || costes.costeCristal.tal_coste_ozone > ((NameSpace) Almacenes_Activity.this.getApplication()).data.tr_u_ozone){
+				((Button)findViewById(R.id.subir_Cristal)).setVisibility(View.INVISIBLE);
+			}
+			
+			if(costes.costeOzone.tal_coste_metal> ((NameSpace) Almacenes_Activity.this.getApplication()).data.tr_u_metal
+		   			  || costes.costeOzone.tal_coste_cristal > ((NameSpace) Almacenes_Activity.this.getApplication()).data.tr_u_cristal
+		   			  || costes.costeOzone.tal_coste_ozone > ((NameSpace) Almacenes_Activity.this.getApplication()).data.tr_u_ozone){
+				((Button)findViewById(R.id.subir_Ozone)).setVisibility(View.INVISIBLE);
+			}
+		}
 	}
 	
 	public class Costes{

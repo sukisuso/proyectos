@@ -15,7 +15,6 @@ import android.content.DialogInterface;
 import android.content.DialogInterface.OnClickListener;
 import android.os.AsyncTask;
 import android.os.Bundle;
-import android.os.SystemClock;
 import android.support.v7.app.ActionBarActivity;
 import android.support.v7.app.AlertDialog;
 import android.util.Log;
@@ -44,29 +43,6 @@ public class Planets_Listiview extends ActionBarActivity {
 	@Override
 	protected void onResume() {
 		super.onResume();
-		while(!lock){
-			SystemClock.sleep(50);
-		}
-		listaPlanetas.setAdapter(adapter);
-		listaPlanetas.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-			   @Override
-			   public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-				   Planet x = (Planet)  parent.getItemAtPosition(position);
-				   
-				   if(x.tp_distancia > ((NameSpace) Planets_Listiview.this.getApplication()).data.tr_u_ozone){
-					   String cantt = getResources().getString(R.string.cantidad_ozone);
-					   new AlertDialog.Builder(Planets_Listiview.this)
-				          .setMessage(cantt)
-				          .setCancelable(false)
-				          .setPositiveButton("Ok", new OnClickListener() {
-				              @Override
-				              public void onClick(DialogInterface dialog, int which) {}
-				          }).create().show(); 
-				   }else{
-					   confirmarRecolecta(x);
-				   }
-			   } 
-			});
 	}
 	
 	protected void confirmarRecolecta(Planet x) {
@@ -99,10 +75,6 @@ public class Planets_Listiview extends ActionBarActivity {
 		finish();
 	}
 
-	public void loadList(){
-		lock = true;
-	}
-	
 	private class Get extends AsyncTask<Void, Integer, Boolean> {
 		private String urlServer = "";
 		String parametro = "";
@@ -133,10 +105,34 @@ public class Planets_Listiview extends ActionBarActivity {
 				Planet[] planetas = gson.fromJson(response, Planet[].class);
 				
 				adapter = new PlanetsAdapter(Planets_Listiview.this, planetas);
-				loadList();
-				
    	    	return true;
 	    }
+		
+		@Override
+		protected void onPostExecute(Boolean result) {
+			// TODO Auto-generated method stub
+			super.onPostExecute(result);
+			listaPlanetas.setAdapter(adapter);
+			listaPlanetas.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+				   @Override
+				   public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+					   Planet x = (Planet)  parent.getItemAtPosition(position);
+					   
+					   if(x.tp_distancia > ((NameSpace) Planets_Listiview.this.getApplication()).data.tr_u_ozone){
+						   String cantt = getResources().getString(R.string.cantidad_ozone);
+						   new AlertDialog.Builder(Planets_Listiview.this)
+					          .setMessage(cantt)
+					          .setCancelable(false)
+					          .setPositiveButton("Ok", new OnClickListener() {
+					              @Override
+					              public void onClick(DialogInterface dialog, int which) {}
+					          }).create().show(); 
+					   }else{
+						   confirmarRecolecta(x);
+					   }
+				   } 
+				});
+		}
 	}
 	
 	private class SendActionRecolect extends AsyncTask<Void, Integer, Boolean> {

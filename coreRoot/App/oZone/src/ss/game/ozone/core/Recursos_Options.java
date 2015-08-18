@@ -12,7 +12,6 @@ import ss.game.ozone.R;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
-import android.os.SystemClock;
 import android.support.v7.app.ActionBarActivity;
 import android.util.Log;
 import android.view.View;
@@ -61,19 +60,9 @@ public class Recursos_Options extends ActionBarActivity {
    	   	}
 	}
 	
-	public void unLock(){
-		lock = true;
-	}
-	
 	@Override
 	protected void onResume() {
 		super.onResume();
-		while(!lock){
-			SystemClock.sleep(50);
-		}
-		metal.setText(((NameSpace) this.getApplication()).data.tr_u_metal+" / "+capacidades.capacidadMetal);
-   	   	cristal.setText(((NameSpace) this.getApplication()).data.tr_u_cristal+" / "+capacidades.capacidadCristal);
-   	   	ozone.setText(((NameSpace) this.getApplication()).data.tr_u_ozone+" / "+capacidades.capacidadOzone);
 	}
 	
 	private class GetValuesAlmacen extends AsyncTask<Void, Integer, Boolean> {
@@ -106,12 +95,19 @@ public class Recursos_Options extends ActionBarActivity {
     	    	Capacidades cos = gson.fromJson(response, Capacidades.class);
     	    	capacidades = cos;
     	    	
-    	    	unLock();
    	    	return true;
 	    }
+		
+		@Override
+		protected void onPostExecute(Boolean result) {
+			// TODO Auto-generated method stub
+			super.onPostExecute(result);
+			metal.setText(((NameSpace) Recursos_Options.this.getApplication()).data.tr_u_metal+" / "+capacidades.capacidadMetal);
+	   	   	cristal.setText(((NameSpace) Recursos_Options.this.getApplication()).data.tr_u_cristal+" / "+capacidades.capacidadCristal);
+	   	   	ozone.setText(((NameSpace) Recursos_Options.this.getApplication()).data.tr_u_ozone+" / "+capacidades.capacidadOzone);
+		}
 	}
 	
-//	{"capacidadMetal":"375","capacidadCristal":"300","capacidadOzone":"575"}
 	public class Capacidades {
 		public int capacidadMetal;
 		public int capacidadCristal;

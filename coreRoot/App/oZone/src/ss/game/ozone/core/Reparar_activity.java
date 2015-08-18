@@ -68,12 +68,6 @@ public class Reparar_activity extends ActionBarActivity {
 			
 			});
 		 
-//         ((TextView) barra).setText(((NameSpace) this.getApplication()).data.tr_damage + " %");
-		 
-		 
-//		 http://localhost:8080/bo/action/repararNave.php?userId=1
-		 
-		 
 	}
 	
 	@Override

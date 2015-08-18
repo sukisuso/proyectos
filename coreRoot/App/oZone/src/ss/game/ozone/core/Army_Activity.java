@@ -14,7 +14,6 @@ import ss.game.ozone.core.adapter.ArmyAdapter;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
-import android.os.SystemClock;
 import android.support.v7.app.ActionBarActivity;
 import android.util.Log;
 import android.view.View;
@@ -25,7 +24,6 @@ import com.google.gson.Gson;
 
 public class Army_Activity extends ActionBarActivity {
 
-	boolean lock = false;
 	ArmyAdapter adapter;
 	ListView listArmy;
 	
@@ -42,23 +40,6 @@ public class Army_Activity extends ActionBarActivity {
 
 	protected void onResume() {
 		super.onResume();
-		while(!lock){
-			SystemClock.sleep(50);
-		}
-		listArmy.setAdapter(adapter);
-		listArmy.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-			   @Override
-			   public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-				   Army escudo =(Army) parent.getItemAtPosition(position);
-				   Intent i =new Intent(getBaseContext(), Show_Update_Activity.class);
-				   i.putExtra("INTENT_IDOF_SHIELD", escudo.tupt_id);
-				   startActivity(i);
-			   } 
-			});
-	}
-	
-	public void loadList(){
-		lock = true;
 	}
 	
 	private class Get extends AsyncTask<Void, Integer, Boolean> {
@@ -89,12 +70,25 @@ public class Army_Activity extends ActionBarActivity {
     	    	
     	    	Gson gson = new Gson();
 				Army[] planetas = gson.fromJson(response, Army[].class);
-				
 				adapter = new ArmyAdapter(Army_Activity.this, planetas);
-				loadList();
-				
    	    	return true;
 	    }
+		
+		@Override
+		protected void onPostExecute(Boolean result) {
+			// TODO Auto-generated method stub
+			super.onPostExecute(result);
+			listArmy.setAdapter(adapter);
+			listArmy.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+				   @Override
+				   public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+					   Army escudo =(Army) parent.getItemAtPosition(position);
+					   Intent i =new Intent(getBaseContext(), Show_Update_Activity.class);
+					   i.putExtra("INTENT_IDOF_SHIELD", escudo.tupt_id);
+					   startActivity(i);
+				   } 
+				});
+		}
 	}
 	
 	@Override

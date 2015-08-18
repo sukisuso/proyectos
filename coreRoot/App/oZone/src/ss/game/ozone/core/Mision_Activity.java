@@ -16,7 +16,6 @@ import android.content.DialogInterface;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.CountDownTimer;
-import android.os.SystemClock;
 import android.support.v7.app.ActionBarActivity;
 import android.support.v7.app.AlertDialog;
 import android.view.View;
@@ -29,7 +28,6 @@ import com.google.gson.Gson;
 
 public class Mision_Activity extends ActionBarActivity {
 
-	boolean lock = false;
 	String NombrePlaneta = "";
 	private Action mision;
 	private TextView tipoMision;
@@ -147,15 +145,7 @@ public class Mision_Activity extends ActionBarActivity {
 	@Override
 	protected void onResume() {
 		super.onResume();
-		while(!lock){
-			SystemClock.sleep(50);
-		}
-		targetMision.setText(NombrePlaneta);
 	};
-	
-	public void unlock(){
-		lock = true;
-	}
 	
 	private class Get extends AsyncTask<Void, Integer, Boolean> {
 		private String urlServer = "";
@@ -184,10 +174,15 @@ public class Mision_Activity extends ActionBarActivity {
     	    	Gson gson = new Gson();
     	    	Planet p = gson.fromJson(response, Planet.class);
     	    	NombrePlaneta = p.tp_nombre;
-    	    	unlock();
-				
    	    	return true;
 	    }
+		
+		@Override
+		protected void onPostExecute(Boolean result) {
+			// TODO Auto-generated method stub
+			super.onPostExecute(result);
+			targetMision.setText(NombrePlaneta);
+		}
 	}
 	
 	private class senPetMision extends AsyncTask<Void, Integer, Boolean> {

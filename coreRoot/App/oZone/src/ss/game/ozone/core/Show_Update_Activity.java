@@ -13,7 +13,6 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
-import android.os.SystemClock;
 import android.support.v7.app.ActionBarActivity;
 import android.support.v7.app.AlertDialog;
 import android.util.Log;
@@ -28,7 +27,6 @@ import com.google.gson.Gson;
 
 public class Show_Update_Activity extends ActionBarActivity {
 	private final String TAG = "Show_update_Activity_DEV";
-	public boolean lock = false;
 	public Holder holding;
 	public int Nivel;
 	public int updateId;
@@ -101,33 +99,6 @@ public class Show_Update_Activity extends ActionBarActivity {
 	
 	protected void onResume() {
 		super.onResume();
-		while(!lock){
-			SystemClock.sleep(50);
-		}
-		
-		((TextView)findViewById(R.id.showUpdate_nombre)).setText(holding.nombre);
-		((TextView)findViewById(R.id.showUpdate_nivel)).setText(Nivel+"");
-		((TextView)findViewById(R.id.showUpdate_potencial)).setText(holding.potencial+"");
-		((TextView)findViewById(R.id.showUpdate_costeMetal)).setText(holding.coste_metal+"");
-		((TextView)findViewById(R.id.shpwUpdate_costecristal)).setText(holding.coste_cristal+"");
-		((TextView)findViewById(R.id.showUpdate_costeOzone)).setText(holding.coste_ozone+"");
-		
-		setTitle("Update Visión: "+holding.nombre);
-		
-		if(((NameSpace) Show_Update_Activity.this.getApplication()).data.action.ta_activo
-				|| ((NameSpace) Show_Update_Activity.this.getApplication()).data.update.tup_activo){//COMPROBAR UPDATE ACTIVO
-			((Button)findViewById(R.id.showUpdate_button)).setVisibility(View.INVISIBLE);
-		}
-		
-		if(holding.coste_metal> ((NameSpace) Show_Update_Activity.this.getApplication()).data.tr_u_metal
-	   			  || holding.coste_cristal > ((NameSpace) Show_Update_Activity.this.getApplication()).data.tr_u_cristal
-	   			  || holding.coste_ozone > ((NameSpace) Show_Update_Activity.this.getApplication()).data.tr_u_ozone){
-			((Button)findViewById(R.id.showUpdate_button)).setVisibility(View.INVISIBLE);
-		}
-	}
-	
-	public void unlock(){
-		lock = true;
 	}
 	
 	public class Holder {
@@ -169,9 +140,33 @@ public class Show_Update_Activity extends ActionBarActivity {
     	    	Gson gson = new Gson();
 				Holder hold = gson.fromJson(response, Holder.class);
 				holding = hold;
-				unlock();
    	    	return true;
 	    }
+		
+		@Override
+		protected void onPostExecute(Boolean result) {
+			// TODO Auto-generated method stub
+			super.onPostExecute(result);
+			((TextView)findViewById(R.id.showUpdate_nombre)).setText(holding.nombre);
+			((TextView)findViewById(R.id.showUpdate_nivel)).setText(Nivel+"");
+			((TextView)findViewById(R.id.showUpdate_potencial)).setText(holding.potencial+"");
+			((TextView)findViewById(R.id.showUpdate_costeMetal)).setText(holding.coste_metal+"");
+			((TextView)findViewById(R.id.shpwUpdate_costecristal)).setText(holding.coste_cristal+"");
+			((TextView)findViewById(R.id.showUpdate_costeOzone)).setText(holding.coste_ozone+"");
+			
+			setTitle("Update Visión: "+holding.nombre);
+			
+			if(((NameSpace) Show_Update_Activity.this.getApplication()).data.action.ta_activo
+					|| ((NameSpace) Show_Update_Activity.this.getApplication()).data.update.tup_activo){//COMPROBAR UPDATE ACTIVO
+				((Button)findViewById(R.id.showUpdate_button)).setVisibility(View.INVISIBLE);
+			}
+			
+			if(holding.coste_metal> ((NameSpace) Show_Update_Activity.this.getApplication()).data.tr_u_metal
+		   			  || holding.coste_cristal > ((NameSpace) Show_Update_Activity.this.getApplication()).data.tr_u_cristal
+		   			  || holding.coste_ozone > ((NameSpace) Show_Update_Activity.this.getApplication()).data.tr_u_ozone){
+				((Button)findViewById(R.id.showUpdate_button)).setVisibility(View.INVISIBLE);
+			}
+		}
 	}
 
 	

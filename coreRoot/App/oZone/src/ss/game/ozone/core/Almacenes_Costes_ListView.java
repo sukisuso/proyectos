@@ -13,7 +13,6 @@ import ss.game.ozone.R;
 import ss.game.ozone.core.adapter.CostesAlmacenAdapter;
 import android.os.AsyncTask;
 import android.os.Bundle;
-import android.os.SystemClock;
 import android.support.v7.app.ActionBarActivity;
 import android.util.Log;
 import android.widget.ListView;
@@ -22,7 +21,6 @@ import com.google.gson.Gson;
 
 public class Almacenes_Costes_ListView extends ActionBarActivity {
 
-	boolean lock = false;
 	ListView listaCostes;
 	CostesAlmacenAdapter adapter;
 	Almacen plt;
@@ -41,14 +39,6 @@ public class Almacenes_Costes_ListView extends ActionBarActivity {
 	@Override
 	protected void onResume() {
 		super.onResume();
-		while(!lock){
-			SystemClock.sleep(50);
-		}
-		listaCostes.setAdapter(adapter);
-	}
-		
-	public void loadList(){
-		lock = true;
 	}
 		
 	private class Get extends AsyncTask<Void, Integer, Boolean> {
@@ -80,10 +70,15 @@ public class Almacenes_Costes_ListView extends ActionBarActivity {
 	    	    	Gson gson = new Gson();
 					Almacen[] alm = gson.fromJson(response, Almacen[].class);
 					adapter = new CostesAlmacenAdapter(Almacenes_Costes_ListView.this, alm);
-				loadList();
-				
    	    	return true;
 	    }
+		
+		@Override
+		protected void onPostExecute(Boolean result) {
+			// TODO Auto-generated method stub
+			super.onPostExecute(result);
+			listaCostes.setAdapter(adapter);
+		}
 	}
 	
 	@Override

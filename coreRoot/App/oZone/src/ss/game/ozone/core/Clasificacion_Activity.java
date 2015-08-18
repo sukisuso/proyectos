@@ -15,7 +15,6 @@ import android.content.DialogInterface;
 import android.content.DialogInterface.OnClickListener;
 import android.os.AsyncTask;
 import android.os.Bundle;
-import android.os.SystemClock;
 import android.support.v7.app.ActionBarActivity;
 import android.support.v7.app.AlertDialog;
 import android.util.Log;
@@ -27,7 +26,6 @@ import com.google.gson.Gson;
 
 public class Clasificacion_Activity extends ActionBarActivity {
 
-	boolean lock = false;
 	ListView listaUsuarios;
 	ClasificacionAdapter adapter;
 	Clasificacion plt;
@@ -46,63 +44,6 @@ public class Clasificacion_Activity extends ActionBarActivity {
 	@Override
 	protected void onResume() {
 		super.onResume();
-		while(!lock){
-			SystemClock.sleep(50);
-		}
-		listaUsuarios.setAdapter(adapter);
-		listaUsuarios.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-			   @Override
-			   public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-				   Clasificacion x = (Clasificacion)  parent.getItemAtPosition(position);
-				   
-				   if(x.tp_distancia > ((NameSpace) Clasificacion_Activity.this.getApplication()).data.tr_u_ozone){
-					   String cantt = getResources().getString(R.string.cantidad_ozone);
-					   new AlertDialog.Builder(Clasificacion_Activity.this)
-				          .setMessage(cantt)
-				          .setCancelable(false)
-				          .setPositiveButton("Ok", new OnClickListener() {
-				              @Override
-				              public void onClick(DialogInterface dialog, int which) {}
-				          }).create().show(); 
-				   } else if(((NameSpace) Clasificacion_Activity.this.getApplication()).data.action.ta_activo
-							|| ((NameSpace) Clasificacion_Activity.this.getApplication()).data.update.tup_activo) {
-					   String cantt = getResources().getString(R.string.mision_activa);
-					   new AlertDialog.Builder(Clasificacion_Activity.this)
-				          .setMessage(cantt)
-				          .setCancelable(false)
-				          .setPositiveButton("Ok", new OnClickListener() {
-				              @Override
-				              public void onClick(DialogInterface dialog, int which) {}
-				          }).create().show(); 
-				   }else if(((NameSpace) Clasificacion_Activity.this.getApplication()).data.tr_damage < 75) {
-					   String cantt = getResources().getString(R.string.nave_danyada);
-					   new AlertDialog.Builder(Clasificacion_Activity.this)
-				          .setMessage(cantt)
-				          .setCancelable(false)
-				          .setPositiveButton("Ok", new OnClickListener() {
-				              @Override
-				              public void onClick(DialogInterface dialog, int which) {}
-				          }).create().show(); 
-				   }else if(((NameSpace) Clasificacion_Activity.this.getApplication()).getUserId() == x.tu_id) {
-					   String cantt = getResources().getString(R.string.mismo_id);
-					   new AlertDialog.Builder(Clasificacion_Activity.this)
-				          .setMessage(cantt)
-				          .setCancelable(false)
-				          .setPositiveButton("Ok", new OnClickListener() {
-				              @Override
-				              public void onClick(DialogInterface dialog, int which) {}
-				          }).create().show(); 
-				   }else{
-					   confirmarAtacar(x);
-				   }
-			   }
-			});
-		
-	}
-	
-	
-	public void loadList(){
-		lock = true;
 	}
 	
 	private class Get extends AsyncTask<Void, Integer, Boolean> {
@@ -135,10 +76,62 @@ public class Clasificacion_Activity extends ActionBarActivity {
 				Clasificacion[] classi = gson.fromJson(response, Clasificacion[].class);
 				
 				adapter = new ClasificacionAdapter(Clasificacion_Activity.this, classi);
-				loadList();
-				
    	    	return true;
 	    }
+		
+		@Override
+		protected void onPostExecute(Boolean result) {
+			// TODO Auto-generated method stub
+			super.onPostExecute(result);
+			listaUsuarios.setAdapter(adapter);
+			listaUsuarios.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+				   @Override
+				   public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+					   Clasificacion x = (Clasificacion)  parent.getItemAtPosition(position);
+					   
+					   if(x.tp_distancia > ((NameSpace) Clasificacion_Activity.this.getApplication()).data.tr_u_ozone){
+						   String cantt = getResources().getString(R.string.cantidad_ozone);
+						   new AlertDialog.Builder(Clasificacion_Activity.this)
+					          .setMessage(cantt)
+					          .setCancelable(false)
+					          .setPositiveButton("Ok", new OnClickListener() {
+					              @Override
+					              public void onClick(DialogInterface dialog, int which) {}
+					          }).create().show(); 
+					   } else if(((NameSpace) Clasificacion_Activity.this.getApplication()).data.action.ta_activo
+								|| ((NameSpace) Clasificacion_Activity.this.getApplication()).data.update.tup_activo) {
+						   String cantt = getResources().getString(R.string.mision_activa);
+						   new AlertDialog.Builder(Clasificacion_Activity.this)
+					          .setMessage(cantt)
+					          .setCancelable(false)
+					          .setPositiveButton("Ok", new OnClickListener() {
+					              @Override
+					              public void onClick(DialogInterface dialog, int which) {}
+					          }).create().show(); 
+					   }else if(((NameSpace) Clasificacion_Activity.this.getApplication()).data.tr_damage < 75) {
+						   String cantt = getResources().getString(R.string.nave_danyada);
+						   new AlertDialog.Builder(Clasificacion_Activity.this)
+					          .setMessage(cantt)
+					          .setCancelable(false)
+					          .setPositiveButton("Ok", new OnClickListener() {
+					              @Override
+					              public void onClick(DialogInterface dialog, int which) {}
+					          }).create().show(); 
+					   }else if(((NameSpace) Clasificacion_Activity.this.getApplication()).getUserId() == x.tu_id) {
+						   String cantt = getResources().getString(R.string.mismo_id);
+						   new AlertDialog.Builder(Clasificacion_Activity.this)
+					          .setMessage(cantt)
+					          .setCancelable(false)
+					          .setPositiveButton("Ok", new OnClickListener() {
+					              @Override
+					              public void onClick(DialogInterface dialog, int which) {}
+					          }).create().show(); 
+					   }else{
+						   confirmarAtacar(x);
+					   }
+				   }
+				});
+		}
 	}
 	
 	protected void confirmarAtacar(Clasificacion x) {

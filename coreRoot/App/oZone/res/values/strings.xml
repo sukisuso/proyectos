@@ -3,6 +3,7 @@
 
     <string name="app_name">oZone</string>
     <string name="empty"></string>
+    <string name="app_version_name">ALFA VERSION.</string>
     <string name="app_version">v_0.3.0</string>
     <string name="hello_world">Hello world!</string>
     <string name="action_settings_log">Logout</string>
