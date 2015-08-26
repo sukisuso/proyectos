@@ -22,7 +22,7 @@ function cancelmision(response, get) {
 	response.write("");
 	response.end();
 	
-	var queryString = 'UPDATE t_action SET ta_activo = 0 where tu_id = ' + get["userId"] + ' ' ;
+	var queryString = 'UPDATE t_action SET ta_activo = 0, ta_target=0 where tu_id = ' + get["userId"] + ' ' ;
     connection.query(queryString);
 }
 
@@ -38,33 +38,34 @@ function cancelupdate(response, get) {
 }
 
 //checkMaxAlmacen
-function checkMaxAlmacen(userId){
+function checkMaxAlmacen(userId, response){
 	
 	//check Metal
 	var queryString =  "UPDATE t_recursos AS rec JOIN t_almacen as cost on( cost.tal_nivel = rec.tr_na_metal ) " +
 			" SET tr_u_metal = (CASE WHEN rec.tr_u_metal > cost.tal_capacidad THEN cost.tal_capacidad ELSE rec.tr_u_metal END)" +
 			" WHERE rec.tu_id = " + userId + ' ' ;
-    connection.query(queryString);
+    connection.query(queryString, function(){
     
-    //check Cristal
-    var queryString =  "UPDATE t_recursos AS rec JOIN t_almacen as cost on( cost.tal_nivel = rec.tr_na_cristal ) " +
-			" SET tr_u_cristal = (CASE WHEN rec.tr_u_cristal > cost.tal_capacidad THEN cost.tal_capacidad ELSE rec.tr_u_cristal END)" +
-			" WHERE rec.tu_id = " + userId + ' ' ;
-    connection.query(queryString);
-
-    //check Ozone
-    var queryString =  "UPDATE t_recursos AS rec JOIN t_almacen as cost on( cost.tal_nivel = rec.tr_na_ozone ) " +
-    		" SET tr_u_ozone = (CASE WHEN rec.tr_u_ozone > cost.tal_capacidad THEN cost.tal_capacidad ELSE rec.tr_u_ozone END)" +
-    		" WHERE rec.tu_id = " + userId + ' ' ;
-    connection.query(queryString);
+    	//check Cristal
+        var queryString =  "UPDATE t_recursos AS rec JOIN t_almacen as cost on( cost.tal_nivel = rec.tr_na_cristal ) " +
+    			" SET tr_u_cristal = (CASE WHEN rec.tr_u_cristal > cost.tal_capacidad THEN cost.tal_capacidad ELSE rec.tr_u_cristal END)" +
+    			" WHERE rec.tu_id = " + userId + ' ' ;
+        connection.query(queryString, function(){
+        	 //check Ozone
+            var queryString =  "UPDATE t_recursos AS rec JOIN t_almacen as cost on( cost.tal_nivel = rec.tr_na_ozone ) " +
+            		" SET tr_u_ozone = (CASE WHEN rec.tr_u_ozone > cost.tal_capacidad THEN cost.tal_capacidad ELSE rec.tr_u_ozone END)" +
+            		" WHERE rec.tu_id = " + userId + ' ' ;
+            connection.query(queryString, function(){
+            	 response.writeHead(200, {"Content-Type": "text/html;charset=UTF-8"}); 
+            		response.write("");
+            		response.end();
+            });
+        });
+    });
 }
 
 //finalizarMision
 function finalizarmision(response, get){
-	response.writeHead(200, {"Content-Type": "text/html;charset=UTF-8"}); 
-	response.write("");
-	response.end();
-	
 	if(get["tipoMision"]==1){
 		
 		var tanto = Math.floor((Math.random() * 20) + 1);
@@ -78,11 +79,11 @@ function finalizarmision(response, get){
 				" AND tr.tu_id = " + get["userId"] + ' ' ;
 		connection.query(queryString);
 		
-		var queryString =  'UPDATE t_action SET ta_activo = 0 where tu_id = ' + get["userId"] + ' ' ;
+		var queryString =  'UPDATE t_action SET ta_activo = 0, ta_target=0 where tu_id = ' + get["userId"] + ' ' ;
 		connection.query(queryString);
 	}
 	
-	checkMaxAlmacen(get["userId"]);
+	checkMaxAlmacen(get["userId"], response);
 }
 
 //finalizarUpdate
@@ -129,11 +130,8 @@ function repararnave(response, get){
 
 //startAtaque
 function startataque(response, get){
-	response.writeHead(200, {"Content-Type": "text/html;charset=UTF-8"}); 
-	response.write("");
-	response.end();
-	
-	var fecha = moment().add('seconds', get["timeSec"]).format("YYYY-MM-DD H:m:s");
+	var time =parseInt(get["timeSec"]);
+	var fecha = moment().add(time, 'seconds').format("YYYY-MM-DD H:m:s");
 	var value = get["timeSec"] /10;
 	
 	var queryString =  "UPDATE t_action SET ta_target = "+ get["maloId"] + " ,   ta_activo = 1, ta_tipo = 2 ," +
@@ -142,16 +140,19 @@ function startataque(response, get){
 	
 	var queryString =  "UPDATE t_recursos SET tr_u_ozone = tr_u_ozone-"+ get["timeSec"] +"" +
 			",  tr_puntos = tr_puntos+"+ value +" where tu_id = "+ get["userId"]+ " " ;
-	connection.query(queryString);
+	connection.query(queryString, function(){
+		response.writeHead(200, {"Content-Type": "text/html;charset=UTF-8"}); 
+		response.write("");
+		response.end();
+	});
 }
 
 //startRecoleccion
 function startrecoleccion(response, get){
-	response.writeHead(200, {"Content-Type": "text/html;charset=UTF-8"}); 
-	response.write("");
-	response.end();
 	
-	var fecha = moment().add('seconds', get["timeSec"]).format("YYYY-MM-DD H:m:s");
+	
+	var time =parseInt(get["timeSec"]);
+	var fecha = moment().add(time, 'seconds').format("YYYY-MM-DD H:m:s");
 	var value = get["timeSec"] /10;
 	
 	var queryString =  "UPDATE t_action SET ta_target = "+ get["planetId"] + " ,   ta_activo = 1, ta_tipo = 1," +
@@ -160,16 +161,18 @@ function startrecoleccion(response, get){
 	
 	var queryString =  "UPDATE t_recursos SET tr_u_ozone = tr_u_ozone-"+ get["timeSec"] +"" +
 			",  tr_puntos = tr_puntos+"+ value +" where tu_id = "+ get["userId"]+ " " ;
-	connection.query(queryString);
+	connection.query(queryString, function(){
+		response.writeHead(200, {"Content-Type": "text/html;charset=UTF-8"}); 
+		response.write("");
+		response.end();
+	});
 }
 
 //startUpdate
 function startupdate(response, get){
-	response.writeHead(200, {"Content-Type": "text/html;charset=UTF-8"}); 
-	response.write("");
-	response.end();
 	
-	var fecha = moment().add('seconds', get["timeSec"]).format("YYYY-MM-DD H:m:s");
+	var time =parseInt(get["timeSec"]);
+	var fecha = moment().add(time, 'seconds').format("YYYY-MM-DD H:m:s");
 	var value = 0;
 	value = get["timeSec"] /10;
 	value += get["costeOzone"]/10;
@@ -180,9 +183,17 @@ function startupdate(response, get){
 		" tup_fechafin = '"+fecha+"' where tu_id = " + get["userId"]+ " " ;
 	connection.query(queryString);
 
-	var queryString =  "UPDATE t_recursos SET tr_u_ozone = tr_u_ozone-"+ get["timeSec"] +"" +
+	var query =  "UPDATE t_recursos SET tr_u_ozone = tr_u_ozone-"+ get["costeOzone"] +" ,tr_u_metal = tr_u_metal-" +get["costeMetal"]+
+		",  tr_u_cristal = tr_u_cristal-"+get["costeCristal"]+
 		",  tr_puntos = tr_puntos+"+ value +" where tu_id = "+ get["userId"]+ " " ;
-	connection.query(queryString);
+	console.log(query);
+	connection.query(query, function(err){
+		if (err) console.log(err.stack);
+		
+		response.writeHead(200, {"Content-Type": "text/html;charset=UTF-8"}); 
+		response.write("");
+		response.end();
+	});
 }
 
 // ozone Exports

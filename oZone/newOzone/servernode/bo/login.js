@@ -40,16 +40,19 @@ function addnewuser(response, get){
 
 		    var resp = "";
 		    if(rows.length ==0){
-		    	response.writeHead(200, {"Content-Type": "text/html;charset=UTF-8"}); 
-				 response.write("");
-				 response.end();
+		    	
 
 				 var querynewuser= "INSERT INTO `t_usuarios`(`tu_nick`, `tu_passwd`) VALUES ('"+ get["user"]+"', '"+get["passwd"] +"' )";
+				 console.log(querynewuser);
 				 connection.query(querynewuser, function(err, info) {
-				     
-					 var querynewup= "INSERT INTO `t_update`(`tu_id`) VALUES ('" + info.insertId + "')";
+					 
+					 response.writeHead(200, {"Content-Type": "text/html;charset=UTF-8"}); 
+					 response.write("");
+					 response.end();
+					 
+					 var querynewup= "INSERT INTO `t_update`(`tu_id`, `tup_fechafin`) VALUES ('" + info.insertId + "', now())";
 					 connection.query(querynewup);
-					 querynewup= "INSERT INTO `t_action`(`tu_id`, `ta_tipo`) VALUES ('"+ info.insertId + "', 1)";
+					 querynewup= "INSERT INTO `t_action`(`tu_id`, `ta_tipo`, `ta_fechafin`) VALUES ('"+ info.insertId + "', 1, now())";
 					 connection.query(querynewup);
 					 querynewup= "INSERT INTO `t_recursos`(`tu_id`,`tr_u_metal`,`tr_u_cristal`,`tr_u_ozone`,`tr_damage`) VALUES ('"+ info.insertId +
 					 				"', 100,100,100,100)";

@@ -8,6 +8,7 @@
  * Instalar mysql en node. -> #npm install mysql 
  * Instalar Moment en node. -> #nom install moment
  * Instalar cron en node. -> #npm install cron
+ * Instalar forever. -> #npm install forever -g
  * */
 
 //#IMPORTS
@@ -20,11 +21,10 @@ var action = require("./bo/action");
 var core = require("./bo/core");
 var hora_cron = require("./bo/cron/hora_cron");
 
-
 //# OZONE Services
 var handle = {}
 handle["/bo/login/checkUser"] = login.checkuser;
-handle["/bo/login/addNewUser"] = login.addnewuser;
+handle["/bo/login/addNewUsuario"] = login.addnewuser;
 
 handle["/bo/mainData/getAllPlanets"] = mainData.getallplanets;
 handle["/bo/mainData/getAction"] = mainData.getaction;
@@ -41,7 +41,7 @@ handle["/bo/mainData/getUpdate"] = mainData.getupdate;
 handle["/bo/mainData/getUpdateType"] = mainData.getupdatetype;
 handle["/bo/mainData/getCapacidadAlmacen"] = mainData.getcapacidadalmacen;
 handle["/bo/mainData/getComputoGloval"] = mainData.getcomputogloval;
-handle["/bo/mainData/getCostesAlmacenesUp"] = mainData.getgostesalmacenesup;
+handle["/bo/mainData/getCostesALmacenesUp"] = mainData.getgostesalmacenesup;
 handle["/bo/mainData/getUpdateById"] = mainData.getupdatebyid;
 
 handle["/bo/action/cancelMision"] = action.cancelmision;
@@ -61,6 +61,7 @@ server.iniciar(router.route, handle);
 
 //# CRON
 new CronJob('00 00 * * * *', function() {
+//new CronJob('* * * * * *', function() {
 	console.log('> hora_cron: ');
   	hora_cron.run();
 }, null, true, 'America/Los_Angeles');

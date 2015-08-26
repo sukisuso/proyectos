@@ -11,7 +11,7 @@ var transporter = nodemailer.createTransport({
     service: 'Gmail',
     auth: {
         user: 'ozonethegame@gmail.com',
-        pass: '######################################################'
+        pass: ###########################
     }
 });
 

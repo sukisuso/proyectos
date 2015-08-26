@@ -4,6 +4,7 @@
  * */
 
 var mysql = require('mysql');
+var moment = require('moment');
 var utf8 = '';
 var connection = mysql.createConnection(
     {
@@ -32,8 +33,15 @@ function getaction(response, get) {
     connection.query(queryString, function(err, rows, fields) {
 	    if (err) throw err;
 
+	    if(rows[0]['ta_activo'] == "1")
+	    	rows[0]['ta_activo'] = "true";
+	    else
+	    	rows[0]['ta_activo'] ="false";
+	    
+	    rows[0]["ta_fechafin"] = moment(rows[0]["ta_fechafin"]).format("YYYY-MM-DD H:m:ss");
+	    
 	    response.writeHead(200, {"Content-Type": "text/html;charset=UTF-8"}); 
-		response.write(utf8 + JSON.stringify(rows));
+		response.write(utf8 + JSON.stringify(rows[0]));
 		response.end();
 	});
 }
@@ -111,7 +119,7 @@ function getcomputogloval(response, get){
 	    if (err) throw err;
 
 	    response.writeHead(200, {"Content-Type": "text/html;charset=UTF-8"}); 
-		response.write(utf8 + JSON.stringify(rows));
+		response.write(utf8 + JSON.stringify(rows[0]));
 		response.end();
 	});
 }
@@ -159,10 +167,14 @@ function getgostesalmacenesup (response, get){
 
 //getMyReports
 function getmyreports(response, get) {
-    var queryString = 'SELECT trep_id, trep_fecha FROM t_report where trep_lector = ' + get["userId"] + "  LIMIT 1";
+    var queryString = 'SELECT trep_id, trep_fecha FROM t_report where trep_lector = ' + get["userId"] + " ";
     connection.query(queryString, function(err, rows, fields) {
 	    if (err) throw err;
 
+	    for(var i = 0; i< rows.length ; i++){
+	    	rows[i]["trep_fecha"] = moment(rows[i]["trep_fecha"]).format("YYYY-MM-DD H:m:ss");
+	    }
+	    
 	    response.writeHead(200, {"Content-Type": "text/html;charset=UTF-8"}); 
 		response.write(utf8 + JSON.stringify(rows));
 		response.end();
@@ -175,9 +187,19 @@ function getnickbyid(response, get) {
     connection.query(queryString, function(err, rows, fields) {
 	    if (err) throw err;
 
-	    response.writeHead(200, {"Content-Type": "text/html;charset=UTF-8"}); 
-		response.write(utf8 + JSON.stringify(rows));
-		response.end();
+	    var queryString = 'SELECT ta_fechafin FROM t_action where tu_id = ' + get["myId"] + "  LIMIT 1";
+	    connection.query(queryString, function(err, time, fields) {
+		    if (err) throw err;
+		    
+		    var t1 = new Date().getTime();
+		    var t2 = moment(time[0]["ta_fechafin"]).valueOf();
+		    console.log(time[0]["ta_fechafin"]);
+		    rows[0]["seconds"]  = (t2 -t1 )/1000;
+		    
+		    response.writeHead(200, {"Content-Type": "text/html;charset=UTF-8"}); 
+			response.write(utf8 + JSON.stringify(rows[0]));
+			response.end();
+		});
 	});
 }
 
@@ -187,9 +209,18 @@ function getplanetabyid(response, get) {
     connection.query(queryString, function(err, rows, fields) {
 	    if (err) throw err;
 
-	    response.writeHead(200, {"Content-Type": "text/html;charset=UTF-8"}); 
-		response.write(utf8 + JSON.stringify(rows));
-		response.end();
+	    var queryString = 'SELECT ta_fechafin FROM t_action where tu_id = ' + get["userId"] + "  LIMIT 1";
+	    connection.query(queryString, function(err, time, fields) {
+		    if (err) throw err;
+		    
+		    var t1 = new Date().getTime();
+		    var t2 = moment(time[0]["ta_fechafin"]).valueOf();
+		    rows[0]["seconds"]  = (t2 -t1 )/1000;
+		    
+		    response.writeHead(200, {"Content-Type": "text/html;charset=UTF-8"}); 
+			response.write(utf8 + JSON.stringify(rows[0]));
+			response.end();
+		});
 	});
 }
 
@@ -200,7 +231,7 @@ function getrecursos(response, get) {
 	    if (err) throw err;
 
 	    response.writeHead(200, {"Content-Type": "text/html;charset=UTF-8"}); 
-		response.write(utf8 + JSON.stringify(rows));
+		response.write(utf8 + JSON.stringify(rows[0]));
 		response.end();
 	});
 }
@@ -211,13 +242,18 @@ function getreport(response, get) {
     connection.query(queryString, function(err, rows, fields) {
 	    if (err) throw err;
 
-	    response.writeHead(200, {"Content-Type": "text/html;charset=UTF-8"}); 
-		response.write(utf8 + JSON.stringify(rows));
-		response.end();
-		
+	    rows[0]["trep_fecha"] = moment(rows[0]["trep_fecha"]).format("YYYY-MM-DD H:m:ss");
+	    
+	    
 		//Eliminamos el reporte.
 		var queryString = 'DELETE FROM t_report where trep_lector = ' + get["userId"] + '  AND trep_id = ' + get["reportId"]+ ' ' ;
-	    connection.query(queryString);
+	    connection.query(queryString, function(){
+	    	
+	    	response.writeHead(200, {"Content-Type": "text/html;charset=UTF-8"}); 
+			response.write(utf8 + JSON.stringify(rows[0]));
+			response.end();
+			
+	    });
 	});
 }
 
@@ -244,8 +280,10 @@ function getupdate(response, get) {
 	    else
 	    	rows[0]['tup_activo'] ="false";
 	    
+	    rows[0]["tup_fechafin"] = moment(rows[0]["tup_fechafin"]).format("YYYY-MM-DD H:m:ss");
+	    
 	    response.writeHead(200, {"Content-Type": "text/html;charset=UTF-8"}); 
-		response.write(utf8 + JSON.stringify(rows));
+		response.write(utf8 + JSON.stringify(rows[0]));
 		response.end();
 	});
 }
@@ -290,11 +328,21 @@ function getupdatetype(response, get) {
     var queryString = 'SELECT tupt_descripcion FROM t_update_type where tupt_id = ' + get["updateId"] + "  LIMIT 1";
     connection.query(queryString, function(err, rows, fields) {
 	    if (err) throw err;
-	    
-	    response.writeHead(200, {"Content-Type": "text/html;charset=UTF-8"}); 
-		response.write(utf8 + rows[0]["tupt_descripcion"]);
-		response.end();
-	});
+
+    
+	    var queryString = 'SELECT tup_fechafin FROM t_update where tu_id = ' + get["userId"] + "  LIMIT 1";
+	    connection.query(queryString, function(err, time, fields) {
+		    if (err) throw err;
+		    
+		    var t1 = new Date().getTime();
+		    var t2 = moment(time[0]["tup_fechafin"]).valueOf();
+		    rows[0]["seconds"]  = (t2 -t1 )/1000;
+		    
+		    response.writeHead(200, {"Content-Type": "text/html;charset=UTF-8"}); 
+			response.write(utf8 + JSON.stringify(rows[0]));
+			response.end();
+		});
+    });
 }
 
 

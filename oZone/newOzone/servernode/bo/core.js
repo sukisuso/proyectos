@@ -15,33 +15,34 @@ var connection = mysql.createConnection(
 );
 
 //checkMaxAlmacen
-function checkMaxAlmacen(userId){
+function checkMaxAlmacen(userId, response){
 	
 	//check Metal
 	var queryString =  "UPDATE t_recursos AS rec JOIN t_almacen as cost on( cost.tal_nivel = rec.tr_na_metal ) " +
 			" SET tr_u_metal = (CASE WHEN rec.tr_u_metal > cost.tal_capacidad THEN cost.tal_capacidad ELSE rec.tr_u_metal END)" +
 			" WHERE rec.tu_id = " + userId + ' ' ;
-    connection.query(queryString);
+    connection.query(queryString, function(){
     
-    //check Cristal
-    var queryString =  "UPDATE t_recursos AS rec JOIN t_almacen as cost on( cost.tal_nivel = rec.tr_na_cristal ) " +
-			" SET tr_u_cristal = (CASE WHEN rec.tr_u_cristal > cost.tal_capacidad THEN cost.tal_capacidad ELSE rec.tr_u_cristal END)" +
-			" WHERE rec.tu_id = " + userId + ' ' ;
-    connection.query(queryString);
-
-    //check Ozone
-    var queryString =  "UPDATE t_recursos AS rec JOIN t_almacen as cost on( cost.tal_nivel = rec.tr_na_ozone ) " +
-    		" SET tr_u_ozone = (CASE WHEN rec.tr_u_ozone > cost.tal_capacidad THEN cost.tal_capacidad ELSE rec.tr_u_ozone END)" +
-    		" WHERE rec.tu_id = " +userId + ' ' ;
-    connection.query(queryString);
+    	//check Cristal
+        var queryString =  "UPDATE t_recursos AS rec JOIN t_almacen as cost on( cost.tal_nivel = rec.tr_na_cristal ) " +
+    			" SET tr_u_cristal = (CASE WHEN rec.tr_u_cristal > cost.tal_capacidad THEN cost.tal_capacidad ELSE rec.tr_u_cristal END)" +
+    			" WHERE rec.tu_id = " + userId + ' ' ;
+        connection.query(queryString, function(){
+        	 //check Ozone
+            var queryString =  "UPDATE t_recursos AS rec JOIN t_almacen as cost on( cost.tal_nivel = rec.tr_na_ozone ) " +
+            		" SET tr_u_ozone = (CASE WHEN rec.tr_u_ozone > cost.tal_capacidad THEN cost.tal_capacidad ELSE rec.tr_u_ozone END)" +
+            		" WHERE rec.tu_id = " + userId + ' ' ;
+            connection.query(queryString, function(){
+            	 response.writeHead(200, {"Content-Type": "text/html;charset=UTF-8"}); 
+            		response.write("");
+            		response.end();
+            });
+        });
+    });
 }
 
 //comprobarMinimoOzone
 function simularbatalla(response, get) {
-	
-	response.writeHead(200, {"Content-Type": "text/html;charset=UTF-8"}); 
-	response.write("");
-	response.end();
 	
 	var queryString = "SELECT ts.ts_escudos, ta.tar_potencial, tu.tu_id, tu.tu_nick , tr.tr_u_metal,tr.tr_u_cristal, tr.tr_u_ozone, tr.tr_damage " +
 			"FROM t_recursos tr, t_shield ts, t_usuarios tu , t_army ta where tr.tu_id = " + get["atacanteId"] +" AND ts.tupt_id = 4 AND ts.ts_nivel =  tr.tr_n_s_parallax "+
