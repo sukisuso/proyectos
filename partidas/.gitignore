@@ -1,0 +1,4 @@
+/node_modules/*
+/app/.sencha/*
+/app/resources/*
+/app/sass/*
