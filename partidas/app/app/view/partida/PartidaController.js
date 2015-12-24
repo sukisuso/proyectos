@@ -99,6 +99,7 @@ Ext.define('Ptd.view.partida.PartidaController', {
 		var TotalDisponible = 0;
 		var TotalGastado = 0;
 		var TotalReservdado = 0;
+		var TotalTotal = 0;
 		
 		grid.forEach(function(value){
 			if(value.tipo == "Ingreso"){
@@ -118,6 +119,8 @@ Ext.define('Ptd.view.partida.PartidaController', {
 		Ext.getCmp('totalDisponibleField').setValue(TotalDisponible+ " €"); 
 		Ext.getCmp('totalGastadoField').setValue(TotalGastado+ " €"); 
 		Ext.getCmp('totalReservadoField').setValue(TotalReservdado+ " €"); 
+		TotalTotal = TotalDisponible+ TotalReservdado;
+		Ext.getCmp('totalTotalField').setValue(TotalTotal + " €")
 	},
 	
 	

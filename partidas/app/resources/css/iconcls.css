@@ -1,0 +1,34 @@
+
+
+.addiconcls {
+    background-image:url(/resources/css/icons/add.png) !important;
+}
+
+.editiconcls {
+    background-image:url(/resources/css/icons/edit.png) !important;
+}
+
+
+.deleteiconcls {
+    background-image:url(/resources/css/icons/delete.png) !important;
+}
+
+.searchiconcls {
+    background-image:url(/resources/css/icons/search.png) !important;
+}
+
+.createiconcls {
+    background-image:url(/resources/css/icons/create.png) !important;
+}
+
+.optionsiconcls{
+    background-image:url(/resources/css/icons/options.png) !important;
+}
+
+.downloadiconcls{
+    background-image:url(/resources/css/icons/download.png) !important;
+}
+
+.viewiconcls{
+    background-image:url(/resources/css/icons/view.png) !important;
+}

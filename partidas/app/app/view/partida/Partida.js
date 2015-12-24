@@ -26,6 +26,7 @@ Ext.define('Ptd.view.partida.Partida', {
 			 margin:'10 15 10 15',
 			 height:75,
 			 items:[
+				 { xtype:'textfield',id:'totalTotalField', name:'filtertext', margin: '25 0 0 30', height:25, fieldLabel:'Total Banco', readOnly:true, fieldStyle: 'text-align: center;'},
 			 { xtype:'textfield',id:'totalDisponibleField', name:'filtertext', margin: '25 0 0 30', height:25, fieldLabel:'Total Disponible', readOnly:true, fieldStyle: 'text-align: center;'},
 			 {xtype:'textfield',id:'totalGastadoField', name:'filtertext',  margin: '25 0 0 100', height:25, fieldLabel:'Total Gastado', readOnly:true, fieldStyle: 'text-align: center;'},
 			{xtype:'textfield', id:'totalReservadoField',name:'filtertext', margin: '25 0 0 100', height:25, fieldLabel:'Total Reservado',readOnly:true, fieldStyle: 'text-align: center;'},
@@ -38,7 +39,7 @@ Ext.define('Ptd.view.partida.Partida', {
 		layout: 'fit', 
 		border:true,
 		autoScroll:true,
-				 height:710,
+				 height:680,
 		scroll: 'vertical',
 		autoHeight: true,
 		flex:1,

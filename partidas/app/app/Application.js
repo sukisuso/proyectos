@@ -14,7 +14,8 @@ Ext.define('Ptd.Application', {
     
 	views: [
 			 'Ptd.view.partida.Partida',
-			 'Ptd.view.partida.PartidaWindow'
+			 'Ptd.view.partida.PartidaWindow',
+			 'Ptd.view.proyectos.Proyecto'
     ],
 	
     launch: function () {

@@ -30,27 +30,18 @@ Ext.define('Ptd.view.main.Main', {
         html: '<img src="/resources/logo.png" height="50" style="margin-top: 0.75cm;">',
         width: 250,
 		height:100,
-       /* tbar: [{
-            text: 'Button',
-            handler: 'onClickButton'
-        }]*/
-		/*dockedItems: [{
-			xtype: 'toolbar',
-			dock: 'bottom',
-			style:{ "background-color":"#ADD2ED"}, 
-			items: [
-			  { xtype: 'panel', layout:{type:'hbox'},bodyStyle:{"background-color":"#ADD2ED"}, items:[
-				  {xtype:'textfield', name:'newpartida', fieldLabel:'Nueva Partida '},
-				  {xtype:'button', text:'Crear', iconCls: 'createiconcls' ,margin: '0 0 0 5'}
-			  ],  }
-			]}]*/
+
     },{
         region: 'center',
         xtype: 'tabpanel',
-        items:[{title:'inicio'}, {title:'proyectos'},{
-            title: 'Partidas',
-            xtype:'partida',
-			id_crud_partida: 1
+        items:[{title:'Inicio'},
+			   {
+				   title:'Proyectos',
+				   xtype:'proyecto'
+			   },{
+            		title: 'Partidas',
+				    xtype:'partida',
+					id_crud_partida: 1
         }],
 		
 		
