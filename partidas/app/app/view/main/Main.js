@@ -1,0 +1,58 @@
+/**
+ * This class is the main view for the application. It is specified in app.js as the
+ * "autoCreateViewport" property. That setting automatically applies the "viewport"
+ * plugin to promote that instance of this class to the body element.
+ *
+ * TODO - Replace this content of this view to suite the needs of your application.
+ */
+Ext.define('Ptd.view.main.Main', {
+    extend: 'Ext.container.Container',
+    requires: [
+        'Ptd.view.main.MainController',
+        'Ptd.view.main.MainModel'
+    ],
+
+    xtype: 'app-main',
+    
+    controller: 'main',
+    viewModel: {
+        type: 'main'
+    },
+
+    layout: {
+        type: 'border'
+    },
+
+    items: [{
+        xtype: 'panel',
+        region: 'north',
+		bodyStyle:{"background-color":"#ADD2ED"}, 
+        html: '<img src="/resources/logo.png" height="50" style="margin-top: 0.75cm;">',
+        width: 250,
+		height:100,
+       /* tbar: [{
+            text: 'Button',
+            handler: 'onClickButton'
+        }]*/
+		/*dockedItems: [{
+			xtype: 'toolbar',
+			dock: 'bottom',
+			style:{ "background-color":"#ADD2ED"}, 
+			items: [
+			  { xtype: 'panel', layout:{type:'hbox'},bodyStyle:{"background-color":"#ADD2ED"}, items:[
+				  {xtype:'textfield', name:'newpartida', fieldLabel:'Nueva Partida '},
+				  {xtype:'button', text:'Crear', iconCls: 'createiconcls' ,margin: '0 0 0 5'}
+			  ],  }
+			]}]*/
+    },{
+        region: 'center',
+        xtype: 'tabpanel',
+        items:[{title:'inicio'}, {title:'proyectos'},{
+            title: 'Partidas',
+            xtype:'partida',
+			id_crud_partida: 1
+        }],
+		
+		
+    }]
+});
