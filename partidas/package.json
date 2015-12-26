@@ -6,7 +6,9 @@
   "dependencies": {
     "body-parser": "^1.14.1",
     "bunyan": "^1.5.1",
+    "exec": "^0.2.1",
     "express": "^4.13.3",
+    "github-download": "^0.4.0",
     "mongodb": "^2.1.0"
   }
 }

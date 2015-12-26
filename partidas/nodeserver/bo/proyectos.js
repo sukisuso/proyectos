@@ -32,7 +32,7 @@ function getProyectos(req, res) {
 function insertProyectos(req, res) {
 	
 	MongoClient.connect(dataBase, function(err, db) {
-		db.collection("partidas").insert(req.body.partida,  function(err, docs) {
+		db.collection("proyectos").insert(req.body.proyecto,  function(err, docs) {
 			res.send(true);
 			res.end();
 		});
@@ -43,7 +43,7 @@ function deleteProyectos(req, res) {
 	var ObjectId = require('mongodb').ObjectID;
 	
 	MongoClient.connect(dataBase, function(err, db) {
-		db.collection("partidas").remove({'_id':ObjectId(req.body._id)},  function(err, docs) {
+		db.collection("proyectos").remove({'_id':ObjectId(req.body._id)},  function(err, docs) {
 			res.send(true);
 			res.end();
 		});
@@ -55,9 +55,9 @@ function updateProyectos(req, res) {
 	console.log(req.body)
 	
 	MongoClient.connect(dataBase, function(err, db) {
-		db.collection("partidas").findOne({ '_id':ObjectId( req.body.partida._id )} ,function(err, docs) {
+		db.collection("proyectos").findOne({ '_id':ObjectId( req.body.partida._id )} ,function(err, docs) {
 			delete req.body.partida._id;
-			db.collection("partidas").update(docs, req.body.partida , function(){
+			db.collection("proyectos").update(docs, req.body.partida , function(){
 				res.send(true);
 				res.end();
 			});

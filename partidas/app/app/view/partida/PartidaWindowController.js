@@ -10,7 +10,6 @@ Ext.define('Ptd.view.partida.PartidaWindowController', {
 	init: function() {
 
 		if(this.view.isEdit){
-			debugger
 			this.lookupReference('buttonaddedit').setText('Editar');
 			this.lookupReference('cant_entrada').setValue(this.view.datos.cantidad);
 			this.lookupReference('date_entrada').setValue(new Date(this.view.datos.fecha));
@@ -78,7 +77,7 @@ Ext.define('Ptd.view.partida.PartidaWindowController', {
 				},
 				failure:function(){alert("Error")}
 			 });
-		}else{
+		}else if (ok){
 			obj['_id'] = this.view.datos._id;
 			
 			Ext.Ajax.request({url: 'partidas/updatePartida',

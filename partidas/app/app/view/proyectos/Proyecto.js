@@ -12,7 +12,7 @@ Ext.define('Ptd.view.proyectos.Proyecto', {
        /* 'Ptd.view.main.MainModel'*/
     ],
     xtype: 'proyecto',
-    
+    id:'proyecto',
     controller: 'proyecto',
     /*viewModel: {
         type: 'main'
@@ -44,7 +44,7 @@ Ext.define('Ptd.view.proyectos.Proyecto', {
 			{text:'Porcentaje', dataIndex:'porcentaje', width: 120},
 			{text:'Activo', dataIndex:'activo', width: 100},
 			{text:'Url Repo', dataIndex:'url', width: 800},
-			{
+			/*{
             	xtype:'actioncolumn', 
             	width:50,
             	items:[{
@@ -57,16 +57,17 @@ Ext.define('Ptd.view.proyectos.Proyecto', {
 					margin:'0 0 0 15',
 					tooltip: 'Descargar',
 					handler: function(){alert("HI")}
-            }]
-			}
+            }]*/
+			//}
 		],
 				 
 	  tbar:[{
 		xtype:'panel',
 		layout:{type:'hbox'},
-		items:[{xtype:'button', text:'Nueva proyecto', iconCls:'addiconcls',margin: '0 0 0 10',  handler: 'addEntrada'},	
-		  		{xtype:'button', text:'Editar entrada', iconCls:'editiconcls',margin: '0 0 0 10', handler:'editRow'},
-			  {xtype:'button', text:'Borrar entrada', iconCls:'deleteiconcls',margin: '0 0 0 10', handler: 'deleteRow'}]
+		items:[{xtype:'button', text:'Nueva proyecto', iconCls:'addiconcls',margin: '0 0 0 10',  handler: 'addProyecto'},	
+		  		{xtype:'button', text:'Editar proyecto', iconCls:'editiconcls',margin: '0 0 0 10', handler:'editRow'},
+			  {xtype:'button', text:'Borrar proyecto', iconCls:'deleteiconcls',margin: '0 0 0 10', handler: 'deleteRow'},
+			  {xtype:'button', text:'Seguimiento', iconCls:'viewiconcls',margin: '0 0 0 10', handler: ''}]
 		}]
 		
 	}]

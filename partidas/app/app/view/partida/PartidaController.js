@@ -166,7 +166,6 @@ Ext.define('Ptd.view.partida.PartidaController', {
 		var data = grid.getSelection()[0].data;
 		var idPartida = this.view.id_crud_partida;
 		
-		if(id != null){
 			grid.mask();
 			Ext.create('Ext.window.Window', {
 				title: "Añadir Entrada",
@@ -186,7 +185,6 @@ Ext.define('Ptd.view.partida.PartidaController', {
 					   }
 				}
 			}).show();
-		}
 	},
 	
 	filter:function(){
