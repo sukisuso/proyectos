@@ -62,7 +62,8 @@ Ext.define('Ptd.view.partida.Partida', {
 		}),
 		columns:[
 			{ dataIndex:'id', hidden:true},
-			{text:'Fecha', dataIndex:'fecha',width: 200},
+			{text:'Fecha', dataIndex:'fecha',width: 200, renderer:function(record){
+				dd = new Date(record);return dd.getDate() + "/" + dd.getMonth() +"/" + dd.getFullYear();}},
 			{text:'Cantidad', dataIndex:'cantidad',width: 250, renderer : 'CellRenderCantidad'},
 			{text:'Tipo', dataIndex:'tipo', width: 250, renderer : 'CellRender'},
 			{text:'Tag', dataIndex:'tag', width: 250},
@@ -80,7 +81,10 @@ Ext.define('Ptd.view.partida.Partida', {
 			  { xtype: 'datefield',	name: 'from_date', reference: 'filter_end_Date',maxValue: new Date() ,margin: '0 0 0 5', emptyText:'Fecha Fin', format: 'd/m/Y'},
 			  {xtype:'button', text: 'Filtrar',margin: '0 0 0 5', iconCls:'searchiconcls', handler:'filter'} ]
 		
-	}]
+	}],
+				 listeners:{
+			'beforeitemdblclick':'editRow'
+		}
 		
 	}]
 	

@@ -100,14 +100,13 @@ Ext.define('Ptd.view.proyectos.ProyectoController', {
 		});
 	},
 	
-	editRow(){
+	editRow:function(){
 		var grid = this.lookupReference("dataGridProyectos"); 
 		var data = grid.getSelection()[0].data;
-		var idPartida = this.view.id_crud_partida;
 		
 			grid.mask();
 			Ext.create('Ext.window.Window', {
-				title: "Editar Partida",
+				title: "Editar Proyecto",
 				height: 350,
 				width: 305,
 				modal:true,
@@ -120,6 +119,54 @@ Ext.define('Ptd.view.proyectos.ProyectoController', {
 					   close: function (wnd, eOpts) {
 						  var part = Ext.getCmp('proyecto');
 						  part.controller.doSearch();
+					   }
+				}
+			}).show();
+	},
+	
+	openSeguimiento:function(){
+		var grid = this.lookupReference("dataGridProyectos"); 
+		var data = grid.getSelection()[0].data;
+		
+			grid.mask();
+			Ext.create('Ext.window.Window', {
+				title: "Seguimiento Proyecto",
+				height: 850,
+				width:1705,
+				modal:true,
+				layout: 'fit',
+				items: {  // Let's put an empty grid in just to illustrate fit layout
+					xtype: 'proyectoseguimiento',
+					datos: data,
+				}, listeners: {
+					   close: function (wnd, eOpts) {
+						 // var part = Ext.getCmp('proyecto');
+						  //part.controller.doSearch();
+						    grid.unmask();
+					   }
+				}
+			}).show();
+	},
+	
+	openTareas:function(){
+		var grid = this.lookupReference("dataGridProyectos"); 
+		var data = grid.getSelection()[0].data;
+		
+			grid.mask();
+			Ext.create('Ext.window.Window', {
+				title: "Tareas Proyecto",
+				height: 850,
+				width:1405,
+				modal:true,
+				layout: 'fit',
+				items: {  // Let's put an empty grid in just to illustrate fit layout
+					xtype: 'proyectotareas',
+					datos: data,
+				}, listeners: {
+					   close: function (wnd, eOpts) {
+						  //var part = Ext.getCmp('proyecto');
+						  //part.controller.doSearch();
+						   grid.unmask();
 					   }
 				}
 			}).show();

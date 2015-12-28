@@ -5,6 +5,7 @@
  * */
 var partidas = require('./nodeserver/bo/partidas');
 var proyectos = require('./nodeserver/bo/proyectos');
+var tareas = require('./nodeserver/bo/tareas');
 
 function route(app) {
 	
@@ -15,6 +16,7 @@ function route(app) {
 	
 	partidas.startPaths(app);
 	proyectos.startPaths(app);
+	tareas.startPaths(app);
 }
 
 exports.redirect = route;

@@ -28,7 +28,7 @@ Ext.define('Ptd.view.proyectos.Proyecto', {
 		layout: 'fit', 
 		border:true,
 		autoScroll:true,
-				 height:680,
+				 height:780,
 		scroll: 'vertical',
 		autoHeight: true,
 		flex:1,
@@ -67,8 +67,12 @@ Ext.define('Ptd.view.proyectos.Proyecto', {
 		items:[{xtype:'button', text:'Nueva proyecto', iconCls:'addiconcls',margin: '0 0 0 10',  handler: 'addProyecto'},	
 		  		{xtype:'button', text:'Editar proyecto', iconCls:'editiconcls',margin: '0 0 0 10', handler:'editRow'},
 			  {xtype:'button', text:'Borrar proyecto', iconCls:'deleteiconcls',margin: '0 0 0 10', handler: 'deleteRow'},
-			  {xtype:'button', text:'Seguimiento', iconCls:'viewiconcls',margin: '0 0 0 10', handler: ''}]
-		}]
+			   {xtype:'button', text:'Tareas', iconCls:'taskiconcls',margin: '0 0 0 10', handler: 'openTareas'},
+			  {xtype:'button', text:'Seguimiento', iconCls:'viewiconcls',margin: '0 0 0 10', handler: 'openSeguimiento'}]
+		}],
+		listeners:{
+			'beforeitemdblclick':'editRow'
+		}
 		
 	}]
 	
