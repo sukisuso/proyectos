@@ -36,3 +36,7 @@
 .taskiconcls{
     background-image:url(/resources/css/icons/task.png) !important;
 }
+
+.lockiconcls{
+    background-image:url(/resources/css/icons/lock.png) !important;
+}

@@ -5,6 +5,7 @@ function StartPaths(app){
 	
 	app.post('/tareas/getAllTareas', function(req, res) {getTareas(req,res);});
 	app.post('/tareas/saveAllTareas', function(req, res) {saveTareas(req,res);});
+	app.post('/tareas/updateTarea', function(req, res) {updateTarea(req,res);});
 }
 
 function getTareas(req, res) {
@@ -33,6 +34,7 @@ function saveTareas(req, res) {
 	MongoClient.connect(dataBase, function(err, db) {
 		db.collection("tareas").remove({idProyecto:stringId},  function(err, docs) {
 			for(var i = 0; i < data.length; i++){
+				delete data[i]._id;
 				db.collection("tareas").insert(data[i]);
 			}
 			res.send(true);
@@ -41,5 +43,20 @@ function saveTareas(req, res) {
 	});
 }
 
+function updateTarea(req,res){
+	var ObjectId = require('mongodb').ObjectID;
+	console.log( req.body.tarea._id);
+	
+	MongoClient.connect(dataBase, function(err, db) {
+		db.collection("tareas").findOne({ '_id': ObjectId(req.body.tarea._id) } ,function(err, docs) {
+			delete req.body.tarea._id;
+			console.log(docs);
+			db.collection("tareas").update(docs, req.body.tarea , function(){
+				res.send(true);
+				res.end();
+			});
+		});
+	});
+}
 
 exports.startPaths = StartPaths;

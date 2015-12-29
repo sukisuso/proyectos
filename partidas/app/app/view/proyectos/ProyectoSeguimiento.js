@@ -31,16 +31,18 @@ layout: {
 		layout: 'fit', 
 		border:true,
 		autoScroll:true,
-		height:820,
-		
+		height:810,
 		scroll: 'vertical',
 		autoHeight: true,
 		flex:1,
+		ddGroup:'kanban1',
+		viewConfig: {plugins: {ptype: 'gridviewdragdrop', dragGroup: 'kanban', dropGroup: 'kanban'},
+					listeners: {beforeDrop : 'changeTareaStateBacklog'}},
 		store: Ext.create('Ext.data.Store', {
-                        storeId:'dataGridStore',
+                        storeId:'dataGridStoreBacklog',
     					fields:['nombre', 'tipo', 'des','estado', 'importancia','inicial', 'final']    	  					
 		}),
-		columns:[{text:'Backlog',dataIndex:'nombre', width:422}]
+		columns:[{text:'Backlog',dataIndex:'nombre', width:422, renderer: 'rendererCard'}]
 	},
 			
 			{
@@ -50,16 +52,18 @@ layout: {
 		layout: 'fit', 
 		border:true,
 		autoScroll:true,
-		height:820,
-		
+		height:810,
 		scroll: 'vertical',
 		autoHeight: true,
 		flex:1,
+		ddGroup:'kanban2',
+		viewConfig: {plugins: {ptype: 'gridviewdragdrop', dragGroup: 'kanban', dropGroup: 'kanban'},
+					listeners: {beforeDrop : 'changeTareaStateProgress'}},
 		store: Ext.create('Ext.data.Store', {
-                        storeId:'dataGridStore',
+                        storeId:'dataGridStoreProgress',
     					fields:['nombre', 'tipo', 'des','estado', 'importancia','inicial', 'final']    	  					
 		}),
-		columns:[{text:'In Progress',dataIndex:'nombre', width:422}]
+		columns:[{text:'In Progress',dataIndex:'nombre', width:422, renderer: 'rendererCard'}]
 	},
 			
 			{
@@ -69,16 +73,18 @@ layout: {
 		layout: 'fit', 
 		border:true,
 		autoScroll:true,
-		height:820,
-		
+		height:810,
 		scroll: 'vertical',
 		autoHeight: true,
 		flex:1,
+		ddGroup:'kanban',
+		viewConfig: {plugins: {ptype: 'gridviewdragdrop', dragGroup: 'kanban', dropGroup: 'kanban'},
+					listeners: {beforeDrop : 'changeTareaStateBlokced'}},
 		store: Ext.create('Ext.data.Store', {
-                        storeId:'dataGridStore',
+                        storeId:'dataGridStoreBloqued',
     					fields:['nombre', 'tipo', 'des','estado', 'importancia','inicial', 'final']    	  					
 		}),
-		columns:[{text:'Bloqued',dataIndex:'nombre', width:422}]
+		columns:[{text:'Bloqued',dataIndex:'nombre', width:422, renderer: 'rendererCard'}]
 	}, 
 			
 			{
@@ -88,16 +94,41 @@ layout: {
 		layout: 'fit', 
 		border:true,
 		autoScroll:true,
-		height:820,
-		
+		height:810,
 		scroll: 'vertical',
 		autoHeight: true,
 		flex:1,
+		ddGroup:'kanban',
+		viewConfig: {plugins: {ptype: 'gridviewdragdrop', dragGroup: 'kanban', dropGroup: 'kanban'},
+					listeners: {beforeDrop : 'changeTareaStateDone'}},		
 		store: Ext.create('Ext.data.Store', {
-                        storeId:'dataGridStore',
+                        storeId:'dataGridStoreDone',
     					fields:['nombre', 'tipo', 'des','estado', 'importancia','inicial', 'final']    	  					
 		}),
-		columns:[{text:'Done',dataIndex:'nombre', width:421}]
+		columns:[{text:'Done',dataIndex:'nombre', width:421, renderer: 'rendererCardDone'}],
+		listeners:{
+			itemcontextmenu:function( obj, record, item, index, e, eOpts ){
+				 e.stopEvent();
+				var contextMenu = Ext.create('Ext.menu.Menu', {
+					items: [{iconCls:'lockiconcls',dataRowIndex:index,dataRowStore:obj.store,dataRowGrid:record, text:'Cerrar Tarea', handler:function(objMenu,data,node){
+						var tarea = objMenu.config.dataRowGrid.data;
+						objMenu.config.dataRowStore.removeAt(objMenu.config.dataRowIndex);
+						tarea.estado = "Closed";
+						delete tarea.id;
+			
+						Ext.Ajax.request({url: 'tareas/updateTarea',
+							jsonData:{'tarea':tarea},
+							method:'POST',
+							success: function(data){
+							},
+							failure:function(){alert("Error")}
+						 });
+					}}]
+				});
+                 contextMenu.showAt(e.getXY());
+                 return false;
+			}
+		}
 	}
 	]
 });
