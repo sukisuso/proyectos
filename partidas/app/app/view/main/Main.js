@@ -37,7 +37,11 @@ Ext.define('Ptd.view.main.Main', {
         items:[{title:'Inicio',
 			   	html:'<center><img src="/resources/cabecera.png" style="margin-top: 2cm;"></center>'
 			   },
-			   {title:'Agenda'},
+			   {
+				   title:'Agenda',
+				   xtype:'agenda'
+				   //html:'<div id="calendar" style="max-width: 900px;	margin: 0 auto;"></div>'
+			   },
 			   {
 				   title:'Proyectos',
 				   xtype:'proyecto'

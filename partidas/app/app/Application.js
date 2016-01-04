@@ -18,7 +18,8 @@ Ext.define('Ptd.Application', {
 			 'Ptd.view.proyectos.Proyecto',
 			 'Ptd.view.proyectos.ProyectoWindow',
 			 'Ptd.view.proyectos.ProyectoSeguimiento',
-			 'Ptd.view.proyectos.ProyectoTareas'
+			 'Ptd.view.proyectos.ProyectoTareas',
+			 'Ptd.view.agenda.Agenda'
     ],
 	
     launch: function () {
