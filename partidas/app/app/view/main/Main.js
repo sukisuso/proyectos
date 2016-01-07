@@ -13,7 +13,7 @@ Ext.define('Ptd.view.main.Main', {
     ],
 
     xtype: 'app-main',
-    
+    id:'viewtabs',
     controller: 'main',
     viewModel: {
         type: 'main'
@@ -40,7 +40,6 @@ Ext.define('Ptd.view.main.Main', {
 			   {
 				   title:'Agenda',
 				   xtype:'agenda'
-				   //html:'<div id="calendar" style="max-width: 900px;	margin: 0 auto;"></div>'
 			   },
 			   {
 				   title:'Proyectos',

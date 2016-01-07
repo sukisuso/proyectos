@@ -12,7 +12,7 @@ Ext.define('Ptd.view.agenda.Agenda', {
        /* 'Ptd.view.main.MainModel'*/
     ],
     xtype: 'agenda',
-    
+    id:'agendaId',
     controller: 'agenda',
     /*viewModel: {
         type: 'main'
@@ -20,11 +20,11 @@ Ext.define('Ptd.view.agenda.Agenda', {
 
 
     items:[{
-			html:"<div id='calendar' style='max-width: 900px;	margin: 0 auto;margin-top:50px;'></div>",
+			html:"<div id='calendar' style='max-width: 900px;	margin: 0 auto;margin-top:30px;'></div>",
 			bbar:[{
 				xtype:'panel',
 				layout:{type:'hbox'},
-				items:[{xtype:'button', text:'Nueva Cita', iconCls:'addiconcls',margin: '0 0 0 10',  handler: 'refreshData'},]
+				items:[{xtype:'button', text:'Nueva Cita', iconCls:'addiconcls',margin: '0 0 0 10',  handler: 'openNewDateWindow'},]
 		}]
 		}
 		

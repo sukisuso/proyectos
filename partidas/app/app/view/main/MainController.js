@@ -13,14 +13,6 @@ Ext.define('Ptd.view.main.MainController', {
     ],
 
 	init: function() {
-       //añadir tabs necesarios.
-		
-		
-    }
-	
-    
 
-  
-	
-	
+    }
 });

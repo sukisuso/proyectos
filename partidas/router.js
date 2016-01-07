@@ -6,6 +6,7 @@
 var partidas = require('./nodeserver/bo/partidas');
 var proyectos = require('./nodeserver/bo/proyectos');
 var tareas = require('./nodeserver/bo/tareas');
+var agenda = require('./nodeserver/bo/agenda');
 
 function route(app) {
 	
@@ -17,6 +18,7 @@ function route(app) {
 	partidas.startPaths(app);
 	proyectos.startPaths(app);
 	tareas.startPaths(app);
+	agenda.startPaths(app);
 }
 
 exports.redirect = route;
