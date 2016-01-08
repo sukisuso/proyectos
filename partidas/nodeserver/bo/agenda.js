@@ -5,7 +5,7 @@ function StartPaths(app){
 	
 	app.post('/agenda/getAgenda', function(req, res) {getAgenda(req,res);});
 	app.post('/agenda/insertAgenda', function(req, res) {insertAgenda(req,res);});
-	
+	app.post('/agenda/deleteCita', function(req, res) {deleteCita(req,res);});
 }
 
 function getAgenda(req, res) {
@@ -38,6 +38,18 @@ function insertAgenda(req, res) {
 	
 	MongoClient.connect(dataBase, function(err, db) {
 		db.collection("agenda").insert(req.body.agenda,  function(err, docs) {
+			res.send(true);
+			res.end();
+		});
+	});
+}
+
+
+function deleteCita(req, res) {
+	var ObjectId = require('mongodb').ObjectID;
+	
+	MongoClient.connect(dataBase, function(err, db) {
+		db.collection("agenda").remove({'_id':ObjectId(req.body._id)},  function(err, docs) {
 			res.send(true);
 			res.end();
 		});

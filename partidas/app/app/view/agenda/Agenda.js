@@ -24,7 +24,8 @@ Ext.define('Ptd.view.agenda.Agenda', {
 			bbar:[{
 				xtype:'panel',
 				layout:{type:'hbox'},
-				items:[{xtype:'button', text:'Nueva Cita', iconCls:'addiconcls',margin: '0 0 0 10',  handler: 'openNewDateWindow'},]
+				items:[{xtype:'button', text:'Nueva Cita', iconCls:'addiconcls',margin: '0 0 0 10',  handler: 'openNewDateWindow'},
+					  {xtype:'button', text:'Eliminar Vacaciones', iconCls:'editiconcls',margin: '0 0 0 10',  handler: 'editVac'}]
 		}]
 		}
 		

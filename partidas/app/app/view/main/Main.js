@@ -39,7 +39,13 @@ Ext.define('Ptd.view.main.Main', {
 			   },
 			   {
 				   title:'Agenda',
-				   xtype:'agenda'
+				   xtype:'agenda',
+				   listeners: {
+						activate: function() {
+							$('#calendar').fullCalendar('refetchEvents');
+						}
+					}
+				   
 			   },
 			   {
 				   title:'Proyectos',

@@ -33,6 +33,28 @@ Ext.define('Ptd.view.agenda.AgendaController', {
 						callback(data);
 					}
 				});
+			},
+			eventClick: function(calEvent, jsEvent, view) {
+
+				if(calEvent.cita != null){
+					Ext.Msg.show({
+						title:'Eliminar cita?',
+						message: '¿Desea Eliminar la cita?',
+						buttons: Ext.Msg.YESNO,
+						icon: Ext.Msg.QUESTION,
+						fn: function(btn) {
+							if (btn === 'yes') {
+								Ext.Ajax.request({url: 'agenda/deleteCita',
+									params: {'_id': calEvent._id},
+									method:'POST',
+									success: function(data){
+										$('#calendar').fullCalendar('refetchEvents');
+									},
+								 });
+							} 
+						}
+					});
+				}
 			}
 		});
     },
@@ -53,6 +75,23 @@ Ext.define('Ptd.view.agenda.AgendaController', {
 			}
         }).show();
 		
+	},
+	
+	editVac:function(){
+		Ext.create('Ext.window.Window', {
+            title: "Eliminar Festivos",
+            height: 500,
+            width:650 ,
+            modal:true,
+            layout: 'fit',
+            items: {  // Let's put an empty grid in just to illustrate fit layout
+                xtype: 'agendafestivos',
+            }, listeners: {
+				close: function (wnd, eOpts) {
+                     
+                  }
+			}
+        }).show();
 	}
 });
 

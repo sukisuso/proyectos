@@ -35,9 +35,9 @@ Ext.define('Ptd.view.agenda.AgendaCitaController', {
 		
 		obj["start"] = time.getFullYear()+ "-" +mounth  + "-"+ day ;
 		
-		
 		if(!vaccaciones){
 			obj["title"]  = this.lookupReference('title_cita').getValue();
+			obj["cita"] = true;
 			if(obj["title"] == null || obj["title"] == ""){
 				this.lookupReference('title_cita').markInvalid('Rellene name_date campo');
 				return;
@@ -57,6 +57,7 @@ Ext.define('Ptd.view.agenda.AgendaCitaController', {
 				failure:function(){alert("Error")}
 			 });
 		}else {
+			obj["vacaciones"] = true;
 			obj["color"] = "#ff9f89";
 			obj["overlap"] = false;
 			obj["rendering"] = 'background';
