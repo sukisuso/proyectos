@@ -8,13 +8,13 @@
 Ext.define('Ptd.view.agenda.AgendaFestivos', {
     extend: 'Ext.panel.Panel',
     requires: [
-      // 'Ptd.view.agenda.AgendaCitaController'
+       'Ptd.view.agenda.AgendaFestivosController'
        /* 'Ptd.view.main.MainModel'*/
     ],
 
     xtype: 'agendafestivos',
     
-    //controller: 'agendafestivos',
+    controller: 'agendafestivos',
     /*viewModel: {
         type: 'main'
     },*/
@@ -22,12 +22,15 @@ Ext.define('Ptd.view.agenda.AgendaFestivos', {
  
 
     items: [
-		   {xtype:'numberfield',fieldLabel:'Año', margin:'10 15 0 15', reference:'year_reference', value:new Date().getFullYear()},
+		   {xtype:'numberfield',fieldLabel:'Año', margin:'10 15 0 15', reference:'year_reference', value:new Date().getFullYear(),
+		   hideTrigger: true,listeners: {
+            specialkey: 'changeDate'
+        }},
 		{
 		
 		xtype:'grid',
 		margin:'10 15 15 15',
-		reference:'dataGridProyectos',
+		reference:'gridFestivos',
 		layout: 'fit', 
 		border:true,
 		autoScroll:true,
@@ -50,7 +53,16 @@ Ext.define('Ptd.view.agenda.AgendaFestivos', {
                     iconCls: 'deleteiconcls',
                     tooltip: 'Delete',
                     scope: this,
-                    handler: function(grid, rowIndex, colIndex){
+                    handler: function(grid, rowIndex, colIndex,obj,aww){
+						
+						Ext.Ajax.request({url: 'agenda/deleteFestivo',
+							jsonData:{'_id':grid.store.getAt(rowIndex).data._id},
+							method:'POST',
+							success: function(data){
+								grid.store.removeAt(rowIndex);
+							},
+							failure:function(){alert("Error")}
+						 });
 					}
                 }]
 			}

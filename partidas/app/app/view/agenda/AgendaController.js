@@ -81,14 +81,14 @@ Ext.define('Ptd.view.agenda.AgendaController', {
 		Ext.create('Ext.window.Window', {
             title: "Eliminar Festivos",
             height: 500,
-            width:650 ,
+            width:500 ,
             modal:true,
             layout: 'fit',
             items: {  // Let's put an empty grid in just to illustrate fit layout
                 xtype: 'agendafestivos',
             }, listeners: {
 				close: function (wnd, eOpts) {
-                     
+                     $('#calendar').fullCalendar('refetchEvents');
                   }
 			}
         }).show();

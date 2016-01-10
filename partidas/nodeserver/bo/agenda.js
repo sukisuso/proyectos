@@ -6,6 +6,8 @@ function StartPaths(app){
 	app.post('/agenda/getAgenda', function(req, res) {getAgenda(req,res);});
 	app.post('/agenda/insertAgenda', function(req, res) {insertAgenda(req,res);});
 	app.post('/agenda/deleteCita', function(req, res) {deleteCita(req,res);});
+	app.post('/agenda/getFestivos', function(req, res) {getFestivos(req,res);});
+	app.post('/agenda/deleteFestivo', function(req, res) {deleteFestivo(req,res);});
 }
 
 function getAgenda(req, res) {
@@ -78,15 +80,34 @@ function partidaToAgenda(doc){
 	
 }
 
-exports.startPaths = StartPaths;
-
-
-/*
-
-{// Economia
-					title: 'Meeting',
-					start: '2016-01-13',
-					constraint: 'availableForMeeting', // defined below
-					color: '#257e4a'
+function getFestivos(req, res) {
+	var partidas = [];
+	
+	MongoClient.connect(dataBase, function(err, db) {
+		db.collection("agenda").find({},  function(err, docs2) {
+			docs2.each(function(err, doc2) {
+				if(doc2) {
+					if(doc2.vacaciones == true && new Date(doc2.start).getFullYear() == req.body.year )
+				   		partidas.push(doc2);
+				}else{
+					db.close();
+					res.json(partidas);
+					res.end();
 				}
-*/
+			});
+		});
+	});
+}
+
+function deleteFestivo(req, res) {
+	var ObjectId = require('mongodb').ObjectID;
+	
+	MongoClient.connect(dataBase, function(err, db) {
+		db.collection("agenda").remove({'_id':ObjectId(req.body._id)},  function(err, docs) {
+			res.send(true);
+			res.end();
+		});
+	});
+}
+
+exports.startPaths = StartPaths;
