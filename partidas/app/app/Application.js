@@ -21,7 +21,8 @@ Ext.define('Ptd.Application', {
 			 'Ptd.view.proyectos.ProyectoTareas',
 			 'Ptd.view.agenda.Agenda',
 			 'Ptd.view.agenda.AgendaCita',
-			 'Ptd.view.agenda.AgendaFestivos'
+			 'Ptd.view.agenda.AgendaFestivos',
+			
     ],
 	
     launch: function () {

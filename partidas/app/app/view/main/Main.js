@@ -54,7 +54,7 @@ Ext.define('Ptd.view.main.Main', {
             		title: 'Partidas',
 				    xtype:'partida',
 					id_crud_partida: 1
-        }],
+        		}]
 		
 		
     }]
