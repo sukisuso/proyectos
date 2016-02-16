@@ -1,0 +1,5 @@
+/node_modules/*
+/app/ext/*
+/app/sass/*
+/app/build/*
+/app/.sencha/*

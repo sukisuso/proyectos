@@ -1,0 +1,14 @@
+{
+  "appName": "Partidas",
+  "version": "0.0.1",
+  "autor": "Jesus Juan Aguilar",
+  "description": "Server for Partidas",
+  "dependencies": {
+    "body-parser": "^1.14.1",
+    "bunyan": "^1.5.1",
+    "exec": "^0.2.1",
+    "express": "^4.13.3",
+    "github-download": "^0.4.0",
+    "mongodb": "^2.1.0"
+  }
+}
