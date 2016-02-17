@@ -17,13 +17,19 @@ Ext.define("App.framework.Login",{
 			xtype: 'textfield',
 			name: 'username',
 			fieldLabel: 'Username',
-			allowBlank: false
+			allowBlank: false,
+			listeners: {
+				 specialkey:'onLoginClick'
+			}
 		}, {
 			xtype: 'textfield',
 			name: 'password',
 			inputType: 'password',
 			fieldLabel: 'Password',
-			allowBlank: false
+			allowBlank: false,
+			listeners: {
+				 specialkey:'onLoginClick' 
+			}
 		}, {
 			xtype: 'displayfield',
 			hideEmptyLabel: false,
@@ -36,6 +42,14 @@ Ext.define("App.framework.Login",{
 			listeners: {
 				click: 'onLoginClick'
 			}
-		}]
+		}],
+		
+	},
+	listeners: {
+		 specialkey: function(f,e){  
+                if(e.getKey()==e.ENTER){  
+                    console.log("I hit enter!"); 
+                }  
+            }  
 	}
 });

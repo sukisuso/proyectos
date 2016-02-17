@@ -12,7 +12,7 @@ Ext.define('App.Application', {
 		'App.framework.Login','App.framework.Main','App.framework.Menu',
 		'App.view.datauser.DataUser','App.view.datauser.DataUserEdit',
 		'App.view.estudios.Estudios','App.view.estudios.EstudiosEdit',
-		'App.view.estudios.Cursos',
+		'App.view.estudios.Cursos','App.view.experiencia.ExperienciaEdit',
 		'App.view.experiencia.Experiencia',
 		'App.view.experiencia.Practicas',
 		'App.view.aditionalInfo.AditionalInfo'

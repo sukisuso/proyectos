@@ -39,6 +39,8 @@ function updateUser(req, res) {
 	MongoClient.connect(dataBase, function(err, db) {
 		db.collection("user").findOne({ '_id':ObjectId( req.body.user._id )} ,function(err, docs) {
 			delete req.body.user._id;
+			req.body.user.login = docs.login;
+			req.body.user.pass = docs.pass;
 			db.collection("user").update(docs, req.body.user , function(){
 				res.send(true);
 				res.end();

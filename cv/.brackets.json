@@ -1,0 +1,9 @@
+{
+    "jscodehints.detectedExclusions": [
+        "D:/Documentos/GitHub/proyectos/cv/app/app/view/estudios/Cursos.js",
+        "D:/Documentos/GitHub/proyectos/cv/app/app/view/estudios/CursosController.js",
+        "D:/Documentos/GitHub/proyectos/cv/app/app/view/experiencia/Experiencia.js",
+        "D:/Documentos/GitHub/proyectos/cv/servernode/router.js",
+        "D:/Documentos/GitHub/proyectos/cv/app/app/view/estudios/EstudiosEdit.js"
+    ]
+}

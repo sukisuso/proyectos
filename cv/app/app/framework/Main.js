@@ -28,7 +28,7 @@ Ext.define('App.framework.Main', {
     items: [{
         xtype: 'panel',
         region: 'north',
-        html: '<h2>DEV FRAMEWORK</h2>',
+       html: '<img src="/resources/img/logocv.png" height="50" >',
 		bodyStyle:{"background-color":"#D8D8D8"}, 
 		bbar:[{
 			xtype:'MenuDevBar',

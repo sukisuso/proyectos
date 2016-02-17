@@ -6,8 +6,8 @@
 var login = require('./bo/login');
 var user = require('./bo/user');
 var estudios = require('./bo/estudios');
-/*var agenda = require('./nodeserver/bo/agenda');
-var chart = require('./nodeserver/bo/chart');*/
+var experiencia = require('./bo/experiencia');
+/*var chart = require('./nodeserver/bo/chart');*/
 
 function route(app) {
 	
@@ -19,6 +19,7 @@ function route(app) {
 	login.startPaths(app);
 	user.startPaths(app);
 	estudios.startPaths(app);
+	experiencia.startPaths(app);
 	/*tareas.startPaths(app);
 	agenda.startPaths(app);
 	chart.startPaths(app);*/

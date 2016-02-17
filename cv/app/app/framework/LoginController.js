@@ -6,6 +6,11 @@ Ext.define('App.framework.LoginController', {
 		
 		var me = this;
 		var form = this.lookupReference('form').getValues();
+		if(!form.username )
+			return;
+		if(!form.password)
+			return;
+		
 		Ext.Ajax.request({url: 'fwk/login',
 			params: {'login': form.username, pass:form.password},
 			method:'POST',

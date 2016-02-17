@@ -7,8 +7,13 @@ function StartPaths(app){
 	app.post('/estudios/insertUserEstudios', function(req, res) {insertUserEstudios(req,res);});
 	app.post('/estudios/updatetUserEstudios', function(req, res) {updateUserEstudios(req,res);});
 	app.post('/estudios/deleteUserEstudios', function(req, res) {deleteUserEstudios(req,res);});
+	
+	app.post('/cursos/getUserCursos', function(req, res) {getUserCursos(req,res);});
 }
 
+/*
+* Funciones, Estudios
+*/
 function getUserEstudios(req, res) {
 	var partidas = [];
 	//var ObjectId = require('mongodb').ObjectID;
@@ -65,4 +70,27 @@ function deleteUserEstudios(req, res) {
 		});
 	});
 }
+
+/*
+* Funciones Cursos
+*/
+function getUserCursos(req, res) {
+	var partidas = [];
+	//var ObjectId = require('mongodb').ObjectID;
+	
+	MongoClient.connect(dataBase, function(err, db) {
+		db.collection("estudios").find({'userid': req.body.userid, 'curso':true},  function(err, docs) {
+			docs.each(function(err, doc) {
+				if(doc) {
+				   partidas.push(doc);
+				}else{
+					db.close();
+					res.json(partidas);
+					res.end();
+				}
+			});
+		});
+	});
+}
+
 exports.startPaths = StartPaths;

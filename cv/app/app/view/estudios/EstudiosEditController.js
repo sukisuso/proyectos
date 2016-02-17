@@ -31,7 +31,12 @@ Ext.define('App.view.estudios.EstudiosEditController', {
 	saveInfo:function(){
 		var obj ={};
 		obj['userid'] = localStorage.AppLoggedId;
-		obj['curso'] = false;
+		
+		if(this.view.isCurso)
+			obj['curso'] = true;
+		else
+			obj['curso'] = false;
+		
 		obj['initDate'] = this.lookupReference('field_dateI_estE').getValue();
 		obj['endDate'] = this.lookupReference('field_dateF_estE').getValue();
 		obj['titulo'] = this.lookupReference('field_titulo_estE').getValue();

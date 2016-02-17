@@ -33,6 +33,7 @@ Ext.define('App.view.datauser.DataUserController', {
 				
 				var store = me.lookupReference('field_gridPhone_info').store;
 				store.removeAll();
+				if(meData.phones)
 				for(i = 0; i < meData.phones.length; i++){
 					store.add({'phone': meData.phones[i]})
 				}

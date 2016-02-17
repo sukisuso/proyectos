@@ -1,14 +1,14 @@
 
-Ext.define('App.view.estudios.EstudiosController', {
+Ext.define('App.view.estudios.CursosController', {
     extend: 'Ext.app.ViewController',
-	alias: 'controller.estudios',
+	alias: 'controller.cursos',
     requires: [
         'Ext.window.MessageBox'
     ],
 
 	config : {
         control :  {
-            'estudios':{
+            'cursos':{
 				afterRender:'loadDataEstudios'
 			}
         }
@@ -19,12 +19,12 @@ Ext.define('App.view.estudios.EstudiosController', {
 		var me = this;
 		Ext.getBody().mask("Loading...");
 		
-		Ext.Ajax.request({url: 'estudios/getUserEstudios',
+		Ext.Ajax.request({url: 'cursos/getUserCursos',
 			params: {'userid': localStorage.AppLoggedId},
 			method:'POST',
 			success: function(data){
 				var meData = JSON.parse(data.responseText);
-				var store = me.lookupReference('grid_estudios_form').store;
+				var store = me.lookupReference('grid_cursos_form').store;
 				store.removeAll();
 				for(i = 0; i < meData.length; i++){
 					store.add(meData[i])
@@ -48,9 +48,10 @@ Ext.define('App.view.estudios.EstudiosController', {
             layout: 'fit',
             items: {  // Let's put an empty grid in just to illustrate fit layout
                 xtype: 'estudiosedit',
+				isCurso:true
             }, listeners: {
                    close: function (wnd, eOpts) {
-                      var tab = Ext.getCmp('estudios');
+                      var tab = Ext.getCmp('cursos');
 					  tab.controller.loadDataEstudios();
                    }
 			}
@@ -58,7 +59,7 @@ Ext.define('App.view.estudios.EstudiosController', {
 	},
 	editNewEstudios:function(){
 
-		var grid = this.lookupReference("grid_estudios_form"); 
+		var grid = this.lookupReference("grid_cursos_form"); 
 		var data = grid.getSelection()[0].data;
 		
 		Ext.create('Ext.window.Window', {
@@ -70,10 +71,11 @@ Ext.define('App.view.estudios.EstudiosController', {
             items: {  // Let's put an empty grid in just to illustrate fit layout
                 xtype: 'estudiosedit',
 				isEdit:true,
-				datos:data
+				datos:data,
+				isCurso:true
             }, listeners: {
                    close: function (wnd, eOpts) {
-                      var tab = Ext.getCmp('estudios');
+                      var tab = Ext.getCmp('cursos');
 					  tab.controller.loadDataEstudios();
                    }
 			}
@@ -81,7 +83,7 @@ Ext.define('App.view.estudios.EstudiosController', {
 		
 	},
 	deleteNewEstudios:function(){
-		var grid = this.lookupReference("grid_estudios_form"); 
+		var grid = this.lookupReference("grid_cursos_form"); 
 		var id = grid.getSelection()[0].data._id;
 		Ext.getBody().mask("Loading...");
 		
@@ -97,7 +99,7 @@ Ext.define('App.view.estudios.EstudiosController', {
 						params: {'_id': id},
 						method:'POST',
 						success: function(data){
-						 	var tab = Ext.getCmp('estudios');
+						 	var tab = Ext.getCmp('cursos');
 					  		tab.controller.loadDataEstudios();
 							Ext.getBody().unmask();
 						},
@@ -108,8 +110,8 @@ Ext.define('App.view.estudios.EstudiosController', {
 	},
 	
 	itemSelection:function(){
-		this.lookupReference('est_edit_button').setDisabled(false);
-		this.lookupReference('est_delete_button').setDisabled(false);
+		this.lookupReference('cur_edit_button').setDisabled(false);
+		this.lookupReference('cur_delete_button').setDisabled(false);
 	},
 	
 	dateRender:function(record){

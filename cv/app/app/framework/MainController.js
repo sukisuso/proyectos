@@ -73,5 +73,19 @@ Ext.define('App.framework.MainController', {
 			   }]
 		   }
 	   );
+		
+		
+		//LOAD IMAGE USER
+		
+		new Ext.Img(
+		   {
+			   renderTo: Ext.get('usuarioImg'),
+			   width: 50,
+			   height: 50,
+			   bodyStyle:{"background-color":"#CED8F6"},
+			   border:true,
+			   src:'/resources/img/nouser.png'
+		   }
+		);
 	}
 });

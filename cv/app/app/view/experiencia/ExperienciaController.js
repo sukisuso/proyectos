@@ -1,14 +1,14 @@
 
-Ext.define('App.view.estudios.EstudiosController', {
+Ext.define('App.view.experiencia.ExperienciaController', {
     extend: 'Ext.app.ViewController',
-	alias: 'controller.estudios',
+	alias: 'controller.experiencia',
     requires: [
         'Ext.window.MessageBox'
     ],
 
 	config : {
         control :  {
-            'estudios':{
+            'experiencia':{
 				afterRender:'loadDataEstudios'
 			}
         }
@@ -19,12 +19,12 @@ Ext.define('App.view.estudios.EstudiosController', {
 		var me = this;
 		Ext.getBody().mask("Loading...");
 		
-		Ext.Ajax.request({url: 'estudios/getUserEstudios',
+		Ext.Ajax.request({url: 'experiencia/getUserExp',
 			params: {'userid': localStorage.AppLoggedId},
 			method:'POST',
 			success: function(data){
 				var meData = JSON.parse(data.responseText);
-				var store = me.lookupReference('grid_estudios_form').store;
+				var store = me.lookupReference('grid_experiencias_data').store;
 				store.removeAll();
 				for(i = 0; i < meData.length; i++){
 					store.add(meData[i])
@@ -39,49 +39,49 @@ Ext.define('App.view.estudios.EstudiosController', {
 	},
 	
 	
-	addNewEstudios:function(){
+	addNewExperiencia:function(){
 		Ext.create('Ext.window.Window', {
             title: "Añadir Estudios",
-            height: 200,
+            height: 250,
             width: 650,
             modal:true,
             layout: 'fit',
             items: {  // Let's put an empty grid in just to illustrate fit layout
-                xtype: 'estudiosedit',
+                xtype: 'experienciaedit',
             }, listeners: {
                    close: function (wnd, eOpts) {
-                      var tab = Ext.getCmp('estudios');
+                      var tab = Ext.getCmp('experiencia');
 					  tab.controller.loadDataEstudios();
                    }
 			}
         }).show();
 	},
-	editNewEstudios:function(){
+	editNewExperiencia:function(){
 
-		var grid = this.lookupReference("grid_estudios_form"); 
+		var grid = this.lookupReference("grid_experiencias_data"); 
 		var data = grid.getSelection()[0].data;
 		
 		Ext.create('Ext.window.Window', {
             title: "Añadir Estudios",
-            height: 200,
+            height: 250,
             width: 650,
             modal:true,
             layout: 'fit',
             items: {  // Let's put an empty grid in just to illustrate fit layout
-                xtype: 'estudiosedit',
+                xtype: 'experienciaedit',
 				isEdit:true,
 				datos:data
             }, listeners: {
                    close: function (wnd, eOpts) {
-                      var tab = Ext.getCmp('estudios');
+                      var tab = Ext.getCmp('experiencia');
 					  tab.controller.loadDataEstudios();
                    }
 			}
         }).show();
 		
 	},
-	deleteNewEstudios:function(){
-		var grid = this.lookupReference("grid_estudios_form"); 
+	delNewExperiencia:function(){
+		var grid = this.lookupReference("grid_experiencias_data"); 
 		var id = grid.getSelection()[0].data._id;
 		Ext.getBody().mask("Loading...");
 		
@@ -93,11 +93,11 @@ Ext.define('App.view.estudios.EstudiosController', {
 			icon: Ext.Msg.QUESTION,
 			fn: function(btn) {
 				if (btn === 'yes') {
-					Ext.Ajax.request({url: 'estudios/deleteUserEstudios',
+					Ext.Ajax.request({url: 'experiencia/deleteUserExp',
 						params: {'_id': id},
 						method:'POST',
 						success: function(data){
-						 	var tab = Ext.getCmp('estudios');
+						 	var tab = Ext.getCmp('experiencia');
 					  		tab.controller.loadDataEstudios();
 							Ext.getBody().unmask();
 						},
@@ -108,8 +108,8 @@ Ext.define('App.view.estudios.EstudiosController', {
 	},
 	
 	itemSelection:function(){
-		this.lookupReference('est_edit_button').setDisabled(false);
-		this.lookupReference('est_delete_button').setDisabled(false);
+		this.lookupReference('exp_edit_button').setDisabled(false);
+		this.lookupReference('exp_del_button').setDisabled(false);
 	},
 	
 	dateRender:function(record){
