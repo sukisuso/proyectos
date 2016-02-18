@@ -1,11 +1,12 @@
 Ext.define('App.view.aditionalInfo.AditionalInfo', {
     extend: 'Ext.panel.Panel',
     requires: [
-       // 'App.view.box.MBoxController'
+        'App.view.aditionalInfo.AditionalInfoController'
        /* 'Ptd.view.main.MainModel'*/
     ],
     xtype: 'aditionalInfo',
-
+	controller:'aditionalinfo',
+	id:'aditionalinfo',
 	layout: {
         type: 'vbox',
     },
@@ -18,10 +19,10 @@ Ext.define('App.view.aditionalInfo.AditionalInfo', {
  	
     items: [{
 		xtype:'panel',
-		layout: {type: 'table',columns:3   },
 		items:[{
 				xtype: 'textareafield',
 				name: 'aditionalInfo',
+				reference:'aditional_info_field',
 				width:600,
 				height:400,
 				fieldLabel: 'Información Adicional',
@@ -31,7 +32,7 @@ Ext.define('App.view.aditionalInfo.AditionalInfo', {
 		]
 	}],
 	
-	tbar:[{xtype:'button', text:'Editar Información Adicional', iconCls:'editCls'}]
+	tbar:[{xtype:'button', text:'Editar Información Adicional', iconCls:'editCls', handler:'editAditionalInfo'}]
 	
 	
 });

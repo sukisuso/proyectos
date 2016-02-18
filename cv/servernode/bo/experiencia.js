@@ -8,6 +8,8 @@ function StartPaths(app){
 	app.post('/experiencia/updatetUserExp', function(req, res) {updatetUserExp(req,res);});
 	app.post('/experiencia/deleteUserExp', function(req, res) {deleteUserExp(req,res);});
 	
+	
+	app.post('/practicas/getUserPract', function(req, res) {getUserPract(req,res);});
 }
 
 /*
@@ -70,5 +72,26 @@ function deleteUserExp(req, res) {
 	});
 }
 
+/*
+* Funciones, Practicas
+*/
+function getUserPract(req, res) {
+	var partidas = [];
+	//var ObjectId = require('mongodb').ObjectID;
+	
+	MongoClient.connect(dataBase, function(err, db) {
+		db.collection("experiencia").find({'userid': req.body.userid, 'practicas':true},  function(err, docs) {
+			docs.each(function(err, doc) {
+				if(doc) {
+				   partidas.push(doc);
+				}else{
+					db.close();
+					res.json(partidas);
+					res.end();
+				}
+			});
+		});
+	});
+}
 
 exports.startPaths = StartPaths;
