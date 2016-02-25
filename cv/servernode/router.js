@@ -8,6 +8,7 @@ var user = require('./bo/user');
 var estudios = require('./bo/estudios');
 var experiencia = require('./bo/experiencia');
 var aditionalinfo = require('./bo/aditionalinfo');
+var pdf = require('./bo/pdf');
 
 function route(app) {
 	
@@ -21,6 +22,7 @@ function route(app) {
 	estudios.startPaths(app);
 	experiencia.startPaths(app);
 	aditionalinfo.startPaths(app);
+	pdf.startPaths(app);
 }
 
 exports.redirect = route;

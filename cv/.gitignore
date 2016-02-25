@@ -3,3 +3,4 @@
 /app/sass/*
 /app/build/*
 /app/.sencha/*
+/app/pdfOutput/*

@@ -227,9 +227,18 @@ Ext.define('App.framework.MainController', {
 			   renderTo: Ext.get('usuarioImg'),
 			   width: 50,
 			   height: 50,
+			   id:'user_foto_id_look',
 			   bodyStyle:{"background-color":"#CED8F6"},
 			   border:true,
-			   src:'/resources/img/nouser.png'
+			   src:'/resources/img/nouser.png',
+			   listeners:{
+				   el:{
+					  click:function(){
+						  Ext.create('Ext.window.Window', {
+            				title: "Subir foto",height: 100, width: 250,layout: 'fit',
+							items: {  xtype: 'fileupdatepanel'}}).show();}
+				   }
+			   }
 		   }
 		);
 	}
@@ -323,7 +332,23 @@ Ext.define('App.framework.Menu', {
 			}]
         },{
             text: 'Exportar',
-            iconCls: 'pdfCls'
+            iconCls: 'pdfCls',
+			handler: function(){
+				Ext.getBody().mask("Loading...");
+				Ext.Ajax.request({url: 'pdf/getCV',
+					params: {'_id': localStorage.AppLoggedId},
+					method:'POST',
+					success: function(data){
+						Ext.getBody().unmask();
+						var win = window.open("/pdfOutput/"+data.responseText, '_blank');
+  						win.focus();
+					},
+					failure:function(){
+						Ext.getBody().unmask();
+						Ext.Msg.alert('Error', 'Contacte con el administrador');
+					}
+				 });
+			}
         },{
             text: 'Search',
 			iconCls:'searchCls'
@@ -367,4 +392,28 @@ Ext.define('App.framework.MenuController', {
 	clickSplit:function(el,a,b,c,d){
 		el.showMenu();
 	}
+});
+
+
+Ext.define('App.framework.FileUpdatePanel', {
+    extend: 'Ext.panel.Panel',
+    requires: [
+        //'App.view.datauser.DataUserEditController'
+       /* 'Ptd.view.main.MainModel'*/
+    ],
+    xtype: 'fileupdatepanel',
+	//controller:'datauseredit',
+	border:true,
+    items: [{
+        xtype: 'filefield',
+        name: 'photo',
+        fieldLabel: 'Photo',
+		padding:'15 15 15 15',
+        labelWidth: 50,
+        msgTarget: 'side',
+        allowBlank: false,
+        anchor: '100%',
+        buttonText: 'Foto'
+    }],
+	bbar:['->',{xtype:'button', text:'Subir', handler:function(){debugger}}]
 });

@@ -16,6 +16,7 @@ app.use(bodyParser.urlencoded({
   extended: true
 }));
 
+app.use('/uploads', express.static(__dirname + "/servernode/uploads"));
 router.redirect(app);
 
 
