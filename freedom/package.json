@@ -1,0 +1,13 @@
+{
+  "name": "insert-title-here",
+  "version": "1.0.0",
+  "main": "app.js",
+  "description": "Insert description here",
+  "scripts": {
+	"start": "node app.js"
+  },
+    "dependencies": {
+    "body-parser": "^1.14.1",
+    "express": "^4.13.3"
+  }
+}
