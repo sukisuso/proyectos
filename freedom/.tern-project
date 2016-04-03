@@ -1,4 +1,5 @@
 {
+  "ecmaVersion": 6,
   "plugins": {
     "guess-types": {
       
@@ -25,10 +26,16 @@
     },
     "highlight": {
       
+    },
+    "grunt": {
+      
+    },
+    "node-express": {
+      
     }
   },
   "libs": [
-    
-  ],
-  "ecmaVersion": 6
+    "browser",
+    "jquery"
+  ]
 }
