@@ -8,6 +8,7 @@ Free.define('App.view.main.MainView',{
 	ftype:'mainView',
 	horientation:'hPanel', // hPanel / vPanel
 	id:'Father',
+	class:'is-primary',
 	
 	
 	items:[{ftype:'panel', horientation:'vPanel',  id:'OnePanel',
@@ -15,7 +16,7 @@ Free.define('App.view.main.MainView',{
 	}, {ftype:'panel', horientation: "hPanel", id:'TwoPanel',
 			items:[{ftype:'label', text:'Panel2 Uno'}, {ftype:'label', text:'Panel2 Dos'},{ftype:'label', text:'Panel2 Tres'}]
 	}, {ftype:'panel', horientation: "vPanel", id:'TwoPanel',
-			items:[{ftype:'label', text:'Panel3 Uno'}, {ftype:'label', text:'Panel3 Dos'},{ftype:'label', text:'Panel3 Tres'}]
+			items:[{ftype:'html', html:'<h2>Hi!</h2>'}, {ftype:'label', text:'Panel3 Dos', class:'is-primary'},{ftype:'label', text:'Panel3 Tres'}]
 	}],
 	
 	afterRender:function(){

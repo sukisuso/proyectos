@@ -11,7 +11,7 @@ var Free;
 $(document).ready(function() {
 	$.getScript("App/Application.js").done(function(script) {
 		Free.startApplication();
-	});
+	}).fail(function(){console.error("[!App/Application.js] Main Application File must be in App folder");});
 });
 
 Free = {};
@@ -72,35 +72,28 @@ Free.heritageFtype = function(object) {
 	return father;
 };
 
-Free.getComponent = function(type, iD) {
-	var aux = Free[type];
+Free.getComponent = function(ftype, iD) {
+	var aux = Free[Free.ftypeList[ftype]];
 	aux.id = iD;
 	return aux;
 };
 
 Free.loadContentApplication = function(callback, param) {
-	var deferred = new $.Deferred();
-	var promise = deferred.promise();
-	var regex = new RegExp('\\.', 'g');
 
 	if (Free['App.manager.Application'].views !== null) {
+		var regex = new RegExp('\\.', 'g');
+		var deferreds = [];
+
 		for ( var item in Free['App.manager.Application'].views) {
 			if (Free['App.manager.Application'].views[item] !== null) {
-				/* jshint ignore:start */
-				promise = promise.then(function() {
-		            return $.getScript(Free['App.manager.Application'].views[item].replace(regex,'/')+'.js');
-		        });	
-				/* jshint ignore:end */
+				deferreds.push($.getScript(Free['App.manager.Application'].views[item].replace(regex,'/')+'.js'));
 			}
 		}
+		
+		$.when.apply(null, deferreds).done(function() {
+			callback(param);
+		});
 	}
-	
-	promise.done(function() {
-	   callback(param);
-	});
-
-	// Resolve the deferred object and trigger the callbacks
-	deferred.resolve();
 };
 
 Free.setViewMain= function(main){
@@ -124,17 +117,26 @@ Free.define('App.manager.Application', {
  */
 Free.define('App.component.Object', {
 	ftype : 'object',
+	id : '',
+	class : '',
 	afterRender:function(){},
 	toHtml : function() {
-		return '<div class="columns"><div class="colum"></div></div>';
+		return '<div></div>';
+	}
+});
+
+Free.define ('App.component.Html', {
+	extends : 'App.component.Object',
+	ftype:'html',
+	html:'',
+	toHtml: function(){
+		return "<div class='"+this.class+"'>"+this.html+"</div>";
 	}
 });
 
 Free.define('App.component.Label', {
 	extends : 'App.component.Object',
 	ftype : 'label',
-	id : '',
-	class : '',
 	text : '',
 	setValue : function(label) {
 		$('#' + this.id)[0].textContent = label;
@@ -147,25 +149,40 @@ Free.define('App.component.Label', {
 	}
 });
 
+Free.define('App.component.Button', { //Clases -- is-primary is-info is-success is-warning is-danger
+	extends : 'App.component.Object',
+	ftype:'button',
+	handler:function(){},
+	label:'',
+	toHtml : function() {
+		return ;
+	}
+});
+
+
 /**
  * App.layout
  */
 Free.define('App.layout.Layout', {
 	ftype : 'layout',
+	id:'',
+	class : '',
+	controller:'',
+	items : []
 });
 
 Free.define('App.layout.Panel', {
 	extends : 'App.layout.Layout',
 	ftype : 'panel',
-	id:'',
-	class : '',
-	controller:'',
 	horientation : 'hPanel', // hPanel / vPanel
-	items : [],
 	getItems:null,
 	setItems:null,
 	add:function(item){
-		
+		var x = $('#' + this.id)[0];
+		obj = Free.heritageFtype(item);
+		column = $('<div>').attr({class : 'column'})[0];
+		column.appendChild($.parseHTML(obj.toHtml())[0]);
+		$(x).children(".columns")[0].appendChild(column);
 	},
 	toHtml : function() {
 		var obj, column, columns, item;

@@ -8,7 +8,7 @@ Free.define('App.manager.Application', {
 	extends:'App.manager.Application',
 	name:'App',
 	
-	views:['App.view.main.MainView'],
+	views:['App.view.main.MainView', 'App.view.alternative.AlternativeView', 'App.view.crud.CrudView'],
 	
 	main:'mainView',
 	
