@@ -20,10 +20,12 @@ Free.App = {};
 Free.App.component = {}; // Componentes Visuales. Grid, label, button...
 Free.App.layout = {}; // Componentes estructurales y layout...
 Free.App.manager = {}; // Componentes de aplicacion. Models y data
+Free.events = {};
+Free.events.clickers = {};
 
 /*Function who start the application*/
 Free.startApplication = function(){
-	Free.loadContentApplication(Free.setViewMain, Free['App.manager.Application'].main);
+	Free.loadContentApplication(Free.setSystemViewMain, Free['App.manager.Application'].main);
 };
 
 Free.define = function(name, object) {
@@ -96,9 +98,33 @@ Free.loadContentApplication = function(callback, param) {
 	}
 };
 
-Free.setViewMain= function(main){
-	$('.app-freedom-body').html(Free.heritageFtype({ftype:main}).toHtml());
+Free.setSystemViewMain= function(main){
+	if (main !== ''){
+		$('.app-freedom-body').html(Free.heritageFtype({ftype:main}).toHtml());
+	}else{
+		$('.app-freedom-body').html("");
+	}
+	Free.loadEvents();
 };
+
+Free.setViewMain= function(main){
+	if (main !== ''){
+		$('.app-freedom-body').html(Free.heritageFtype({ftype:main}).toHtml());
+	}else{
+		$('.app-freedom-body').html("");
+	}
+};
+Free.loadEvents = function(){
+	
+	Free['App.manager.Application'].launch();
+};
+
+Free.createWindow= function(window){
+	
+	var relWindow = Free.heritageFtype(window);
+	relWindow.show();
+};
+
 
 /**
  * App.manager
@@ -112,106 +138,7 @@ Free.define('App.manager.Application', {
 	main : ''
 });
 
-/**
- * App.component
- */
-Free.define('App.component.Object', {
-	ftype : 'object',
-	id : '',
-	class : '',
-	afterRender:function(){},
-	toHtml : function() {
-		return '<div></div>';
-	}
-});
-
-Free.define ('App.component.Html', {
-	extends : 'App.component.Object',
-	ftype:'html',
-	html:'',
-	toHtml: function(){
-		return "<div class='"+this.class+"'>"+this.html+"</div>";
-	}
-});
-
-Free.define('App.component.Label', {
-	extends : 'App.component.Object',
-	ftype : 'label',
-	text : '',
-	setValue : function(label) {
-		$('#' + this.id)[0].textContent = label;
-	},
-	getValue : function() {
-		return $('#' + this.id)[0].textContent;
-	},
-	toHtml : function() {
-		return $('<p>' + this.text + '</p>').attr({	class : this.class,id : this.id	})[0].outerHTML;
-	}
-});
-
-Free.define('App.component.Button', { //Clases -- is-primary is-info is-success is-warning is-danger
-	extends : 'App.component.Object',
-	ftype:'button',
-	handler:function(){},
-	label:'',
-	toHtml : function() {
-		return ;
-	}
-});
 
 
-/**
- * App.layout
- */
-Free.define('App.layout.Layout', {
-	ftype : 'layout',
-	id:'',
-	class : '',
-	controller:'',
-	items : []
-});
 
-Free.define('App.layout.Panel', {
-	extends : 'App.layout.Layout',
-	ftype : 'panel',
-	horientation : 'hPanel', // hPanel / vPanel
-	getItems:null,
-	setItems:null,
-	add:function(item){
-		var x = $('#' + this.id)[0];
-		obj = Free.heritageFtype(item);
-		column = $('<div>').attr({class : 'column'})[0];
-		column.appendChild($.parseHTML(obj.toHtml())[0]);
-		$(x).children(".columns")[0].appendChild(column);
-	},
-	toHtml : function() {
-		var obj, column, columns, item;
-		var panel = $('<div>').attr({class : this.class,type : this.horientation,id:this.id})[0];
-		if (this.horientation === 'hPanel') {
-			columns = $('<div>').attr({	class : 'columns'})[0];
-			for ( item in this.items) {
-				if (this.items[item] !== undefined) {
-					if(this.items[item].ftype === undefined){console.error("Declare the ftype of the element");}
-					column = $('<div>').attr({class : 'column'})[0];
-					obj = Free.heritageFtype(this.items[item]);
-					column.appendChild($.parseHTML(obj.toHtml())[0]);
-					columns.appendChild(column);
-				}
-			}
-			panel.appendChild(columns);
-		}else{
-			for ( item in this.items) {
-				if (this.items[item] !== undefined) {
-					if(this.items[item].ftype === undefined){console.error("Declare the ftype of the element");}
-					columns = $('<div>').attr({	class : 'columns'})[0];
-					column = $('<div>').attr({class : 'column'})[0];
-					obj = Free.heritageFtype(this.items[item]);
-					column.appendChild($.parseHTML(obj.toHtml())[0]);
-					columns.appendChild(column);
-					panel.appendChild(columns);
-				}
-			}
-		}
-		return panel.outerHTML;
-	}
-});
+

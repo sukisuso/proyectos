@@ -8,11 +8,20 @@ Free.define('App.manager.Application', {
 	extends:'App.manager.Application',
 	name:'App',
 	
-	views:['App.view.main.MainView', 'App.view.alternative.AlternativeView', 'App.view.crud.CrudView'],
+	views:['App.view.main.MainView', 'App.view.alternative.AlternativeView', 'App.view.crud.CrudView',
+	       'App.view.login.Login'],
 	
-	main:'mainView',
+//	main:'mainView',
 	
 	launch:function(){
 		console.log("Web Launched!");
+		Free.createWindow({
+			ftype:'window',
+			id:'login-window',
+			panel:'login',
+			title:'Login',
+			width:400,
+		    height:300
+		});
 	}
 });

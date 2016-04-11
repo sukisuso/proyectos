@@ -3,4 +3,7 @@
 */
 
 @import url("resources/css/core/bulma.min.css");
+@import url("resources/css/core/easyui.css");
+@import url("resources/css/core/icon.css");
+@import url("resources/css/core/color.css");
 
