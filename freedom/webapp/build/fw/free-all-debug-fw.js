@@ -216,14 +216,32 @@ Free.define('App.component.Field', {
 		column.appendChild($.parseHTML($('<input>').attr({type:this.type, class:"input easyui-validatebox " + this.class ,id:this.id, 'data-options':this.options})[0].outerHTML)[0]);
 		columns.appendChild(column);
 		
-		
 		return  columns.outerHTML;
 	}
-
 });
 
 
-
+Free.define('App.component.Combobox', {
+	extends : 'App.component.Object',
+	ftype:'combobox',
+	items:[],
+	showValue:'',
+	realValue:'',
+	
+	toHtml: function(){
+		var selector = $('<select>').attr({ class:"easyui-combobox is-primary" + this.class ,id:this.id, 'data-options':this.options, style:this.style})[0];
+		if(this.showValue !=='' && this.realValue !== ''){
+			for (var item in this.items) {
+				if(this.items[item] !== undefined){
+					selector.appendChild($('<option>'+this.items[item][this.showValue]+'</option>').attr({ value: this.items[item][this.realValue]})[0]);
+				
+				}
+			}
+		}
+		
+		return selector.outerHTML;
+	}
+});
 /**
  * App.layout
  */
