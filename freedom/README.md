@@ -32,4 +32,4 @@
 
 
 ###### Result
-![alt tag](https://github.com/sukisuso/proyectos/tree/master/freedom/resources/img/login.png)
+![alt tag](https://github.com/sukisuso/proyectos/blob/master/freedom/resources/img/login.png)
