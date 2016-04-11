@@ -1,2 +1,2 @@
 
-`On index.html we load jQuery, Bulma.css and free.js `
+`On index.html we load jQuery,jquery.easyui, Bulma.css and free.js `
