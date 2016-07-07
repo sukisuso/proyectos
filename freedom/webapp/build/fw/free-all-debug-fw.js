@@ -3,7 +3,7 @@
  * freedom-all-debug.js :: Javascript Framework Jesus Juan Aguilar 02/04/2016
  * require: jquery!
  * 
- * @version: 0.0.1
+ * @version: 0.0.2
  */
 
 var Free;
@@ -126,6 +126,11 @@ Free.createWindow= function(window){
 	relWindow.show();
 };
 
+Function.prototype.bind = function(oThis) {
+    	debugger
+  };
+
+
 
 /**
  * App.manager
@@ -137,6 +142,13 @@ Free.define('App.manager.Application', {
 	views : [],
 	name : 'App',
 	main : ''
+});
+
+
+Free.define('App.manager.Model', {
+	ftype : 'model',
+	content: [], // Array of object's -- name of data
+	name : 'Model'
 });
 
 
