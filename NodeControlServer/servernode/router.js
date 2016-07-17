@@ -3,6 +3,7 @@
  * Router 
  * Jesus Juan Aguilar 07/2016
  * */
+var sp =  require('./bo/servers-persistence');
 
 function route(app) {
 	
@@ -11,6 +12,8 @@ function route(app) {
 		res.end();
 	});
 
+	
+	sp.startPaths(app);
 }
 
 exports.redirect = route;

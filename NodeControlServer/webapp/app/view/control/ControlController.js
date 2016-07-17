@@ -13,6 +13,13 @@ Ext.define('App.view.control.ControlController', {
     
     
 	loadUserInfo:function(){
+	},
+	
+	newUserclick: function () {
+		debugger
+	},
+	
+	deleteUserclick:function() {
 		debugger
 	}
 });

@@ -29,36 +29,54 @@ Ext.define('App.view.control.ControlView', {
         region: 'north',
         title: 'Servers',
         itemId:'serverGrid',
-//        store: Ext.create('servers'),// Ext.data.StoreManager.lookup('servers'),
         bind: {
             store: '{customers}'
         },
-//        bind: '{customers}',
         columns: [
                   { text: 'Estado', dataIndex: 'status', flex:1 },
                   { text: 'Nombre', dataIndex: 'name',flex:1 },
-                  { text: 'Path', dataIndex: 'path' ,flex:1},
-                  { text: 'deff', dataIndex: 'deff', flex:1 },
+                  { text: 'Path', dataIndex: 'path' ,flex:1.6},
+                  { text: 'File', dataIndex: 'file', flex:0.5 },
                   {
                       xtype:'actioncolumn',
-                      width:150,
+                      width:100,
                       items: [{
-                          icon: 'extjs-build/examples/shared/icons/fam/cog_edit.png',  // Use a URL in the icon config
-                          tooltip: 'Edit',
+                          icon: 'resources/img/play.png',  // Use a URL in the icon config
+                          tooltip: 'Run',
                           handler: function(grid, rowIndex, colIndex) {
-                              
-                          }
+                              debugger
+                          },
+                          listeners: {
+          	 				click: 'newUserclick'
+          	 			}
                       },{
-                          icon: 'extjs-build/examples/restful/images/delete.png',
-                          tooltip: 'Delete',
+                          icon: 'resources/img/stop.png',
+                          tooltip: 'Stop',
                           handler: function(grid, rowIndex, colIndex) {
-                            
+                            debugger
                           }
                       }]
                   }
               ],
 	    height: '100%',
-//	    width: 400
+	    tbar: [
+	           { 
+	        	 xtype: 'button',
+	        	 text: 'Nuevo',
+	        	 icon: 'resources/img/add.png',
+	        	 listeners: {
+	 				click: 'newUserclick'
+	 			}
+	           },
+	           { 
+	        	 xtype: 'button',
+	        	 text: 'Eliminar',
+	        	 icon: 'resources/img/delete.png',
+	        	 listeners: {
+		 				click: 'deleteUserclick'
+		 			}
+	           }
+	    ]
     }
     
     ]
