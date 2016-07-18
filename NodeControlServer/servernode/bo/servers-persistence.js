@@ -1,5 +1,14 @@
-var MongoClient = require('mongodb').MongoClient;
-var dataBase= "mongodb://localhost/nodeservers";
+/**
+* Mongo CRUD Servers - REST
+* Jesus Juan Aguilar. 2016 - jesusjuanaguilar@gmail.com
+*
+* Documentacion Mongoose: https://scotch.io/tutorials/using-mongoosejs-in-node-js-and-mongodb-applications
+*/
+
+var mongoose = require('mongoose');
+mongoose.connect("mongodb://localhost/nodeservers");
+var Server = require('../models/Server')(mongoose);
+var ObjectId = mongoose.Types.ObjectId;
 
 function StartPaths(app){
 	
@@ -10,25 +19,59 @@ function StartPaths(app){
 }
 
 function getServers(req, res) {
-	
+
+	Server.find(function (err, docs) {
+		if (!err) {
+			res.setHeader('Content-Type', 'application/json');
+			res.send(JSON.stringify(docs));
+			res.end();
+		} else {
+			res.status(500).send({ error: '[Error: Servers Mongo] Fallo recuperando datos.'});
+			res.end();
+		}
+	});
 }
 						
-function insertPartida(req, res) {
+function insertServer(req, res) {
+	var sv = new Server({
+		name: req.body.server_name,
+    	path: req.body.server_path,
+    	file: req.body.server_file
+	});
 	
+	sv.save(function (err) {
+		if (!err) {
+			res.send(true);
+			res.end();
+		} else {
+			res.status(500).send({ error: '[Error: Servers Mongo] No se ha podido insertar.'});
+			res.end();
+		}
+	});
 	
 }
 
-function deletePartida(req, res) {
-	
+function deleteServer(req, res) {
+	Server.findOneAndRemove({ _id: ObjectId(req.body._id) }, function(err) {
+	  if (err) throw err;
+
+	  	res.send(true);
+		res.end();
+	});
 }
 
-function updatePartida(req, res) {
-	
+function updateServer(req, res) {
+	Server.findOneAndUpdate({ _id: ObjectId(req.body._id) },
+	 { 
+	 	name: req.body.server_name,
+	 	path: req.body.server_path,
+	 	file: req.body.server_file
+	 }
+	, function(err, user) {
+	  if (err) throw err;
+	  	res.send(true);
+		res.end();
+	});
 }
-
-function filterPartidas(req, res) {
-	
-}
-
 
 exports.startPaths = StartPaths;

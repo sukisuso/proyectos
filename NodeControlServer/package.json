@@ -1,6 +1,5 @@
-{
   "name": "Node_Control_Server",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "main": "app.js",
   "description": "App para el control de servidores Node",
   "scripts": {
@@ -11,5 +10,5 @@
     "express": "^4.13.3",
     "helmet": "2.1.1",
     "mongoose": "4.5.4"
-  }
+  }  
 }

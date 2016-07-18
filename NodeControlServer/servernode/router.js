@@ -4,6 +4,7 @@
  * Jesus Juan Aguilar 07/2016
  * */
 var sp =  require('./bo/servers-persistence');
+var task =  require('./bo/task-manager');
 
 function route(app) {
 	
@@ -14,6 +15,7 @@ function route(app) {
 
 	
 	sp.startPaths(app);
+	task.startPaths(app);
 }
 
 exports.redirect = route;

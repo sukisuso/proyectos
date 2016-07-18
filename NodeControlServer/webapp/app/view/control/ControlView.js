@@ -33,7 +33,7 @@ Ext.define('App.view.control.ControlView', {
             store: '{customers}'
         },
         columns: [
-                  { text: 'Estado', dataIndex: 'status', flex:1 },
+                  { text: 'Estado', dataIndex: 'status',  width:65, renderer: 'renderStatus'},
                   { text: 'Nombre', dataIndex: 'name',flex:1 },
                   { text: 'Path', dataIndex: 'path' ,flex:1.6},
                   { text: 'File', dataIndex: 'file', flex:0.5 },
