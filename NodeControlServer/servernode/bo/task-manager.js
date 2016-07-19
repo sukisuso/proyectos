@@ -1,3 +1,10 @@
+/**
+* Task manager for Servers - REST
+* Jesus Juan Aguilar. 2016 - jesusjuanaguilar@gmail.com
+*/
+
+var run = require('../run-server');
+
 
 function StartPaths(app){
 	
@@ -7,18 +14,19 @@ function StartPaths(app){
 }
 
 function startServer(req, res) {
-	res.send(true);
+	
+	res.send(run.start(req.body.server_path, req.body.server_file));
 	res.end();
 }
 						
 function killServer(req, res) {
+	run.kill(req.body.process_id);
 	res.send(true);
 	res.end();
 }
 
 function isAliveServer(req, res) {
-	res.send(true);
-	res.end();
+	run.alive(req.body.process_id, res);
 }
 
 exports.startPaths = StartPaths;

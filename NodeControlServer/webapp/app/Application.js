@@ -11,13 +11,12 @@ Ext.define('App.Application', {
     stores: [
              'Servers'
     ],
-    views:['App.view.control.ControlView'],
+    views:['App.view.control.ControlView', 'App.view.controledit.ControlEdit'],
     
     
     launch: function () {
         // TODO - Launch the application
-    	Ext.enableAriaButtons = false;
-		Ext.enableAriaPanels = false;
+        Ext.ariaWarn = Ext.emptyFn;
 		Ext.DatePicker.prototype.startDay = 1;
 
 		Ext.widget('control-view');

@@ -15,7 +15,7 @@ function start(path,file){
 	   console.log('kill: ' + path);
 	});
 
-	servers[child.pid] = child;
+	//servers[child.pid] = child;
 	return child.pid;
 }
 
@@ -35,9 +35,11 @@ function alive(id, response){
 	
 	child.stdout.on('end', function (){
 		if(output.indexOf(id) > -1){
-			console.log("isAlive");
+			response.send(true);
+			response.end();
 		}else{
-			console.log("isDead");
+			response.send(false);
+			response.end();
 		}
 	});
 }

@@ -36,7 +36,8 @@ function insertServer(req, res) {
 	var sv = new Server({
 		name: req.body.server_name,
     	path: req.body.server_path,
-    	file: req.body.server_file
+    	file: req.body.server_file,
+    	port: req.body.server_port
 	});
 	
 	sv.save(function (err) {
@@ -65,7 +66,8 @@ function updateServer(req, res) {
 	 { 
 	 	name: req.body.server_name,
 	 	path: req.body.server_path,
-	 	file: req.body.server_file
+	 	file: req.body.server_file,
+	 	rt: req.body.server_port
 	 }
 	, function(err, user) {
 	  if (err) throw err;

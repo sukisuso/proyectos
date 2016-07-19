@@ -4,14 +4,13 @@ Ext.define('App.view.control.ControlModel', {
 
     stores: {
         // Define a store of Customer records that links to the Session.
-        customers: {
-        	fields: ['name', 'status', 'path', 'file', '_id'],
+        servers: {
+        	fields: ['name', 'status', 'path', 'file', '_id', 'processId', 'port'],
         	 data: {
-        		 items: [
-                    { name: 'Partidas', status: "runing", path: "D:/Documentos/GitHub/proyectos/partidas" , file:"index"}
-                 
-            ]},
+        		 items: []
+            },
         	storeId: 'servers',
+
             autoLoad: true,
             proxy: {
                 type: 'memory',

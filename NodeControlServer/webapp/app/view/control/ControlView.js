@@ -6,6 +6,7 @@ Ext.define('App.view.control.ControlView', {
     requires: [
                'App.view.control.ControlController' ,'App.view.control.ControlModel'
            ],
+    id:'control',
     controller: 'control-view',
     viewModel: {
         type: 'control-view'
@@ -28,15 +29,18 @@ Ext.define('App.view.control.ControlView', {
         xtype: 'gridpanel',
         region: 'north',
         title: 'Servers',
+        reference:'dataGrid',
         itemId:'serverGrid',
         bind: {
-            store: '{customers}'
+            store: '{servers}'
         },
         columns: [
-                  { text: 'Estado', dataIndex: 'status',  width:65, renderer: 'renderStatus'},
-                  { text: 'Nombre', dataIndex: 'name',flex:1 },
+                  { text: 'Status', dataIndex: 'status',  width:65, renderer: 'renderStatus'},
+                  { text: 'Name', dataIndex: 'name',flex:1 },
                   { text: 'Path', dataIndex: 'path' ,flex:1.6},
-                  { text: 'File', dataIndex: 'file', flex:0.5 },
+                  { text: 'File', dataIndex: 'file', flex:0.4 },
+                  { text: 'Port', dataIndex: 'port', flex:0.4 },
+                  { text: 'Process Id', dataIndex: 'processId', flex:0.4 },
                   {
                       xtype:'actioncolumn',
                       width:100,
@@ -62,19 +66,19 @@ Ext.define('App.view.control.ControlView', {
 	    tbar: [
 	           { 
 	        	 xtype: 'button',
-	        	 text: 'Nuevo',
+	        	 text: 'New',
 	        	 icon: 'resources/img/add.png',
 	        	 listeners: {
-	 				click: 'newUserclick'
-	 			}
+      	 				click: 'newUserclick'
+      	 			}
 	           },
 	           { 
 	        	 xtype: 'button',
-	        	 text: 'Eliminar',
+	        	 text: 'Delete',
 	        	 icon: 'resources/img/delete.png',
 	        	 listeners: {
-		 				click: 'deleteUserclick'
-		 			}
+      	 				click: 'deleteUserclick'
+      	 			}
 	           }
 	    ]
     }
