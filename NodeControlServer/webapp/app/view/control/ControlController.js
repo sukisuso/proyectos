@@ -93,7 +93,44 @@ Ext.define('App.view.control.ControlController', {
 	    return '<div class="circle-green"></div>';
     else 
       return '<div class="circle-red"></div>';
-	}
+	},
+
+  runServer: function(grid, rowIndex, colIndex){
+    var data = grid.store.getAt(rowIndex).data;
+    var me = this;
+    var index = rowIndex;
+
+    Ext.Ajax.request({url: 'task/startServer',
+        params: {'server_path': data.path,'server_file': data.file},
+        method:'POST',
+        success: function(res){
+          var grid = me.lookupReference("dataGrid"); 
+          grid.store.getAt(index).data.processId  = parseInt(res.responseText);
+          grid.store.getAt(index).data.status = "running";
+          grid.store.save();
+          grid.getView().refresh();
+        }
+     });
+  },
+
+  killServer : function(grid, rowIndex, colIndex){
+
+      var data = grid.store.getAt(rowIndex).data;
+      var me = this;
+      var index = rowIndex;
+      if(data.processId != null)
+      Ext.Ajax.request({url: 'task/killServer',
+          params: {'process_id': data.processId},
+          method:'POST',
+          success: function(res){
+            var grid = me.lookupReference("dataGrid"); 
+            grid.store.getAt(index).data.processId  ="";
+            grid.store.getAt(index).data.status = "stoped";
+            grid.store.save();
+            grid.getView().refresh();
+          }
+       });
+  }
 });
 
 /*

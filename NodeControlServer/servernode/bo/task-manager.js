@@ -14,9 +14,9 @@ function StartPaths(app){
 }
 
 function startServer(req, res) {
-	
-	res.send(run.start(req.body.server_path, req.body.server_file));
-	res.end();
+	run.start(req.body.server_path, req.body.server_file, res);
+	//res.sendStatus();
+	//res.end();
 }
 						
 function killServer(req, res) {

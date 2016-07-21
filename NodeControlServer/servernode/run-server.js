@@ -8,18 +8,18 @@ var exec = require('child_process').exec;
 var spawn = require('child_process').spawn;    
 var servers = {};
 
-function start(path,file){
+function start(path,file, res){
 	
-	console.log('start: '+path);
+	console.log('start: '+path+ file);
 	var child = exec('cd /D '+path+' & node '+file,function(error, stdout, stderr) {
-	   console.log('kill: ' + path);
 	});
 
-	//servers[child.pid] = child;
-	return child.pid;
+	res.send(""+child.pid);
+	res.end();
 }
 
 function kill(id){
+	console.log('kill: '+id);
 	spawn("taskkill", ["/pid", id, '/f', '/t']);
 }
 

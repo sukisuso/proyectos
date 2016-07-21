@@ -47,18 +47,11 @@ Ext.define('App.view.control.ControlView', {
                       items: [{
                           icon: 'resources/img/play.png',  // Use a URL in the icon config
                           tooltip: 'Run',
-                          handler: function(grid, rowIndex, colIndex) {
-                              debugger
-                          },
-                          listeners: {
-          	 				click: 'newUserclick'
-          	 			}
+                          handler: 'runServer'
                       },{
                           icon: 'resources/img/stop.png',
                           tooltip: 'Stop',
-                          handler: function(grid, rowIndex, colIndex) {
-                            debugger
-                          }
+                          handler:'killServer'
                       }]
                   }
               ],
