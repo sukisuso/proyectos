@@ -23,7 +23,7 @@ app.use(bodyParser.urlencoded({
 router.redirect(app);
 
 app.listen(port);
-console.log('NodeControlServer running at http://127.0.0.1:'+port);
+console.log('NodeControlServer running at http://127.0.0.1:'+port+ ' pid:'+ process.pid);
 
 
 /**

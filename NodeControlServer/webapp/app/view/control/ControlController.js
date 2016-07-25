@@ -14,6 +14,8 @@ Ext.define('App.view.control.ControlController', {
     
 	loadUserInfo:function(){
     var me = this;
+    me['servers_running'] = [];
+    
     me.getViewModel().data.servers.removeAll();
     me.getViewModel().data.servers.load();
     var grid = this.lookupReference("dataGrid");
@@ -26,6 +28,45 @@ Ext.define('App.view.control.ControlController', {
         grid.unmask();
       }
      });
+
+    setInterval(function(me){ 
+
+        if(me['servers_running'].length > 0){
+          for (var i =0; i < me['servers_running'].length; i++)
+             Ext.Ajax.request({url: 'task/isAliveServer',
+                params: {'process_id': me['servers_running'][i]},
+                method:'POST',
+                success: function(data){
+                  if(data.responseText == "false"){
+                    var relaunch = false;
+                    var rowIndex = -1;
+                    var grid = me.lookupReference("dataGrid"); 
+                     for (var z =0; z < grid.store.data.length; z++){
+                        if(data.request.params.process_id == grid.store.getAt(z).data.processId){
+                          rowIndex = z;
+                          grid.store.getAt(z).data.processId  = undefined;
+                          grid.store.getAt(z).data.status = "stoped";
+                          relaunch = grid.store.getAt(z).data.relaunch;
+                        }
+                     }
+                    
+
+                      for (var i =0; i < me['servers_running'].length; i++){
+                         if (me['servers_running'][i] === data.request.params.process_id) {
+                            me['servers_running'].splice(i,1);
+                         }
+                      } 
+                      grid.store.save();
+                      grid.getView().refresh();
+
+                      if(relaunch && rowIndex != -1){
+                        me.runServer(grid, rowIndex);
+                      }
+                  }
+                }
+            });
+        }
+    }, 1500, me);
 	},
 	
 	newUserclick: function () {
@@ -100,12 +141,14 @@ Ext.define('App.view.control.ControlController', {
     var me = this;
     var index = rowIndex;
 
+    if(data.processId == undefined)
     Ext.Ajax.request({url: 'task/startServer',
-        params: {'server_path': data.path,'server_file': data.file},
+        params: {'server_path': data.path,'server_file': data.file, 'server_port': data.port},
         method:'POST',
         success: function(res){
           var grid = me.lookupReference("dataGrid"); 
           grid.store.getAt(index).data.processId  = parseInt(res.responseText);
+          me['servers_running'].push(grid.store.getAt(index).data.processId);
           grid.store.getAt(index).data.status = "running";
           grid.store.save();
           grid.getView().refresh();
@@ -123,8 +166,14 @@ Ext.define('App.view.control.ControlController', {
           params: {'process_id': data.processId},
           method:'POST',
           success: function(res){
+            for (var i =0; i < me['servers_running'].length; i++)
+               if (me['servers_running'][i] === data.processId) {
+                  me['servers_running'].splice(i,1);
+                  break;
+               }
+
             var grid = me.lookupReference("dataGrid"); 
-            grid.store.getAt(index).data.processId  ="";
+            grid.store.getAt(index).data.processId  = undefined;
             grid.store.getAt(index).data.status = "stoped";
             grid.store.save();
             grid.getView().refresh();

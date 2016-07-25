@@ -53,7 +53,8 @@ Ext.define('App.view.control.ControlView', {
                           tooltip: 'Stop',
                           handler:'killServer'
                       }]
-                  }
+                  },
+                  { xtype: 'checkcolumn', text: 'Re-Launch', dataIndex: 'relaunch' }
               ],
 	    height: '100%',
 	    tbar: [

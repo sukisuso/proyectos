@@ -7,6 +7,7 @@
 var express = require('express');
 var bodyParser = require('body-parser');
 var app = express();
+var port = (process.env.PORT || process.env.VCAP_APP_PORT || 3000);
 
 app.use(express.static(__dirname + '/webapp'));
 app.use( bodyParser.json() );  
@@ -19,7 +20,7 @@ app.get('/', function(req, res) {
 	res.end();
 });
 
-app.listen(3000);
+app.listen(port);
 console.log("Freedom server is listening on 3000");
 
 

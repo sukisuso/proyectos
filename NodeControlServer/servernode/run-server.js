@@ -8,10 +8,12 @@ var exec = require('child_process').exec;
 var spawn = require('child_process').spawn;    
 var servers = {};
 
-function start(path,file, res){
+function start(path,file, res, port){
 	
-	console.log('start: '+path+ file);
-	var child = exec('cd /D '+path+' & node '+file,function(error, stdout, stderr) {
+	 port = typeof port  !== 'undefined' ? port : 3000;
+
+	console.log('start: '+path+ file+'.js:'+port);
+	var child = exec('set PORT='+port+' & cd /D '+path+' & node '+file,function(error, stdout, stderr) {
 	});
 
 	res.send(""+child.pid);
