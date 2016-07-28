@@ -5,6 +5,7 @@
  * */
 var sp =  require('./bo/servers-persistence');
 var task =  require('./bo/task-manager');
+var console = require('./bo/server-console');
 
 function route(app) {
 	
@@ -16,6 +17,7 @@ function route(app) {
 	
 	sp.startPaths(app);
 	task.startPaths(app);
+	console.startPaths(app);
 }
 
 exports.redirect = route;

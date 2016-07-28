@@ -20,7 +20,6 @@ Ext.define('App.view.controledit.ControlEdit', {
 	bbar:[{
 		xtype:'panel',
 		layout:{type:'hbox'},
-		layout:{type:'hbox'},
 		items:[ {xtype:'button', text: 'Añadir',margin: '0 0 0 5', handler: 'addServer', reference:'buttonaddedit'},
 			   {xtype:'button', text: 'Cancelar',margin: '0 0 0 5', handler: 'closeWindow'}]
 		

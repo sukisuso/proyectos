@@ -1,0 +1,8 @@
+Server listening on 3000
+{ partida: 
+   { nombre: 'Node Control Server',
+     version: '1.0.6',
+     activo: 'Si',
+     url: 'https://github.com/sukisuso/proyectos/tree/master/NodeControlServer',
+     des: 'Servidor para controllar servidores node',
+     _id: '579a4a4ccff9a0d407366153' } }

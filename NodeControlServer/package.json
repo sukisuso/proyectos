@@ -1,6 +1,6 @@
 {
   "name": "Node_Control_Server",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "main": "app.js",
   "description": "App para el control de servidores Node",
   "scripts": {

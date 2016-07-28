@@ -52,6 +52,11 @@ Ext.define('App.view.control.ControlView', {
                           icon: 'resources/img/stop.png',
                           tooltip: 'Stop',
                           handler:'killServer'
+                      },{
+                          icon: 'resources/img/www.png',
+                          tooltip: 'Goto',
+						  margin: '0 10 0 10',
+                          handler:'goToWeb'
                       }]
                   },
                   { xtype: 'checkcolumn', text: 'Re-Launch', dataIndex: 'relaunch' }
@@ -74,7 +79,10 @@ Ext.define('App.view.control.ControlView', {
       	 				click: 'deleteUserclick'
       	 			}
 	           }
-	    ]
+	    ],
+		listeners:{
+			itemdblclick:'itemDbClick'
+		}
     }
     
     ]

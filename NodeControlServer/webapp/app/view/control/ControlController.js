@@ -179,7 +179,34 @@ Ext.define('App.view.control.ControlController', {
             grid.getView().refresh();
           }
        });
-  }
+  },
+	
+	itemDbClick: function( obj , record , item , index , e , eOpts ) {
+		Ext.create('Ext.window.Window', {
+            title: "Console",
+            height: 600,
+            width: 805,
+            modal:true,
+            layout: 'fit',
+            items: {  
+                xtype: 'controllogger',
+				server_path:record.data.path,
+				server_file : record.data.file
+            }
+        }).show();
+	},
+	
+	goToWeb:function(grid, rowIndex, colIndex){
+		if(grid.store.getAt(rowIndex).data.processId != undefined){
+			var win;
+			if(grid.store.getAt(rowIndex).data.port != 443){
+		 		win = window.open("http://localhost:"+grid.store.getAt(rowIndex).data.port, '_blank');
+			}else {
+				win = window.open("https://localhost:"+grid.store.getAt(rowIndex).data.port, '_blank');
+			}
+  		 	win.focus();
+		}
+	}
 });
 
 /*

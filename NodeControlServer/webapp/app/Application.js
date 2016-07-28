@@ -11,7 +11,8 @@ Ext.define('App.Application', {
     stores: [
              'Servers'
     ],
-    views:['App.view.control.ControlView', 'App.view.controledit.ControlEdit'],
+    views:['App.view.control.ControlView', 'App.view.controledit.ControlEdit',
+		  'App.view.controllogger.ControlLogger'],
     
     
     launch: function () {
