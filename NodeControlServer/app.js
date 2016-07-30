@@ -23,8 +23,13 @@ app.use(bodyParser.urlencoded({
 router.redirect(app);
 
 app.listen(port);
-console.log('NodeControlServer running at http://127.0.0.1:'+port+ ' pid:'+ process.pid);
+console.log('NodeControlServer running at http://127.0.0.1:'+port+ ' pid:'+ process.pid+
+		   ' running in : ' +  process.platform);
 
+/*
+Possible values are: 'darwin', 'freebsd', 'linux', 'sunos' or 'win32'
+var isWin = /^win/.test(process.platform);
+*/
 
 /**
  * The way to run and kill servers!

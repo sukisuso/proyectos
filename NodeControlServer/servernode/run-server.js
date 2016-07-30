@@ -12,9 +12,9 @@ var servers = {};
 function start(path,file, res, port){
 	
 	port = typeof port  !== 'undefined' ? port : 3000;
-	
+	commandStartBySO();
 	console.log('start: '+path+ file+'.js:'+port);
-	var child = exec('set PORT='+port+' & cd /D '+path+' & node '+file,function(error, stdout, stderr) {
+	var child = exec(commandStartByOS(port, path, file),function(error, stdout, stderr) {
 	});
 
 	var filename = path.slice( 3 ).split('/').join('_')+ file;
@@ -34,11 +34,17 @@ function start(path,file, res, port){
 
 function kill(id){
 	console.log('kill: '+id);
-	spawn("taskkill", ["/pid", id, '/f', '/t']);
+	
+	
+	if(isWindowsOS()){
+		spawn("taskkill", ["/pid", id, '/f', '/t']);
+	}else if(isLinuxsOS()) {
+		spawn("kill", ["-9", id]);
+	}
 }
 
 function alive(id, response){
-	var child = spawn('tasklist');
+	var child = spawn(comandProcessByOS ());
 	var output = ""; 
 	
 	child.stdout.on('data', 
@@ -56,6 +62,34 @@ function alive(id, response){
 			response.end();
 		}
 	});
+}
+
+/*
+* Independent command to the OS
+*/
+function commandStartByOS(port, path, file){
+
+	if(isWindowsOS()){
+		return 'set PORT='+port+' & cd /D '+path+' & node '+file;
+	}else if(isLinuxsOS()) {
+		//return 'PORT=8080 node app.js'
+	}
+}
+
+function comandProcessByOS () {
+	if(isWindowsOS()){
+		return 'tasklist';
+	}else if(isLinuxsOS()) {
+		return 'ps';
+	}
+}
+
+function isWindowsOS(){
+	return /^win/.test(process.platform);
+}
+
+function isLinuxsOS(){
+	return /^linux/.test(process.platform);
 }
 
 exports.start = start;
