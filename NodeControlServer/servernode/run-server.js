@@ -12,7 +12,7 @@ var servers = {};
 function start(path,file, res, port){
 	
 	port = typeof port  !== 'undefined' ? port : 3000;
-	commandStartBySO();
+
 	console.log('start: '+path+ file+'.js:'+port);
 	var child = exec(commandStartByOS(port, path, file),function(error, stdout, stderr) {
 	});
@@ -39,7 +39,7 @@ function kill(id){
 	if(isWindowsOS()){
 		spawn("taskkill", ["/pid", id, '/f', '/t']);
 	}else if(isLinuxsOS()) {
-		spawn("kill", ["-9", id]);
+		spawn("pkill", ["-TERM","-P", id]);
 	}
 }
 
@@ -72,7 +72,7 @@ function commandStartByOS(port, path, file){
 	if(isWindowsOS()){
 		return 'set PORT='+port+' & cd /D '+path+' & node '+file;
 	}else if(isLinuxsOS()) {
-		//return 'PORT=8080 node app.js'
+		return 'cd '+path+ ' && PORT='+port + ' node ' + file ;
 	}
 }
 
